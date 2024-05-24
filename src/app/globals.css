@@ -46,3 +46,27 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+
+
+/*-------------------------------- CSS PROJETO --------------------------------*/
+
+html{
+  size:'62.5%';
+}
+
+body{
+  font-size: 1.6rem;
+  display: flex;
+  justify-content: center;
+}
+
+.container{
+  display: flex;
+  max-width: 144rem;
+  /* border: 0.2rem solid black; */
+  width: 100%;
+  justify-content: center;
+  padding: 1.6rem;
+  margin: 1.5rem;
+}
