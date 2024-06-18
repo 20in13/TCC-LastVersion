@@ -1,8 +1,11 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import NavigationRail from "./components/NavRail/navrail";
 
 export default function Home() {
   return (
-    <h1>Projeto</h1>
+
+    <NavigationRail> </NavigationRail>
+
   );
 }

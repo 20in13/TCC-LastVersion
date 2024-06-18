@@ -1,0 +1,75 @@
+.navbar {
+    background-color: #FFC5C5; /* pastel red background */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px; /* adjust the width to your liking */
+  }
+  
+  .logo {
+    margin-bottom: 20px;
+  }
+  
+  .logo img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  
+  .nav-btn {
+    margin-bottom: 20px;
+  }
+  
+  .nav-btn button {
+    background-color: #FFFFFF;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .nav-btn button:hover {
+    background-color: #CCCCCC;
+  }
+  
+  .nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav-list li {
+    margin-bottom: 20px;
+  }
+  
+  .nav-list button {
+    background-color: #FFFFFF;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  .nav-list button:hover {
+    background-color: #CCCCCC;
+  }
+  
+  .nav-list button i {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  
+  .nav-list button span {
+    font-size: 16px;
+  }
+  
+  .profile-icon {
+    margin-top: 20px;
+  }
+  
+  .profile-icon i {
+    font-size: 40px;
+    color: #FFFFFF;
+  }
