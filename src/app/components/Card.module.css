@@ -1,0 +1,67 @@
+.cardContainerWrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .cardContainer {
+    max-width: 90%;
+    width: 250px;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    margin-horizontal: 10px;
+    align-content: center;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .cardImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .cardOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 25%;
+    background-color: #F4F3FA;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .cardTextContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+  }
+  
+  .cardText {
+    font-size: 16px;
+    color: #1A1B21;
+    margin: 8px;
+    font-weight: 500;
+  }
+  
+  .likeButton {
+    background-color: #F4F3FA;
+    padding: 8px;
+    border-radius: 100px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-left: auto;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .iconeLike {
+    color: #44464F;
+  }
+  

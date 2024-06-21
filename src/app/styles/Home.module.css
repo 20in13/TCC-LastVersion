@@ -1,0 +1,72 @@
+.scrollView {
+    overflow-y: auto;
+    height: 100vh;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    background-color: #44464F;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .headerRight {
+    display: flex;
+    align-items: center;
+  }
+  
+  .buttonLogin {
+    background-color: transparent;
+    border: 1px solid #CC3737;
+    padding: 8px;
+    border-radius: 10px;
+    margin-right: 8px;
+    color: #CC3737;
+    font-size: 12px;
+  }
+  
+  .buttonCadastrar {
+    background-color: #CC3737;
+    border: 1px solid #CC3737;
+    padding: 8px;
+    border-radius: 10px;
+    margin-right: 8px;
+    color: white;
+    font-size: 12px;
+  }
+  
+  .profileIcon {
+    width: 40px;
+    height: 40px;
+    margin: 16px;
+  }
+  
+  .contentWrapper {
+    display: flex;
+    align-items: center;
+  }
+  
+  .content {
+    width: 95%;
+    background-color: #FFF;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 7% 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
