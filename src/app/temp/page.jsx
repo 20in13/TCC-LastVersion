@@ -8,7 +8,6 @@ export default function Home() {
       <Link  href={"/screens/Login"}><p className={styles.linkTemp}>Login</p></Link>
       <Link  href={"/screens/Cadastro"}><p className={styles.linkTemp}>Cadastro</p></Link>
       <Link  href={"/screens/HomeW"}><p className={styles.linkTemp}>Home web</p></Link>
-      <Link  href={"/screens/HomeM"}><p className={styles.linkTemp}>Home Mobile</p></Link>
       <Link  href={"/screens/Agendamento"}><p className={styles.linkTemp}>Agendamento</p></Link>
     </div>
   );

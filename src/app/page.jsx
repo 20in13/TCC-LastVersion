@@ -1,78 +1,39 @@
-'use client';
 import Head from 'next/head';
 import Image from 'next/image';
-import Link from 'next/link';
-import { useState } from 'react';
 import styles from './page.module.css';
+import InputComponent from './components/Input/page';
+import { Box, Input, Button, Text, Flex } from '@chakra-ui/react';
 
-
-const LoginScreen = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [sec, setSec] = useState(true);
-
-  const handleLogin = () => {
-    if (username === 'a' && password === 'a') {
-      // navegar para a página inicial
-      window.location.href = '../';
-    } else {
-      alert('Login ou senha incorretos');
-    }
-  };
-
+const LoginScreenW = () => {
   return (
     <div className={styles.container}>
-      <header className={styles.cabecalho}>
+      <Head>
+        <title>Login Screen</title>
+      </Head>
+      <div className={styles.leftContainer}>
+        <div className={styles.logoContainer2}>
+          <Image src="/SpaceSchool.png" width={400} height={400} className={styles.logoGrande} />
+          <h2 className={styles.bemvindo}>Bem-vindo ao Space School</h2>
+        </div>
+      </div>
+
+      <div className={styles.rightContainer}>
         <div className={styles.logoContainer}>
-          <Image src="/SpaceSchool.jpeg" alt="Logo SpaceSchool" width={150} height={150} className={styles.logo} />
+          <Image src="/SpaceSchool.png" width={100} height={100} className={styles.logo} />
+          <h2 className={styles.spaceSchool}>SpaceSchool</h2>
         </div>
-      </header>
-      <main className={styles.main}>
-        <div className={styles.formContainer}>
-          <input
-            type="email"
-            placeholder="E-mail"
-            className={styles.input}
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <input
-            type={sec ? 'password' : 'text'}
-            placeholder="Senha"
-            className={styles.input}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <i className={`icon-mail ${styles.iconMail}`} />
-          <i className={`icon-lock ${styles.iconLock}`} />
-          {sec && (
-            <i
-              className={`icon-eye ${styles.iconSecret}`}
-              onClick={() => setSec(!sec)}
-            />
-          )}
-        </div>
-        <div className={styles.bottomContainer}>
-          <button className={styles.loginButton} onClick={handleLogin}>
-            Entrar
-          </button>
-        </div>
-        <div className={styles.optionsContainer}>
-          <button className={styles.forgotPasswordButton}>
-            <a href="#" className={styles.forgotPasswordText}>
-              Esqueceu a senha?
-            </a>
-          </button>
-          <p className={styles.link}>
-            Não possui Login?{' '}
-            <Link href="/register" className={styles.registerLinkText}>
-              Cadastrar-se
-            </Link>
-          </p>
-        </div>
-      </main>
+        <InputComponent
+          type="password"
+          autoCapitalize="none"
+          autoCorrect="off"
+        />
+        <button className={styles.loginButton}>Login</button>
+        <p className={styles.registerLink}>
+          Não tem conta? <a href="#">Registre-se</a>
+        </p>
+      </div>
     </div>
   );
 };
 
-export default LoginScreen;
+export default LoginScreenW;
