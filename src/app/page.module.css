@@ -23,6 +23,7 @@
 
 .logoContainer {
   margin-bottom: 20px;
+  
 }
 
 .logoContainer2 {
@@ -36,6 +37,8 @@
   width: 100px;
   height: 100px;
   border-radius: 50px;
+  align-items: center;
+  justify-content: center;
 }
 
 .logoGrande {
@@ -60,12 +63,19 @@
 
 
 .loginButton {
-  background-color: #4CAF50;
-  color: #fff;
-  padding: 10px 20px;
+  background-color: #CC3737;
+  padding: 12px 20px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  margin-top: 25px;
+  width: 80%;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
+}
+
+.loginButtonText {
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
 }
 
 .registerLink {

@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import styles from './page.module.css';
 import InputComponent from './components/Input/page';
-import { Box, Input, Button, Text, Flex } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react'
 
 const LoginScreenW = () => {
   return (
@@ -12,14 +12,18 @@ const LoginScreenW = () => {
       </Head>
       <div className={styles.leftContainer}>
         <div className={styles.logoContainer2}>
-          <Image src="/SpaceSchool.png" width={400} height={400} className={styles.logoGrande} />
+          <Flex justifyContent="center" alignItems="center">
+            <Image src="/SpaceSchool.png" width={400} height={400} className={styles.logoGrande} />
+          </Flex>
           <h2 className={styles.bemvindo}>Bem-vindo ao Space School</h2>
         </div>
       </div>
 
       <div className={styles.rightContainer}>
         <div className={styles.logoContainer}>
-          <Image src="/SpaceSchool.png" width={100} height={100} className={styles.logo} />
+          <Flex justifyContent="center" alignItems="center">
+            <Image src="/SpaceSchool.png" width={100} height={100} className={styles.logo} />
+          </Flex>
           <h2 className={styles.spaceSchool}>SpaceSchool</h2>
         </div>
         <InputComponent
@@ -28,9 +32,21 @@ const LoginScreenW = () => {
           autoCorrect="off"
         />
         <button className={styles.loginButton}>Login</button>
+
         <p className={styles.registerLink}>
-          Não tem conta? <a href="#">Registre-se</a>
+          Não tem conta? 
         </p>
+            <a href="#">
+            <Text
+              color="#CC3737"
+              textDecoration="underline"
+              fontSize={16}
+              fontWeight={600}
+              cursor="pointer"
+            >
+          Cadastre-se
+            </Text>
+            </a>
       </div>
     </div>
   );
