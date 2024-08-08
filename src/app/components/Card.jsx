@@ -10,6 +10,7 @@ const Card = () => {
   return (
     <div className={styles.cardContainerWrapper}>
       <div className={styles.cardContainer} >
+      <a href="/screens/Agendamento">
         <Image
           src={biblioteca}
           alt="Biblioteca"
@@ -23,6 +24,7 @@ const Card = () => {
             </button>
           </div>
         </div>
+      </a>
       </div>
     </div>
   );

@@ -31,12 +31,24 @@ const LoginScreenW = () => {
           autoCapitalize="none"
           autoCorrect="off"
         />
-        <button className={styles.loginButton}>Login</button>
+        <button className={styles.loginButton}>
+          <a href="/screens/HomeW">
+            <Text
+              color="#FFF"
+              fontSize={14}
+              fontWeight={600}
+              cursor="pointer"
+            >
+              Login
+            </Text>
+            </a>
+          </button>
 
         <p className={styles.registerLink}>
+ 
           Não tem conta? 
         </p>
-            <a href="#">
+            <a href="/screens/Cadastro">
             <Text
               color="#CC3737"
               textDecoration="underline"

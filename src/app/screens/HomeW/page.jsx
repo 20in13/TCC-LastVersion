@@ -15,12 +15,7 @@ const HomeW = () => {
         <header className={styles.header}>
           <h1 className={styles.title}>Space School</h1>
           <div className={styles.headerRight}>
-            <button className={styles.buttonLogin}>
-              Login
-            </button>
-            <button className={styles.buttonCadastrar}>
-              Cadastrar
-            </button>
+
             <FaUserCircle size={24} color="#3B0909" className={styles.profileIcon} />
           </div>
         </header>

@@ -12,6 +12,8 @@
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
+    "@geist-ui/icons": "^1.0.2",
+    "@geist-ui/react": "^2.2.5",
     "framer-motion": "^11.3.24",
     "next": "14.2.3",
     "react": "^18",
