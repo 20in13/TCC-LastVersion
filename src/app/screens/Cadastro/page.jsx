@@ -1,5 +1,6 @@
 'use client'
 import React from 'react';
+import { Flex, Text } from '@chakra-ui/react'
 
 const CadastroScreen = () => {
   return (
@@ -11,7 +12,14 @@ const CadastroScreen = () => {
         <input className="input" placeholder="Senha" type="password" />
         <input className="input" placeholder="Confirme sua Senha" type="password" />
         <button className="button">
-          <span className="text">Registrar</span>
+              <Text
+                color="#FFF"
+                fontSize={14}
+                fontWeight={600}
+                cursor="pointer"
+              >
+                Registrar
+              </Text>
         </button>
       </div>
       <style jsx>{`
@@ -53,11 +61,12 @@ const CadastroScreen = () => {
           width: 100%;
         }
         .button {
+          background-color: #CC3737;
+          padding: 12px 20px;
           border-radius: 15px;
-          background-color: #ffdad7;
-          padding: 10px;
-          width: 100%;
-          cursor: pointer;
+          margin-bottom: 10px;
+          margin-top: 5px;
+          width: 105%;
           border: none;
         }
         .text {

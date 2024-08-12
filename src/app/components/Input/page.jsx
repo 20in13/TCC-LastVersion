@@ -33,7 +33,7 @@ const InputComponent = (props) => {
           paddingBottom={10}
           paddingTop={10}
           fontSize={18}
-          w="100%" 
+          w="45rem" 
         />
       </Box>
 
@@ -50,7 +50,7 @@ const InputComponent = (props) => {
           }}
         />
         <Input
-          type={sec ? 'password' : 'text'}
+          type={sec ? 'text' : 'password'}
           placeholder="Senha"
           variant="filled"
           borderColor="#E5E8ED"
@@ -58,31 +58,24 @@ const InputComponent = (props) => {
           borderWidth={0}
           borderRadius={8}
           paddingLeft="60px" // Consistente com o e-mail
+          paddingRight="40px" 
           paddingBottom={10}
           paddingTop={10}
           fontSize={18}
-          w="100%" 
+          w="43rem"
           {...props}
         />
-        {props.secureTextEntry && (
-          <Button
-            variant="link"
-            onClick={() => setSec(!sec)}
-            style={{
-              position: 'absolute',
-              right: 20,
-              top: '50%',
-              transform: 'translateY(-50%)',
-              zIndex: 2,
-            }}
-          >
-            {sec ? (
-              <IoMdEyeOff size={27} color="#41484D" />
-            ) : (
-              <IoMdEye size={27} color="#41484D" />
-            )}
-          </Button>
-        )}
+        <Box
+          position="absolute"
+          right={20}
+          top="50%"
+          transform="translateY(-50%)"
+          zIndex={1}
+          cursor="pointer"
+          onClick={() => setSec(!sec)}
+        >
+          {sec ? <IoMdEyeOff size={24} color="#41484D" /> : <IoMdEye size={24} color="#41484D" />}
+        </Box>
       </Box>
 
       <Flex justify="flex-end">
