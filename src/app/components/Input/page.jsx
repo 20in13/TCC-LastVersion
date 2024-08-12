@@ -29,11 +29,11 @@ const InputComponent = (props) => {
           backgroundColor="#E5E8ED"
           borderWidth={0}
           borderRadius={8}
-          paddingLeft="60px" // Ajusta o paddingLeft para dar espaço para o ícone
+          paddingLeft="10%" // Ajusta o paddingLeft para dar espaço para o ícone
           paddingBottom={10}
           paddingTop={10}
           fontSize={18}
-          w="45rem" 
+          w="90%"
         />
       </Box>
 
@@ -57,12 +57,12 @@ const InputComponent = (props) => {
           backgroundColor="#E5E8ED"
           borderWidth={0}
           borderRadius={8}
-          paddingLeft="60px" // Consistente com o e-mail
-          paddingRight="40px" 
+          paddingLeft="10%" // Consistente com o e-mail
+          paddingRight="6%" 
           paddingBottom={10}
           paddingTop={10}
           fontSize={18}
-          w="43rem"
+          w="84%"
           {...props}
         />
         <Box
