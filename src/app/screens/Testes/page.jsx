@@ -1,4 +1,4 @@
-import NavigationRail from '../../components/NavRail2/page';
+import NavigationRail from '../../components/NavRail/page';
 
 export default function Home() {
   return (
@@ -6,9 +6,9 @@ export default function Home() {
       <NavigationRail />
       <main style={{ flexGrow: 1, padding: '24px' }}>
         <h1>Conteúdo Principal</h1>
-        {/* Adicione o conteúdo do seu site aqui */}
+
       </main>
-    </div>
+ </div> 
   );
 }
 
