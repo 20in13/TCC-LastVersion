@@ -1,20 +1,22 @@
+"use client";
+
 import React, {} from 'react';
 import { FaHeart, FaUserCircle } from 'react-icons/fa';
 import { IoMdHome, IoSearch } from 'react-icons/io';
 import { MdToday } from 'react-icons/md';
 import styles from './NavigationRail.module.css';
 import Image from 'next/image';
-import SpaceSchoolLogo from '../../../public/SpaceSchool.png';
+import Logo from '../../../public/SpaceSchool.png';
 
 const NavigationRail = () => {
 
   return (
     <div className={styles.navrail}>
-      <Image
-        src={SpaceSchoolLogo}
+      {/* <Image
+        src={Logo}
         alt="Space School Logo"
         className={styles.logo}
-      />
+      /> */}
 
       <button className={styles.butagend}>
         <MdToday size={25} className={styles.iconesLista} />

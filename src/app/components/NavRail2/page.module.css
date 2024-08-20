@@ -1,0 +1,92 @@
+.logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 16px;
+  }
+  
+  .navrail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 80px;
+    min-width: 80px;
+    background-color: #cc3737;
+    padding: 16px;
+  }
+  
+  .butagend {
+    width: 56px;
+    height: 56px;
+    border-radius: 30%;
+    background-color: #ffdad7;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .itemlista {
+    margin-bottom: 16px;
+  }
+  
+  .button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .selecionadoLista {
+    background-color: #ffdad7;
+    padding: 4px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .nselecionadoLista {
+    padding: 4px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .iconesLista {
+    color: #3b0909;
+  }
+  
+  .textoLista {
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .usuario {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
