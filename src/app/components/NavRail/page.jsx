@@ -28,6 +28,7 @@ export default function NavigationRail() {
           flexDirection: 'column',
           alignItems: 'center', // Centraliza os ícones horizontalmente
           paddingTop: spacing, // Espaço acima da imagem
+          backgroundColor: '#CC3737', // Cor de fundo adicionada
         },
       }}
       variant="permanent"
@@ -36,7 +37,7 @@ export default function NavigationRail() {
       {/* Imagem redonda pequena no topo */}
       <ListItem sx={{ width: '100%', display: 'flex', justifyContent: 'center', padding: 0, marginBottom: spacing2, paddingTop: spacing }}>
         <img
-          src="/path/to/your/image.jpg" // Substitua pelo caminho da sua imagem
+          src="/public/SpaceSchool.png" // Substitua pelo caminho da sua imagem
           alt="Profile"
           style={{
             width: '40px', // Largura da imagem
@@ -83,7 +84,7 @@ export default function NavigationRail() {
               display: 'flex', 
               justifyContent: 'center', 
               padding: 0,
-              marginBottom: spacing3 // Adiciona margem entre os ícones
+              marginTop: spacing3 // Adiciona margem entre os ícones
             }}
           >
             <ListItemIcon sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
