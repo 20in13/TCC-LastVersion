@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="container">
       <h1>Links</h1>
-      <Link  href={"/screens/Login"}><p className={styles.linkTemp}>Login</p></Link>
+      <Link  href={"/"}><p className={styles.linkTemp}>Login</p></Link>
       <Link  href={"/screens/Cadastro"}><p className={styles.linkTemp}>Cadastro</p></Link>
       <Link  href={"/screens/HomeW"}><p className={styles.linkTemp}>Home web</p></Link>
       <Link  href={"/screens/Agendamento"}><p className={styles.linkTemp}>Agendamento</p></Link>
