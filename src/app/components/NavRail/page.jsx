@@ -1,28 +1,50 @@
 "use client";
 
 import * as React from "react";
-import { useRouter } from "next/navigation"; // Importa o useRouter
+import { useRouter, usePathname } from "next/navigation"; 
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import EventIcon from "@mui/icons-material/Event"; // Ícone de agenda
-import HomeIcon from "@mui/icons-material/Home"; // Ícone de casa
-import FavoriteIcon from "@mui/icons-material/Favorite"; // Ícone de coração
-import SearchIcon from "@mui/icons-material/Search"; // Ícone de lupa
-import PersonIcon from "@mui/icons-material/Person"; // Ícone de perfil
+import EventIcon from "@mui/icons-material/Event";
+import HomeIcon from "@mui/icons-material/Home";
+import FavoriteIcon from "@mui/icons-material/Favorite"; 
+import SearchIcon from "@mui/icons-material/Search"; 
+import PersonIcon from "@mui/icons-material/Person"; 
 import { IconButton } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function NavigationRail() {
-  const router = useRouter(); // Hook do Next.js para navegação
-  const drawerWidth = 80; // Ajustado para 80px
+  const router = useRouter(); 
+  const pathname = usePathname(); // Obtém o caminho atual
+  const drawerWidth = 80; 
   const spacing = 2;
   const spacing2 = 8;
   const spacing3 = 4;
 
   const [selectedIndex, setSelectedIndex] = useState(null);
+
+  // Atualiza o estado selectedIndex com base no caminho atual
+  useEffect(() => {
+    const path = pathname;
+    switch (path) {
+      case "/screens/HomeW":
+        setSelectedIndex(0);
+        break;
+      case "/screens/Pagina":
+        setSelectedIndex(1);
+        break;
+      case "/screens/Pagina2":
+        setSelectedIndex(2);
+        break;
+      case "/screens/Pagina3":
+        setSelectedIndex(3);
+        break;
+      default:
+        setSelectedIndex(null);
+    }
+  }, [pathname]);
 
   const handleIconClick = (index, route) => {
     setSelectedIndex(index);
@@ -39,15 +61,15 @@ export default function NavigationRail() {
           boxSizing: "border-box",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center", // Centraliza os ícones horizontalmente
-          paddingTop: spacing, // Espaço acima da imagem
-          backgroundColor: "#CC3737", // Cor de fundo adicionada
+          alignItems: "center",
+          paddingTop: spacing, 
+          backgroundColor: "#CC3737",
         },
       }}
       variant="permanent"
       anchor="left"
     >
-      {/* =-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=LOGO SPACE SCHOOL=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-= */}
+      {/* LOGO */}
       <ListItem
         sx={{
           width: "100%",
@@ -59,13 +81,13 @@ export default function NavigationRail() {
         }}
       >
         <img
-          src="/SpaceSchool.png" // Substitua pelo caminho da sua imagem
+          src="/SpaceSchool.png"
           alt="Profile"
           style={{
-            width: "40px", // Largura da imagem
-            height: "40px", // Altura da imagem
-            borderRadius: "50%", // Bordas arredondadas para fazer a imagem redonda
-            objectFit: "cover", // Ajusta a imagem para cobrir o elemento
+            width: "40px", 
+            height: "40px",
+            borderRadius: "50%",
+            objectFit: "cover", 
           }}
         />
       </ListItem>
@@ -76,7 +98,7 @@ export default function NavigationRail() {
           flexDirection: "column",
           alignItems: "center",
           padding: 0,
-          flexGrow: 1, // Faz com que a lista ocupe o espaço disponível
+          flexGrow: 1, 
         }}
         >
         <ListItem
@@ -84,29 +106,30 @@ export default function NavigationRail() {
           key="agenda"
           sx={{ width: "100%", display: "flex", justifyContent: "center", padding: 0 }}
           >
-          {/* =-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=Botão do evento=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-= */}
+          {/* Botão do evento */}
           <IconButton
             sx={{
-              width: "56px", // Largura do botão
-              height: "56px", // Altura do botão
-              borderRadius: "10px", // Bordas arredondadas
+              width: "56px",
+              height: "56px", 
+              borderRadius: "10px", 
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              backgroundColor: "#FFDAD7", // Cor de fundo opcional
+              backgroundColor: "#FFDAD7", 
               "&:hover": {
-                backgroundColor: "#FFDAD8", // Cor de fundo ao passar o mouse
+                backgroundColor: "#FFDAD8", 
               },
             }}
-            >
+            onClick={() => handleIconClick(3, "/screens/Pagina3")} // Atualizado para navegar para a página 3
+          >
             <EventIcon sx={{ color: "#2D0002" }} />
           </IconButton>
         </ListItem>
 
-        {/* =-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=ICONES CLICAVEIS=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-= */}
+            {/* Lista de ícones */}
         {[{ icon: <HomeIcon sx={{ color: "#2D0002" }} />, route: "/screens/HomeW" },
           { icon: <FavoriteIcon sx={{ color: "#2D0002" }} />, route: "/screens/Pagina" },
-          { icon: <SearchIcon sx={{ color: "#2D0002" }} />, route: "/screens/Pagina" }].map((item, index) => (
+          { icon: <SearchIcon sx={{ color: "#2D0002" }} />, route: "/screens/Pagina2" }].map((item, index) => (
           <ListItem
             button
             key={index}
@@ -114,11 +137,11 @@ export default function NavigationRail() {
               width: "100%",
               display: "flex",
               justifyContent: "center",
-              flexDirection: "column", // Alinha ícone e texto em coluna
+              flexDirection: "column", 
               alignItems: "center",
               padding: 0,
-              marginTop: spacing3, // Adiciona margem entre os ícones
-              position: "relative", // Necessário para posicionar o círculo
+              marginTop: spacing3,
+              position: "relative",
             }}
             onClick={() => handleIconClick(index, item.route)} // Chama a função com o índice e a rota
           >
@@ -127,24 +150,24 @@ export default function NavigationRail() {
                 display: "flex",
                 justifyContent: "center",
                 width: "100%",
-                position: "relative", // Necessário para posicionar o círculo
+                position: "relative", 
               }}
             >
               <IconButton
                 sx={{
-                  width: "56px", // Largura do botão
-                  height: "30px", // Altura do botão
-                  borderRadius: "20px", // Círculo ao redor do ícone
+                  width: "56px", 
+                  height: "30px", 
+                  borderRadius: "20px",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  backgroundColor: selectedIndex === index ? "#FFDAD7" : "transparent", // Círculo ao redor do ícone quando selecionado
+                  backgroundColor: selectedIndex === index ? "#FFDAD7" : "transparent",
                   "&:hover": {
                     backgroundColor: selectedIndex === index
                       ? "rgba(255, 218, 215, 0.5)"
-                      : "rgba(0, 0, 0, 0.1)", // Cor ao passar o mouse
+                      : "rgba(0, 0, 0, 0.1)", 
                   },
-                  position: "relative", // Necessário para o círculo
+                  position: "relative", 
                 }}
               >
                 {item.icon}
@@ -162,7 +185,7 @@ export default function NavigationRail() {
             width: "100%",
             display: "flex",
             justifyContent: "center",
-            flexDirection: "column", // Alinha ícone e texto em coluna
+            flexDirection: "column",
             alignItems: "center",
             padding: 0,
             marginTop: "auto",
@@ -174,17 +197,17 @@ export default function NavigationRail() {
           >
             <IconButton
               sx={{
-                width: "56px", // Largura do botão
-                height: "56px", // Altura do botão
-                borderRadius: "50%", // Círculo ao redor do ícone
+                width: "56px",
+                height: "56px", 
+                borderRadius: "50%", 
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                backgroundColor: "transparent", // Sem cor de fundo para o ícone de perfil
+                backgroundColor: "transparent",
                 "&:hover": {
-                  backgroundColor: "rgba(0, 0, 0, 0.1)", // Cor ao passar o mouse
+                  backgroundColor: "rgba(0, 0, 0, 0.1)", 
                 },
-                position: "relative", // Necessário para o círculo
+                position: "relative", 
               }}
             >
               <PersonIcon sx={{ color: "#2D0002" }} />
