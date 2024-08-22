@@ -5,6 +5,7 @@ import styles from './page.module.css';
 import styled from 'styled-components';
 import Image from 'next/image';
 import CalendarComponent from '../../components/calendario/page'
+import NavigationRail from '../../components/NavRail/page';
 
 const Tela2 = () => {
   const text = 'A biblioteca da escola é um espaço dedicado à promoção da educação, pesquisa e desenvolvimento intelectual dos alunos. Equipada com uma ampla variedade de livros, periódicos e recursos digitais, a biblioteca oferece um ambiente propício para o estudo individual e em grupo.';
@@ -48,6 +49,9 @@ const Tela2 = () => {
 
   return (
     <div className={styles.scrollView}>
+      <NavigationRail />
+      <main style={{ flexGrow: 1, paddingLeft: '80px' }}>
+
       <div className={styles.container}>
 
         <div className={styles.contentWrapper}>
@@ -80,6 +84,7 @@ const Tela2 = () => {
           </div>
         </div>
       </div>
+      </main>
     </div>
   );
 };

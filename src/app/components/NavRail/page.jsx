@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from 'react';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -9,13 +11,21 @@ import FavoriteIcon from '@mui/icons-material/Favorite'; // Ícone de coração
 import SearchIcon from '@mui/icons-material/Search'; // Ícone de lupa
 import PersonIcon from '@mui/icons-material/Person'; // Ícone de perfil
 import { IconButton } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import { useState } from 'react';
 
 export default function NavigationRail() {
   const drawerWidth = 80; // Ajustado para 80px
   const spacing = 2; 
   const spacing2 = 8; 
   const spacing3 = 4; 
-  
+
+  const [selectedIndex, setSelectedIndex] = useState(null);
+
+  const handleIconClick = (index) => {
+    setSelectedIndex(index);
+  };
+
   return (
     <Drawer
       sx={{
@@ -37,7 +47,7 @@ export default function NavigationRail() {
       {/* Imagem redonda pequena no topo */}
       <ListItem sx={{ width: '100%', display: 'flex', justifyContent: 'center', padding: 0, marginBottom: spacing2, paddingTop: spacing }}>
         <img
-          src="/public/SpaceSchool.png" // Substitua pelo caminho da sua imagem
+          src="/SpaceSchool.png" // Substitua pelo caminho da sua imagem
           alt="Profile"
           style={{
             width: '40px', // Largura da imagem
@@ -62,20 +72,23 @@ export default function NavigationRail() {
             sx={{
               width: '56px', // Largura do botão
               height: '56px', // Altura do botão
-              borderRadius: '8px', // Bordas arredondadas
+              borderRadius: '10px', // Bordas arredondadas
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              backgroundColor: '#f0f0f0', // Cor de fundo opcional
+              backgroundColor: '#FFDAD7', // Cor de fundo opcional
               '&:hover': {
-                backgroundColor: '#e0e0e0', // Cor de fundo ao passar o mouse
+                backgroundColor: '#FFDAD8', // Cor de fundo ao passar o mouse
               },
             }}
           >
-            <EventIcon />
+            <EventIcon sx={{ color: '#2D0002' }} />
           </IconButton>
         </ListItem>
-        {[<HomeIcon />, <FavoriteIcon />, <SearchIcon />].map((icon, index) => (
+
+        {[<HomeIcon sx={{ color: '#2D0002' }}/>,
+          <FavoriteIcon sx={{ color: '#2D0002' }}/>,
+          <SearchIcon sx={{ color: '#2D0002' }}/>].map((icon, index) => (
           <ListItem 
             button 
             key={index} 
@@ -83,19 +96,77 @@ export default function NavigationRail() {
               width: '100%', 
               display: 'flex', 
               justifyContent: 'center', 
+              flexDirection: 'column', // Alinha ícone e texto em coluna
+              alignItems: 'center',
               padding: 0,
-              marginTop: spacing3 // Adiciona margem entre os ícones
+              marginTop: spacing3, // Adiciona margem entre os ícones
+              position: 'relative', // Necessário para posicionar o círculo
             }}
+            onClick={() => handleIconClick(index)}
           >
-            <ListItemIcon sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-              {icon}
+            <ListItemIcon 
+              sx={{ 
+                display: 'flex', 
+                justifyContent: 'center', 
+                width: '100%',
+                position: 'relative', // Necessário para posicionar o círculo
+              }}
+            >
+              <IconButton
+                sx={{
+                  width: '56px', // Largura do botão
+                  height: '30px', // Altura do botão
+                  borderRadius: '20px', // Círculo ao redor do ícone
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: selectedIndex === index ? '#FFDAD7' : 'transparent', // Círculo ao redor do ícone quando selecionado
+                  '&:hover': {
+                    backgroundColor: selectedIndex === index ? 'rgba(255, 218, 215, 0.5)' : 'rgba(0, 0, 0, 0.1)', // Cor ao passar o mouse
+                  },
+                  position: 'relative', // Necessário para o círculo
+                }}
+              >
+                {icon}
+              </IconButton>
             </ListItemIcon>
+            <Typography variant="caption" sx={{ color: '#FFFFFF', textAlign: 'center' }}>  {/* Adiciona o texto pequeno */}
+              {['Inicio', 'Favoritos', 'Pesquisar'][index]} {/* Define o texto para cada ícone */}
+            </Typography>
           </ListItem>
         ))}
+
         {/* Ícone de perfil na parte inferior */}
-        <ListItem sx={{ width: '100%', display: 'flex', justifyContent: 'center', padding: 0, marginTop: 'auto', marginBottom: spacing3 }}>
-          <ListItemIcon sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-            <PersonIcon />
+        <ListItem 
+          sx={{ 
+            width: '100%', 
+            display: 'flex', 
+            justifyContent: 'center', 
+            flexDirection: 'column', // Alinha ícone e texto em coluna
+            alignItems: 'center',
+            padding: 0, 
+            marginTop: 'auto', 
+            marginBottom: spacing3 
+          }}
+        >
+          <ListItemIcon sx={{ display: 'flex', justifyContent: 'center', width: '100%', position: 'relative' }}>
+            <IconButton
+              sx={{
+                width: '56px', // Largura do botão
+                height: '56px', // Altura do botão
+                borderRadius: '50%', // Círculo ao redor do ícone
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: 'transparent', // Sem cor de fundo para o ícone de perfil
+                '&:hover': {
+                  backgroundColor: 'rgba(0, 0, 0, 0.1)', // Cor ao passar o mouse
+                },
+                position: 'relative', // Necessário para o círculo
+              }}
+            >
+              <PersonIcon sx={{ color: '#2D0002' }} />
+            </IconButton>
           </ListItemIcon>
         </ListItem>
       </List>
