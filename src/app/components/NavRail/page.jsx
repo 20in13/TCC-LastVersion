@@ -32,7 +32,7 @@ export default function NavigationRail() {
       case "/screens/HomeW":
         setSelectedIndex(0);
         break;
-      case "/screens/Pagina":
+      case "/screens/Fav":
         setSelectedIndex(1);
         break;
       case "/screens/Pagina2":
@@ -128,7 +128,7 @@ export default function NavigationRail() {
 
             {/* Lista de ícones */}
         {[{ icon: <HomeIcon sx={{ color: "#2D0002" }} />, route: "/screens/HomeW" },
-          { icon: <FavoriteIcon sx={{ color: "#2D0002" }} />, route: "/screens/Pagina" },
+          { icon: <FavoriteIcon sx={{ color: "#2D0002" }} />, route: "/screens/Fav" },
           { icon: <SearchIcon sx={{ color: "#2D0002" }} />, route: "/screens/Pagina2" }].map((item, index) => (
           <ListItem
             button
@@ -209,6 +209,7 @@ export default function NavigationRail() {
                 },
                 position: "relative", 
               }}
+              onClick={() => handleIconClick(4, "/screens/Perfil")} // Adicionado para navegar para a página de perfil
             >
               <PersonIcon sx={{ color: "#2D0002" }} />
             </IconButton>
