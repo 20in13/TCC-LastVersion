@@ -1,4 +1,3 @@
-// pages/profile.js
 "use client";
 
 import { useRouter } from 'next/navigation';

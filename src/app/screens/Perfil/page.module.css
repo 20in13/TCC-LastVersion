@@ -7,7 +7,7 @@
   align-items: center;
   height: 100vh;
   width: "100%";
-  background-color: #404040;
+  background-color: #44464F;
   text-align: center;
 }
 
@@ -27,8 +27,8 @@
   background-color: #ffffff;
   padding: 2rem;
   border-radius: 20px;
-  max-width: 400px;
-  width: 100%;
+  max-width: 500px;
+  width: 21rem;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   position: relative;
 }
@@ -62,7 +62,7 @@
 
 .manageBtn {
   display: inline-block;
-  background-color: #ff5a5f;
+  background-color: #FB4139;
   color: #fff;
   padding: 0.75rem 1.5rem;
   border: none;
@@ -74,9 +74,9 @@
 .logoutBtn {
   display: inline-block;
   background-color: transparent;
-  color: #ff5a5f;
+  color: #FB4139;
   padding: 0.75rem 1.5rem;
-  border: 1px solid #ff5a5f;
+  border: 1px solid #FB4139;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -93,5 +93,5 @@
 }
 
 .backButton:hover {
-  color: #ff5a5f;
+  color: #FB4139;
 }
