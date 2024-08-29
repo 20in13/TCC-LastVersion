@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { SearchProvider } from "../context/SearchContext"; // Importa o SearchProvider
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,7 +12,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <SearchProvider> {/* Envolve os filhos com o SearchProvider */}
+          {children}
+        </SearchProvider>
+      </body>
     </html>
   );
 }

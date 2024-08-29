@@ -14,16 +14,19 @@ import PersonIcon from "@mui/icons-material/Person";
 import { IconButton } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { useState, useEffect } from "react";
+import { useSearchContext } from "../../../context/SearchContext";
 
 export default function NavigationRail() {
-  const router = useRouter(); 
+  const router = useRouter();
   const pathname = usePathname(); // Obtém o caminho atual
-  const drawerWidth = 80; 
+  const drawerWidth = 80;
   const spacing = 2;
   const spacing2 = 8;
   const spacing3 = 4;
 
   const [selectedIndex, setSelectedIndex] = useState(null);
+
+  const { setIsSearchVisible } = useContext(SearchContext); // Usa o contexto de pesquisa
 
   // Atualiza o estado selectedIndex com base no caminho atual
   useEffect(() => {
@@ -51,6 +54,12 @@ export default function NavigationRail() {
     router.push(route); // Navega para a rota correspondente
   };
 
+  const handleSearchClick = () => {
+    setSelectedIndex(2); // Define o índice selecionado para o botão de pesquisa
+    router.push("/screens/HomeW"); // Navega para a página inicial
+    setIsSearchVisible(true); // Exibe o componente de pesquisa
+  };
+
   return (
     <Drawer
       sx={{
@@ -62,7 +71,7 @@ export default function NavigationRail() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          paddingTop: spacing, 
+          paddingTop: spacing,
           backgroundColor: "#CC3737",
         },
       }}
@@ -84,10 +93,10 @@ export default function NavigationRail() {
           src="/SpaceSchool.png"
           alt="Profile"
           style={{
-            width: "40px", 
+            width: "40px",
             height: "40px",
             borderRadius: "50%",
-            objectFit: "cover", 
+            objectFit: "cover",
           }}
         />
       </ListItem>
@@ -98,38 +107,40 @@ export default function NavigationRail() {
           flexDirection: "column",
           alignItems: "center",
           padding: 0,
-          flexGrow: 1, 
+          flexGrow: 1,
         }}
-        >
+      >
         <ListItem
           button
           key="agenda"
           sx={{ width: "100%", display: "flex", justifyContent: "center", padding: 0 }}
-          >
+        >
           {/* Botão do evento */}
           <IconButton
             sx={{
               width: "56px",
-              height: "56px", 
-              borderRadius: "10px", 
+              height: "56px",
+              borderRadius: "10px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              backgroundColor: "#FFDAD7", 
+              backgroundColor: "#FFDAD7",
               "&:hover": {
-                backgroundColor: "#FFDAD8", 
+                backgroundColor: "#FFDAD8",
               },
             }}
-            onClick={() => handleIconClick(3, "/screens/Pagina3")} // Atualizado para navegar para a página 3
+            onClick={() => handleIconClick(3, "/screens/Pagina3")} // Navega para a página 3
           >
             <EventIcon sx={{ color: "#2D0002" }} />
           </IconButton>
         </ListItem>
 
-            {/* Lista de ícones */}
-        {[{ icon: <HomeIcon sx={{ color: "#2D0002" }} />, route: "/screens/HomeW" },
+        {/* Lista de ícones */}
+        {[
+          { icon: <HomeIcon sx={{ color: "#2D0002" }} />, route: "/screens/HomeW" },
           { icon: <FavoriteIcon sx={{ color: "#2D0002" }} />, route: "/screens/Fav" },
-          { icon: <SearchIcon sx={{ color: "#2D0002" }} />, route: "/screens/Pagina2" }].map((item, index) => (
+          { icon: <SearchIcon sx={{ color: "#2D0002" }} />, route: "/screens/Pagina2" },
+        ].map((item, index) => (
           <ListItem
             button
             key={index}
@@ -137,26 +148,26 @@ export default function NavigationRail() {
               width: "100%",
               display: "flex",
               justifyContent: "center",
-              flexDirection: "column", 
+              flexDirection: "column",
               alignItems: "center",
               padding: 0,
               marginTop: spacing3,
               position: "relative",
             }}
-            onClick={() => handleIconClick(index, item.route)} // Chama a função com o índice e a rota
+            onClick={() => index === 2 ? handleSearchClick() : handleIconClick(index, item.route)} // Chama a função para o botão de pesquisa
           >
             <ListItemIcon
               sx={{
                 display: "flex",
                 justifyContent: "center",
                 width: "100%",
-                position: "relative", 
+                position: "relative",
               }}
             >
               <IconButton
                 sx={{
-                  width: "56px", 
-                  height: "30px", 
+                  width: "56px",
+                  height: "30px",
                   borderRadius: "20px",
                   display: "flex",
                   alignItems: "center",
@@ -165,9 +176,9 @@ export default function NavigationRail() {
                   "&:hover": {
                     backgroundColor: selectedIndex === index
                       ? "rgba(255, 218, 215, 0.5)"
-                      : "rgba(0, 0, 0, 0.1)", 
+                      : "rgba(0, 0, 0, 0.1)",
                   },
-                  position: "relative", 
+                  position: "relative",
                 }}
               >
                 {item.icon}
@@ -198,18 +209,18 @@ export default function NavigationRail() {
             <IconButton
               sx={{
                 width: "56px",
-                height: "56px", 
-                borderRadius: "50%", 
+                height: "56px",
+                borderRadius: "50%",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 backgroundColor: "transparent",
                 "&:hover": {
-                  backgroundColor: "rgba(0, 0, 0, 0.1)", 
+                  backgroundColor: "rgba(0, 0, 0, 0.1)",
                 },
-                position: "relative", 
+                position: "relative",
               }}
-              onClick={() => handleIconClick(4, "/screens/Perfil")} // Adicionado para navegar para a página de perfil
+              onClick={() => handleIconClick(4, "/screens/Profile")} // Navega para a página de perfil
             >
               <PersonIcon sx={{ color: "#2D0002" }} />
             </IconButton>

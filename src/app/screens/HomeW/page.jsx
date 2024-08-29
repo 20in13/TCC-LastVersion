@@ -6,8 +6,11 @@ import Card from '../../components/Card';
 import SearchBar from '../../components/SearchBar';
 import styles from './page.module.css';
 import NavigationRail from '../../components/NavRail/page';
+import { useSearchContext } from "../../../context/SearchContext"; 
 
-const HomeW = () => {
+export default function HomeW() {
+  const { isSearchVisible } = useSearchContext();
+
   return (
     <div className={styles.scrollView}>
       <NavigationRail />
@@ -17,15 +20,15 @@ const HomeW = () => {
             <h1 className={styles.title}>Space School</h1>
             <div className={styles.headerRight}>
 
-              <FaUserCircle size={24} color="#3B0909" className={styles.profileIcon} />
+              <FaUserCircle size={24} color="#F2F3FD" className={styles.profileIcon} />
             </div>
           </header>
-          
-          <SearchBar />
+
+          {isSearchVisible && <div><SearchBar /></div>}
 
           <div className={styles.contentWrapper}>
             <div className={styles.content}>
-              {Array(24).fill().map((_, index) => (
+              {Array(25).fill().map((_, index) => (
                 <Card key={index} />
               ))}
             </div>
@@ -36,4 +39,4 @@ const HomeW = () => {
   );
 };
 
-export default HomeW;
+

@@ -74,7 +74,7 @@ const InputComponent = (props) => {
           cursor="pointer"
           onClick={() => setSec(!sec)}
         >
-          {sec ? <IoMdEyeOff size={24} color="#41484D" /> : <IoMdEye size={24} color="#41484D" />}
+          {sec ? <IoMdEye size={24} color="#41484D" /> : <IoMdEyeOff size={24} color="#41484D" />}
         </Box>
       </Box>
 

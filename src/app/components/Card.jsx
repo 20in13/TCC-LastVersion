@@ -1,33 +1,75 @@
-import React from 'react';
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
-import Image from 'next/image';
-import styles from './Card.module.css';
-import biblioteca from '../../../public/biblioteca.png';
+"use client";
 
-const Card = () => {
+import React, { useState } from "react";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import Box from "@mui/material/Box";
 
+export default function LibraryCard() {
+  const [liked, setLiked] = useState(false);
+
+  const handleCardClick = () => {
+    window.location.href = "/screens/Agendamento";
+  };
 
   return (
-    <div className={styles.cardContainerWrapper}>
-      <div className={styles.cardContainer} >
-      <a href="/screens/Agendamento">
-        <Image
-          src={biblioteca}
-          alt="Biblioteca"
-          className={styles.cardImage}
+    <Box onClick={handleCardClick} sx={{ cursor: "pointer", display: "inline-block" }}>
+      <Card
+        sx={{
+          width: 250,
+          height: 200,
+          borderRadius: "16px",
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+          position: "relative",
+          overflow: "visible",
+          marginBottom: " 2rem",
+          marginRight: " 2rem",
+        }}
+      >
+        <CardMedia
+          component="img"
+          height="140"
+          image="/biblioteca.png"
+          alt="Imagem"
+          sx={{ borderTopLeftRadius: "16px", borderTopRightRadius: "16px" }}
         />
-        <div className={styles.cardOverlay}>
-          <div className={styles.cardTextContainer}>
-            <span className={styles.cardText}>Biblioteca</span>
-            <button className={styles.likeButton}>
-              <FaRegHeart size={22} className={styles.iconeLike} />
-            </button>
-          </div>
-        </div>
-      </a>
-      </div>
-    </div>
+        <CardContent
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            padding: "8px 16px",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h7" component="div" sx={{ flexGrow: 1 }}>
+            Biblioteca
+          </Typography>
+          <IconButton
+            sx={{
+              backgroundColor: "white",
+              borderRadius: "50%",
+              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
+              padding: "8px",
+            }}
+            onClick={(e) => {
+              e.stopPropagation(); // Impede a propagação do clique para o Card
+              setLiked(!liked); // Alterna o estado de "Liked"
+            }}
+          >
+            {liked ? (
+              <FavoriteIcon sx={{ color: "#FB4139" }} />
+            ) : (
+              <FavoriteBorderIcon />
+            )}
+          </IconButton>
+        </CardContent>
+      </Card>
+    </Box>
   );
-};
-
-export default Card;
+}
