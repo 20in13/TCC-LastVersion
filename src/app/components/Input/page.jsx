@@ -29,7 +29,7 @@ const InputComponent = (props) => {
           backgroundColor="#E5E8ED"
           borderWidth={0}
           borderRadius={8}
-          paddingLeft="10%" // Ajusta o paddingLeft para dar espaço para o ícone
+          paddingLeft="10%" 
           paddingBottom={10}
           paddingTop={10}
           fontSize={18}
@@ -57,7 +57,7 @@ const InputComponent = (props) => {
           backgroundColor="#E5E8ED"
           borderWidth={0}
           borderRadius={8}
-          paddingLeft="10%" // Consistente com o e-mail
+          paddingLeft="10%" 
           paddingRight="6%" 
           paddingBottom={10}
           paddingTop={10}
@@ -74,7 +74,7 @@ const InputComponent = (props) => {
           cursor="pointer"
           onClick={() => setSec(!sec)}
         >
-          {sec ? <IoMdEyeOff size={24} color="#41484D" /> : <IoMdEye size={24} color="#41484D" />}
+          {sec ? <IoMdEye size={24} color="#41484D" /> : <IoMdEyeOff size={24} color="#41484D" />}
         </Box>
       </Box>
 

@@ -12,19 +12,16 @@ const LoginScreenW = () => {
 
   const [isMobile, setIsMobile] = useState(false);
 
+  // Função para verificar se a tela é mobile
   useEffect(() => {
-    // Função para verificar se a tela é mobile
+    
     const checkIfMobile = () => {
       setIsMobile(window.innerWidth <= 960);
     };
-
-    // Adicione o event listener para redimensionar
     window.addEventListener('resize', checkIfMobile);
 
-    // Verifique o tamanho da tela ao carregar
     checkIfMobile();
 
-    // Remova o event listener ao desmontar
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
 
