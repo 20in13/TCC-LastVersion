@@ -6,6 +6,8 @@ import Card from '../../components/Card';
 import SearchBar from '../../components/SearchBar';
 import styles from './page.module.css';
 import NavigationRail from '../../components/NavRail/page';
+import { Button } from '@chakra-ui/react';
+import { IconButton } from "@mui/material";
 
 
 export default function HomeW() {
@@ -19,7 +21,24 @@ export default function HomeW() {
             <h1 className={styles.title}>Space School</h1>
             <div className={styles.headerRight}>
 
-              <FaUserCircle  color="#cfd8df" className={styles.profileIcon} />{/* cfd8df, 627885 */}
+              <Button><FaUserCircle  color="#cfd8df" className={styles.profileIcon} /></Button>
+              <IconButton
+            sx={{
+              width: "56px",
+              height: "56px",
+              borderRadius: "10px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "#FFDAD7",
+              "&:hover": {
+                backgroundColor: "#FFDAD8",
+              },
+            }}
+            onClick={() => handleIconClick(3, "/screens/Pagina3")} // Navega para a página 3
+          >
+            
+          </IconButton>
             </div>
           </header>
 
