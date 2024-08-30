@@ -214,8 +214,8 @@ export default function NavigationRail() {
                 },
                 position: "relative",
               }}
-              onClick={() => handleIconClick(4, "/screens/Pefil")} // Navega para a página de perfil
-            >
+              onClick={() => handleIconClick(4, "/screens/Perfil")}
+              >
               <PersonIcon sx={{ color: "#2D0002" }} />
             </IconButton>
           </ListItemIcon>

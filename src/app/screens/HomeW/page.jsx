@@ -19,7 +19,7 @@ export default function HomeW() {
             <h1 className={styles.title}>Space School</h1>
             <div className={styles.headerRight}>
 
-              <FaUserCircle size={24} color="#F2F3FD" className={styles.profileIcon} />
+              <FaUserCircle  color="#cfd8df" className={styles.profileIcon} />{/* cfd8df, 627885 */}
             </div>
           </header>
 
