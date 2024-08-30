@@ -14,7 +14,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import { IconButton } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { useState, useEffect } from "react";
-import { useSearchContext } from "../../../context/SearchContext";
+
 
 export default function NavigationRail() {
   const router = useRouter();
@@ -26,7 +26,7 @@ export default function NavigationRail() {
 
   const [selectedIndex, setSelectedIndex] = useState(null);
 
-  const { setIsSearchVisible } = useContext(SearchContext); // Usa o contexto de pesquisa
+
 
   // Atualiza o estado selectedIndex com base no caminho atual
   useEffect(() => {
@@ -54,11 +54,6 @@ export default function NavigationRail() {
     router.push(route); // Navega para a rota correspondente
   };
 
-  const handleSearchClick = () => {
-    setSelectedIndex(2); // Define o índice selecionado para o botão de pesquisa
-    router.push("/screens/HomeW"); // Navega para a página inicial
-    setIsSearchVisible(true); // Exibe o componente de pesquisa
-  };
 
   return (
     <Drawer
@@ -154,8 +149,7 @@ export default function NavigationRail() {
               marginTop: spacing3,
               position: "relative",
             }}
-            onClick={() => index === 2 ? handleSearchClick() : handleIconClick(index, item.route)} // Chama a função para o botão de pesquisa
-          >
+            onClick={() => handleIconClick(index, item.route)}>
             <ListItemIcon
               sx={{
                 display: "flex",
@@ -220,7 +214,7 @@ export default function NavigationRail() {
                 },
                 position: "relative",
               }}
-              onClick={() => handleIconClick(4, "/screens/Profile")} // Navega para a página de perfil
+              onClick={() => handleIconClick(4, "/screens/Pefil")} // Navega para a página de perfil
             >
               <PersonIcon sx={{ color: "#2D0002" }} />
             </IconButton>

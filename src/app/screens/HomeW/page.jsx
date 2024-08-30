@@ -6,10 +6,9 @@ import Card from '../../components/Card';
 import SearchBar from '../../components/SearchBar';
 import styles from './page.module.css';
 import NavigationRail from '../../components/NavRail/page';
-import { useSearchContext } from "../../../context/SearchContext"; 
+
 
 export default function HomeW() {
-  const { isSearchVisible } = useSearchContext();
 
   return (
     <div className={styles.scrollView}>
@@ -24,7 +23,7 @@ export default function HomeW() {
             </div>
           </header>
 
-          {isSearchVisible && <div><SearchBar /></div>}
+          <SearchBar />
 
           <div className={styles.contentWrapper}>
             <div className={styles.content}>
