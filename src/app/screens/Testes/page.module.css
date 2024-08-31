@@ -1,0 +1,19 @@
+.mainContainer {
+    margin-top: 32px;
+    margin-bottom: 32px;
+    background-color: #f5f5f5;
+    padding: 24px;
+    border-radius: 16px;
+    width: 100%;
+  }
+  
+  .gridContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .temp{
+    background-color: #eb5252;
+  }
+  

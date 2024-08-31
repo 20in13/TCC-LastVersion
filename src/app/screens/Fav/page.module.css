@@ -68,12 +68,12 @@
   }
   
   .content {
-    width: 95%;
-    background-color: #FFF;
+    width: 90%;
+    background-color: #fff;
     border-top-right-radius: 30px;
     border-top-left-radius: 30px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 7% 5%;
+    padding: 5% 5% 0 5%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
