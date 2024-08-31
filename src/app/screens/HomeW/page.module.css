@@ -6,7 +6,7 @@
   .container {
     display: flex;
     flex-direction: column;
-    background-color: #44464F;
+    background-color: #44464f;
   }
   
   .header {
@@ -50,8 +50,16 @@
   .profileIcon {
     width: 40px;
     height: 40px;
-    margin: 16px;
-
+    margin: -10px;
+    border-radius: 50%;   
+    color: #cfd8df;
+    transition: background-color 0.3s;
+    transition: color 0.3s;
+  }
+  
+  .profileIcon:hover {
+    background-color: rgba(207, 216, 207); 
+    color: rgba(68, 70, 79); 
   }
   
   .contentWrapper {

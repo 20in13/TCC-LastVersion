@@ -1,4 +1,7 @@
+"use client"
+
 import React from 'react';
+import { useRouter } from 'next/navigation'; // Use o hook da nova API
 import { FaRegCalendar, FaHeart, FaUserCircle } from 'react-icons/fa';
 import { IoMdHome } from 'react-icons/io';
 import { IoSearch } from 'react-icons/io5';
@@ -9,8 +12,12 @@ import NavigationRail from '../../components/NavRail/page';
 import { Button } from '@chakra-ui/react';
 import { IconButton } from "@mui/material";
 
-
 export default function HomeW() {
+  const router = useRouter();
+
+  const navigateToPagina3 = () => {
+    router.push('/screens/Perfil'); 
+  };
 
   return (
     <div className={styles.scrollView}>
@@ -20,25 +27,9 @@ export default function HomeW() {
           <header className={styles.header}>
             <h1 className={styles.title}>Space School</h1>
             <div className={styles.headerRight}>
-
-              <Button><FaUserCircle  color="#cfd8df" className={styles.profileIcon} /></Button>
-              <IconButton
-            sx={{
-              width: "56px",
-              height: "56px",
-              borderRadius: "10px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#FFDAD7",
-              "&:hover": {
-                backgroundColor: "#FFDAD8",
-              },
-            }}
-            onClick={() => handleIconClick(3, "/screens/Pagina3")} // Navega para a página 3
-          >
-            
-          </IconButton>
+              <IconButton onClick={navigateToPagina3}> {/* Adiciona a função de clique */}
+                <FaUserCircle className={styles.profileIcon} />
+              </IconButton>
             </div>
           </header>
 
@@ -56,5 +47,4 @@ export default function HomeW() {
     </div>
   );
 };
-
 
