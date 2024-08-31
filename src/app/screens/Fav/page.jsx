@@ -1,12 +1,20 @@
 "use client";
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation'; 
 import { FaUserCircle } from 'react-icons/fa';
-import Card from '../../components/Card';
+import Card from '../../components/Card/page';
 import styles from './page.module.css';
 import NavigationRail from '../../components/NavRail/page';
+import { IconButton } from "@mui/material";
 
 const HomeW = () => {
+  const router = useRouter();
+
+  const goTo = () => {
+    router.push('/screens/Perfil');
+  };
+
   // Simulando uma lista de itens com uma propriedade 'isFavorite'
   const [items, setItems] = useState([
     { id: 1, name: 'Item 1', isFavorite: true },
@@ -27,7 +35,9 @@ const HomeW = () => {
           <header className={styles.header}>
             <h1 className={styles.title}>Favoritos</h1>
             <div className={styles.headerRight}>
-              <FaUserCircle size={24} color="#3B0909" className={styles.profileIcon} />
+            <IconButton onClick={goTo}>
+              <FaUserCircle className={styles.profileIcon} />
+            </IconButton>
             </div>
           </header>
           <div className={styles.contentWrapper}>

@@ -10,7 +10,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Box from "@mui/material/Box";
 
-export default function LibraryCard() {
+export default function LibraryCard({ local }) {
   const [liked, setLiked] = useState(false);
 
   const handleCardClick = () => {
@@ -18,23 +18,22 @@ export default function LibraryCard() {
   };
 
   return (
-    <Box onClick={handleCardClick} sx={{ cursor: "pointer", display: "inline-block" }}>
+    <Box onClick={handleCardClick} sx={{ cursor: "pointer", display: "inline-block", paddingBottom:"3rem" }}>
       <Card
         sx={{
           width: 250,
           height: 200,
           borderRadius: "16px",
+          backgroundColor: "#F4F3FA",
           boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
           position: "relative",
           overflow: "visible",
-          marginBottom: " 2rem",
-          marginRight: " 2rem",
         }}
       >
         <CardMedia
           component="img"
           height="140"
-          image="/biblioteca.png"
+          image={local.image} 
           alt="Imagem"
           sx={{ borderTopLeftRadius: "16px", borderTopRightRadius: "16px" }}
         />
@@ -47,9 +46,13 @@ export default function LibraryCard() {
             alignItems: "center",
           }}
         >
-          <Typography variant="h7" component="div" sx={{ flexGrow: 1 }}>
-            Biblioteca
+          <Typography 
+            variant="h7" 
+            component="div" 
+            sx={{ flexGrow: 1 }}>
+              {local.name}
           </Typography>
+          
           <IconButton
             sx={{
               backgroundColor: "white",
@@ -73,3 +76,11 @@ export default function LibraryCard() {
     </Box>
   );
 }
+
+LibraryCard.defaultProps = {
+  local: {
+    name: 'Biblioteca',
+    image: '/biblioteca.png',
+  },
+};
+

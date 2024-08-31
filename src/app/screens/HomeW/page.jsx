@@ -1,22 +1,20 @@
 "use client"
 
 import React from 'react';
-import { useRouter } from 'next/navigation'; // Use o hook da nova API
-import { FaRegCalendar, FaHeart, FaUserCircle } from 'react-icons/fa';
-import { IoMdHome } from 'react-icons/io';
-import { IoSearch } from 'react-icons/io5';
-import Card from '../../components/Card';
+import { useRouter } from 'next/navigation'; 
+import { FaUserCircle } from 'react-icons/fa';
+import Card from '../../components/Card/page';
 import SearchBar from '../../components/SearchBar';
 import styles from './page.module.css';
 import NavigationRail from '../../components/NavRail/page';
-import { Button } from '@chakra-ui/react';
 import { IconButton } from "@mui/material";
 
 export default function HomeW() {
+  
   const router = useRouter();
 
-  const navigateToPagina3 = () => {
-    router.push('/screens/Perfil'); 
+  const goTo = () => {
+    router.push('/screens/Perfil');
   };
 
   return (
@@ -27,7 +25,7 @@ export default function HomeW() {
           <header className={styles.header}>
             <h1 className={styles.title}>Space School</h1>
             <div className={styles.headerRight}>
-              <IconButton onClick={navigateToPagina3}> {/* Adiciona a função de clique */}
+              <IconButton onClick={goTo}>
                 <FaUserCircle className={styles.profileIcon} />
               </IconButton>
             </div>
