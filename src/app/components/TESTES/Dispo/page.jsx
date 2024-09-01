@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography, List, ListItem } from '@mui/material';
 import styles from './page.module.css';
 
-const Availability = () => {
+const Disp = () => {
   return (
     <Box className={styles.availabilityContainer}>
       <Typography variant="h6">Disponibilidade</Typography>
@@ -16,4 +16,4 @@ const Availability = () => {
   );
 };
 
-export default Availability;
+export default Disp;

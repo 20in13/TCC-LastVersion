@@ -49,18 +49,4 @@
     font-weight: 500;
   }
   
-  .likeButton {
-    background-color: #F4F3FA;
-    padding: 8px;
-    border-radius: 100px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-left: auto;
-    margin: 10px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .iconeLike {
-    color: #44464F;
-  }
   

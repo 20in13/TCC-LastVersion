@@ -5,7 +5,7 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import styles from './page.module.css';
 
-const BookingForm = () => {
+const Inputs = () => {
   return (
     <Box className={styles.formContainer}>
       <TextField fullWidth label="Nome" className={styles.textField} />
@@ -43,4 +43,4 @@ const BookingForm = () => {
   );
 };
 
-export default BookingForm;
+export default Inputs;

@@ -1,17 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import Box from "@mui/material/Box";
+import LikeButton from "./LikeButton/page";
 
 export default function LibraryCard({ local }) {
-  const [liked, setLiked] = useState(false);
 
   const handleCardClick = () => {
     window.location.href = "/screens/Agendamento";
@@ -52,25 +49,8 @@ export default function LibraryCard({ local }) {
             sx={{ flexGrow: 1 }}>
               {local.name}
           </Typography>
+          <LikeButton />
           
-          <IconButton
-            sx={{
-              backgroundColor: "white",
-              borderRadius: "50%",
-              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
-              padding: "8px",
-            }}
-            onClick={(e) => {
-              e.stopPropagation(); // Impede a propagação do clique para o Card
-              setLiked(!liked); // Alterna o estado de "Liked"
-            }}
-          >
-            {liked ? (
-              <FavoriteIcon sx={{ color: "#FB4139" }} />
-            ) : (
-              <FavoriteBorderIcon />
-            )}
-          </IconButton>
         </CardContent>
       </Card>
     </Box>

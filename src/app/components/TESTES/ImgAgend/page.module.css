@@ -1,0 +1,26 @@
+.headerContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 12rem;
+    box-sizing: border-box;
+    background-color: aquamarine;
+    position: relative; /* Define o container principal como relativo */
+    overflow: hidden; /* Garante que a imagem não transborde */
+  }
+  
+  .title {
+    flex-grow: 1;
+  }
+  
+  .backgroundImage {
+    position: absolute; /* Posiciona a imagem absolutamente dentro do container */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta a imagem para cobrir o container */
+    z-index: 0; /* Coloca a imagem atrás do conteúdo */
+  }
+  
+  
