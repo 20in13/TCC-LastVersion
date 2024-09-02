@@ -8,16 +8,13 @@ import styles from './page.module.css';
 
 const Agend = () => {
   return (
-    <div  className={styles.temp}>
+    <div>
       <ImgAgend />
-      <Container maxWidth="lg" className={styles.temp}>
-        <div className={styles.mainContainer}>
-          <div className={styles.gridContainer}>
+      <Container maxWidth="xl" className={styles.temp}>
             <Desc />
             <Inputs />
             <Disp />
-          </div>
-        </div>
+
       </Container>
     </div>
   );

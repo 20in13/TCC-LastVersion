@@ -1,19 +1,20 @@
-.mainContainer {
-    margin-top: 32px;
-    margin-bottom: 32px;
-    background-color: #f5f5f5;
-    padding: 24px;
-    border-radius: 16px;
-    width: 100%;
-  }
-  
-  .gridContainer {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
 
-  .temp{
-    background-color: #eb5252;
+.temp{
+  margin-top: 32px;
+  margin-bottom: 32px;
+  background-color: #f5f5f5;
+  padding: 24px;
+  border-top-left-radius: 30px;
+  width: 100%;
+  margin-top: -30px;
+  flex: 1;
+  
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+
+  position: relative; /* Garante que o conteúdo seja posicionado acima da imagem */
+  z-index: 1;
+
   }
   

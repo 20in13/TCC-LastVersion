@@ -7,7 +7,7 @@ export default function ImgAgend({ img }) {
   return (
     <Box className={styles.headerContainer}>
       <Image
-        src={img} // Usa o caminho da imagem
+        src={img} // 
         alt="Descrição da Imagem"
         fill // Faz a imagem preencher o container
         className={styles.backgroundImage} // Aplica a classe de estilo para posicionamento

@@ -1,5 +1,13 @@
 .descriptionContainer {
     padding: 16px;
-    background-color: rgb(140, 235, 145);
   }
+
+.title {
+  padding-bottom: 12px;
+}
+
+.like{
+  text-align: right;
+  background-color: aqua;
+}
   
