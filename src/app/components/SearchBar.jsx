@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { IoSearch } from 'react-icons/io5';
 import styles from './SearchBar.module.css';
 
-const SearchBar = () => {
+const SearchBar = forwardRef((props, searchBarRef) => {
   return (
     <div className={styles.searchContainer}>
       <div className={styles.searchBar}>
@@ -11,10 +11,14 @@ const SearchBar = () => {
           type="text"
           className={styles.searchInput}
           placeholder="Pesquisar..."
+          {...props}
+          ref={searchBarRef} 
         />
       </div>
     </div>
   );
-};
+});
+
+SearchBar.displayName = 'SearchBar';
 
 export default SearchBar;

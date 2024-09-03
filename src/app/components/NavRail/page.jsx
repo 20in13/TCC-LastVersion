@@ -13,12 +13,12 @@ import SearchIcon from "@mui/icons-material/Search";
 import PersonIcon from "@mui/icons-material/Person"; 
 import { IconButton } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import { useState, useEffect } from "react";
-
+import { useState, useEffect, useRef } from "react";
+import SearchBar from "../SearchBar"; // Importa o componente SearchBar com ref
 
 export default function NavigationRail() {
   const router = useRouter();
-  const pathname = usePathname(); // Obtém o caminho atual
+  const pathname = usePathname();
   const drawerWidth = 80;
   const spacing = 2;
   const spacing2 = 8;
@@ -26,9 +26,6 @@ export default function NavigationRail() {
 
   const [selectedIndex, setSelectedIndex] = useState(null);
 
-
-
-  // Atualiza o estado selectedIndex com base no caminho atual
   useEffect(() => {
     const path = pathname;
     switch (path) {
@@ -51,9 +48,16 @@ export default function NavigationRail() {
 
   const handleIconClick = (index, route) => {
     setSelectedIndex(index);
-    router.push(route); // Navega para a rota correspondente
+    router.push(route);
   };
 
+  const searchBarRef = useRef(null); // Cria uma referência para o SearchBar
+
+  const handleClick = () => {
+    if (searchBarRef.current) {
+      searchBarRef.current.focus(); // Foca no input do SearchBar
+    }
+  };
 
   return (
     <Drawer
@@ -110,7 +114,6 @@ export default function NavigationRail() {
           key="agenda"
           sx={{ width: "100%", display: "flex", justifyContent: "center", padding: 0 }}
         >
-          {/* Botão do evento */}
           <IconButton
             sx={{
               width: "56px",
@@ -124,7 +127,8 @@ export default function NavigationRail() {
                 backgroundColor: "#FFDAD8",
               },
             }}
-            onClick={() => handleIconClick(3, "/screens/Pagina3")} // Navega para a página 3
+            onClick={handleClick} // Chama handleClick ao clicar
+            id="searchBarRef"
           >
             <EventIcon sx={{ color: "#2D0002" }} />
           </IconButton>
@@ -179,7 +183,7 @@ export default function NavigationRail() {
               </IconButton>
             </ListItemIcon>
             <Typography variant="caption" sx={{ color: "#FFFFFF", textAlign: "center" }}>
-              {["Inicio", "Favoritos", "Pesquisar"][index]} {/* Define o texto para cada ícone */}
+              {["Inicio", "Favoritos", "Pesquisar"][index]} 
             </Typography>
           </ListItem>
         ))}
@@ -215,7 +219,7 @@ export default function NavigationRail() {
                 position: "relative",
               }}
               onClick={() => handleIconClick(4, "/screens/Perfil")}
-              >
+            >
               <PersonIcon sx={{ color: "#2D0002" }} />
             </IconButton>
           </ListItemIcon>
