@@ -1,0 +1,10 @@
+.selected-date {
+    background-color: #1a73e8 !important;
+    color: white !important;
+    border-radius: 4px;
+    padding: 4px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   }

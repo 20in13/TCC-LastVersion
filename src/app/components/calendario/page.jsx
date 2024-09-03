@@ -1,55 +1,50 @@
-import React, { useState } from 'react';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import styled from 'styled-components';
+"use client"
 
+import React, { useState } from 'react';
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import '../calendario/page.module.css'; // Importa o arquivo CSS
 
 const CalendarComponent = () => {
-const CalendarWrapper = styled.div`
+  const [selectedDate, setSelectedDate] = useState(null);
 
-width: 456px;
-height: 310px;
-border-top: 2px solid #ccc;
-border-radius: 8px;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  const handleDateClick = (arg) => {
+    setSelectedDate(arg.dateStr);
+  };
 
+  const renderDayCell = (info) => {
+    const date = info.date.toISOString().split('T')[0];
+    const isSelected = date === selectedDate;
 
-  .react-calendar {
-    width: 600px;
-    border: none;
-  }
-
-  .react-calendar__tile {
-    max-width: 600px;
-    padding: 10px;
-    text-align: center;
-    background: none;
-    border: none;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-
-    &:hover {
-      background-color: #f0f0f0;
-    }
-  }
-
-  .react-calendar__tile--active {
-    background-color: #007bff;
-    color: white;
-  }
-`;
-  const [date, setDate] = useState(new Date());
-
-  const onChange = (newDate) => {
-    setDate(newDate);
+    return (
+      <div
+        className={`fc-daygrid-day${isSelected ? ' selected-date' : ''}`}
+        onClick={() => handleDateClick(info.date)}
+      >
+        {info.dayNumberText}
+      </div>
+    );
   };
 
   return (
-
-
-    <CalendarWrapper>
-      <Calendar onChange={onChange} value={date} />
-    </CalendarWrapper>
+    <div>
+      <FullCalendar
+        plugins={[dayGridPlugin]}
+        initialView="dayGridMonth"
+        events={[
+          { title: 'Evento 1', date: '2024-09-01' },
+          { title: 'Evento 2', date: '2024-09-05' },
+          { title: 'LAB5', date: '2024-09-20' },
+        ]}
+        dateClick={handleDateClick}
+        dayCellContent={renderDayCell}
+      />
+      {selectedDate && (
+        <div style={{ marginTop: '20px' }}>
+          <h3>Data Selecionada: {selectedDate}</h3>
+        </div>
+      )}
+    </div>
   );
 };
 
