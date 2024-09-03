@@ -1,14 +1,11 @@
-import NavigationRail from '../../components/NavRail/page';
+// pages/index.js
+import CalendarComponent from '../../components/calendario/page'
 
-export default function Pag() {
+export default function Page() {
   return (
-    <div style={{ display: 'flex' }}>
-      <NavigationRail />
-      <main style={{ flexGrow: 1, padding: '24px' }}>
-        <h1>Pagina Hipotética :)</h1>
-        <p>Em desenvolvimento</p>
-
-      </main>
- </div> 
+    <div>
+      <h1>Agenda Semanal</h1>
+      <CalendarComponent />
+    </div>
   );
 }

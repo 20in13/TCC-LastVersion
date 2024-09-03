@@ -1,50 +1,43 @@
-"use client"
+// components/CalendarComponent.js
+"use client";
 
-import React, { useState } from 'react';
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import '../calendario/page.module.css'; // Importa o arquivo CSS
+import React, { useEffect, useState } from "react";
+import FullCalendar from "@fullcalendar/react";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
 
 const CalendarComponent = () => {
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [events, setEvents] = useState([]);
 
-  const handleDateClick = (arg) => {
-    setSelectedDate(arg.dateStr);
-  };
+  useEffect(() => {
+    // Carregar eventos do banco de dados ou API
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch("/api/events");
+        const data = await response.json();
+        setEvents(data);
+      } catch (error) {
+        console.error("Erro ao carregar eventos:", error);
+      }
+    };
 
-  const renderDayCell = (info) => {
-    const date = info.date.toISOString().split('T')[0];
-    const isSelected = date === selectedDate;
-
-    return (
-      <div
-        className={`fc-daygrid-day${isSelected ? ' selected-date' : ''}`}
-        onClick={() => handleDateClick(info.date)}
-      >
-        {info.dayNumberText}
-      </div>
-    );
-  };
+    fetchEvents();
+  }, []);
 
   return (
-    <div>
-      <FullCalendar
-        plugins={[dayGridPlugin]}
-        initialView="dayGridMonth"
-        events={[
-          { title: 'Evento 1', date: '2024-09-01' },
-          { title: 'Evento 2', date: '2024-09-05' },
-          { title: 'LAB5', date: '2024-09-20' },
-        ]}
-        dateClick={handleDateClick}
-        dayCellContent={renderDayCell}
-      />
-      {selectedDate && (
-        <div style={{ marginTop: '20px' }}>
-          <h3>Data Selecionada: {selectedDate}</h3>
-        </div>
-      )}
-    </div>
+    <FullCalendar
+      plugins={[timeGridPlugin, interactionPlugin]}
+      initialView="timeGridWeek"
+      events={events}
+      editable={true}
+      selectable={true}
+      headerToolbar={{
+        left: "prev,next today",
+        center: "title",
+        right: "timeGridWeek,timeGridDay",
+      }}
+      eventClick={(info) => alert(`Evento: ${info.event.title}`)}
+    />
   );
 };
 
