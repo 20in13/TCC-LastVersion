@@ -1,167 +1,20 @@
-.scrollView {
-    overflow-y: scroll;
-    height: 100vh;
+
+.temp{
+  margin-top: 32px;
+  margin-bottom: 32px;
+  background-color: #f5f5f5;
+  padding: 24px;
+  border-top-left-radius: 30px;
+  width: 100vw;
+  margin-top: -30px;
+  flex: 1;
+  
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+
+  position: relative; /* Garante que o conteúdo seja posicionado acima da imagem */
+  z-index: 1;
+
   }
   
-  .container {
-    background-color: #cc3737;
-    padding: 10px;
-    
-  }
-  
-  .texto2 {
-    margin-top: 23px; 
-    width: 33%;
-    flex-direction: unset;
-  }
-  
-  .desc {
-    color: #001947;
-    font-size: 21px;
-    font-weight: bold;
-    margin-bottom: 15px;
-  }
-  
-  .button {
-    background-color: #44464f;
-    width: 90%;
-    height: 15rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 15px;
-    color: #fff;
-    font-size: 13px;
-    font-weight: 500;
-    border: none;
-    cursor: pointer; 
-    margin-top: 50px;
-    margin-left: auto; 
-    margin-right: auto; 
-  }
-  
-  .buttonText {
-    color: #fff;
-    font-size: 13px;
-    font-weight: 500;
-  }
-  
-  .lors {
-    color: #001947;
-    padding-bottom: 30px;
-    width: 50%;
-    line-height: 24px;
-    letter-spacing: 0.5px;
-  }
-  
-  .title {
-    color: #001947;
-    font-size: 32px;
-    font-weight: bold;
-    font-style: arial;
-  }
-  .title2 {
-    color: #001947;
-    font-size: 30px;
-    font-weight: bold;
-    font-style: arial;
-    margin-bottom: 40px;
-  }
-  
-  .contentWrapper {
-    margin-top: 300px;
-    
-  }
-  
-  .content {
-    background-color: #fff;
-    border-top-left-radius: 30px;
-  
-    padding: 20px;
-    flex: 1;
-    margin: -10px;
-    
-  }
-  
-  .input {
-    width: 100%;
-    padding: 50px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  .wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .inputWrapper {
-    display: flex;
-    align-items: center;
-    
-  }
-  
-  .input {
-    flex: 1;
-    padding: 10px;
-    border-radius: 5px;
-    margin-right: 10px;
-  }
-  
-  .plusButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: transparent;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 5px;
-    width: 40px;
-    height: 40px;
-  }
-  
-  .column {
-    flex: 1;
-    padding: 10px;
-    margin: 5px;
-    flex-direction: row;
-    display: flex;
-  
-  }
-  .row {
-    flex: 1;
-    padding: 10px;
-  
-    margin: 5px;
-    flex-direction: column;
-    display: flex;
-    align-items:center;
-    justify-content: center;
-  
-  }
-  
-  .centro{
-    justify-content: center;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .disponivel{
-    color: #001947;
-    font-size: 21px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    text-align: center;
-    padding-bottom: 10px;
-    padding-top: 15px;
-  
-  }
