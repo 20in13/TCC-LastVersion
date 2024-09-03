@@ -10,7 +10,7 @@ import NavigationRail from '../../components/NavRail/page';
 import { IconButton } from "@mui/material";
 
 export default function HomeW() {
-  
+
   const router = useRouter();
 
   const goTo = () => {

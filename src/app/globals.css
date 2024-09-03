@@ -29,8 +29,12 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1;
-}
+	overflow-x: hidden; /* Impede a rolagem horizontal */
+	margin: 0;
+	padding: 0; 
+	width: 100%; 
+	box-sizing: border-box; 
+  }
 ol, ul {
 	list-style: none;
 }

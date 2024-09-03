@@ -1,22 +1,23 @@
 import React from 'react';
 import { Container, Grid, Box } from '@mui/material';
-import Inputs from '../../components/TESTES/InputsAgend/page';
-import Desc from '../../components/TESTES/Description/page';
-import Disp from '../../components/TESTES/Dispo/page';
-import ImgAgend from '../../components/TESTES/ImgAgend/page';
+import Inputs from '../../components/Agend Comp/InputsAgend/page';
+import Desc from '../../components/Agend Comp/Description/page';
+import Disp from '../../components/Agend Comp/Dispo/page';
+import ImgAgend from '../../components/Agend Comp/ImgAgend/page';
 import styles from './page.module.css';
+import NavigationRail from '../../components/NavRail/page';
 
 const Agend = () => {
   return (
-    <>
+    <main style={{ paddingLeft: '80px' }}>
+    <NavigationRail />
       <ImgAgend />
-      <Container className={styles.temp}>
+      <Container className={styles.container}>
             <Desc />
             <Inputs />
             <Disp />
-
       </Container>
-    </>
+      </main>
   );
 };
 
