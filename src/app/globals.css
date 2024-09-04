@@ -51,4 +51,46 @@ table {
 	border-spacing: 0;
 }
 
-
+/* =-=-=-=-=-=-=-=-= Estilo personalizado para o calendario =-=-=-=-=-=-=-=-= */
+.fc .fc-toolbar.fc-header-toolbar {
+	background-color: #ff4d4d; /* Cabeçalho vermelho */
+	color: white; /* Texto branco */
+  }
+  
+  .fc .fc-button {
+	background-color: #ff4d4d; /* Botões vermelhos */
+	border-color: #ff4d4d; /* Borda dos botões vermelha */
+	color: white; /* Texto dos botões branco */
+  }
+  
+  .fc .fc-button:hover {
+	background-color: #e60000; /* Botões em hover */
+	border-color: #e60000;
+  }
+  
+  .fc .fc-daygrid-event, .fc .fc-timegrid-event {
+	background-color: #ff6666; /* Eventos com fundo vermelho claro */
+	border-color: #ff4d4d; /* Borda dos eventos vermelha */
+	color: white; /* Texto dos eventos branco */
+  }
+  
+  .fc .fc-highlight {
+	background-color: #ffe6e6; /* Fundo vermelho claro para seleção */
+  }
+  /* Reduzir o tamanho da fonte do FullCalendar */
+.fc {
+	font-size: 1.5vh; /* Ajusta o tamanho da fonte de todos os elementos do calendário */
+  }
+  
+  /* .fc .fc-toolbar-title {
+	font-size: 2vh;
+  } */
+  
+  .fc .fc-button {
+	font-size: 2vh; /* Ajusta o tamanho da fonte dos botões */
+  }
+  
+  .fc .fc-daygrid-event, .fc .fc-timegrid-event {
+	font-size: 2vh; /* Ajusta o tamanho da fonte dos eventos */
+  }
+  

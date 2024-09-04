@@ -1,5 +1,13 @@
 .availabilityContainer {
     padding: 16px;
     max-width: 33vw;
-  }
+  } 
+
+.indi {
+    text-align: center;
+    padding: 10px;
+    border: solid #ff4d4d;
+    border-bottom: none;
+}
+
   

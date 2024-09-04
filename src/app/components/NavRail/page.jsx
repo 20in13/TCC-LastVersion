@@ -41,7 +41,7 @@ export default function NavigationRail() {
       case "/screens/Pagina2":
         setSelectedIndex(2);
         break;
-      case "/screens/Pagina3":
+      case "/screens/CalendarioPage":
         setSelectedIndex(3);
         break;
       default:
@@ -124,7 +124,7 @@ export default function NavigationRail() {
                 backgroundColor: "#FFDAD8",
               },
             }}
-            onClick={() => handleIconClick(3, "/screens/Pagina3")} // Navega para a página 3
+            onClick={() => handleIconClick(3, "/screens/CalendarioPage")} // Navega para a página 3
           >
             <EventIcon sx={{ color: "#2D0002" }} />
           </IconButton>

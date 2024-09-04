@@ -9,6 +9,7 @@ import CalendarComponent from '../../calendario/page'
 const Disp = () => {
   return (
     <Box className={styles.availabilityContainer}>
+      <h6 className={styles.indi}>Indisponibilidades</h6>
       <CalendarComponent />
     </Box>
   );
