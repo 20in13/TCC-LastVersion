@@ -36,11 +36,13 @@ const CalendarComponent = () => {
       initialView="timeGridDay" // Visualização inicial
       events={events} // Passando os eventos manualmente
       locale={ptBrLocale}
-      editable={true} // Permite arrastar e soltar
-      selectable={true} // Permite selecionar intervalos de tempo
+      // editable={true} 
+      // // Permite arrastar e soltar
+      selectable={true} 
+      // Permite selecionar intervalos de tempo
       headerToolbar={{
         left: "prev,next today",
-        // center: "title",
+        center: "title",
         right: "dayGridMonth,timeGridWeek,timeGridDay",
       }}
     />
