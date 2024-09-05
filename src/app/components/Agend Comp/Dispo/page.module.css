@@ -1,13 +1,13 @@
 .availabilityContainer {
-    padding: 16px;
-    max-width: 33vw;
-  } 
-
-.indi {
-    text-align: center;
-    padding: 10px;
-    border: solid #ff4d4d;
-    border-bottom: none;
+  align-self: center;
+  justify-self: center;
 }
 
-  
+.indi {
+  text-align: center;
+  padding: 10px;
+  border: solid #CC3737;
+  background-color: #CC3737;
+  border-bottom: none;
+  color: white;
+}

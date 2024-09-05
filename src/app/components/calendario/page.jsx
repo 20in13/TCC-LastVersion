@@ -31,21 +31,28 @@ const CalendarComponent = () => {
   ]);
 
   return (
+
+    <div style={{ width: "auto", height: "45vh", position: "relative" }}> {/* Contêiner pequeno */}
+      <div className="calendario-pequeno">
     <FullCalendar
       plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-      initialView="timeGridDay" // Visualização inicial
+      initialView="timeGridWeek" // Visualização inicial
       events={events} // Passando os eventos manualmente
       locale={ptBrLocale}
-      // editable={true} 
-      // // Permite arrastar e soltar
+      editable={true} 
+      // Permite arrastar e soltar
       selectable={true} 
       // Permite selecionar intervalos de tempo
       headerToolbar={{
-        left: "prev,next today",
+        left: "prev,today",
         center: "title",
-        right: "dayGridMonth,timeGridWeek,timeGridDay",
+        right: "dayGridMonth,timeGridWeek,timeGridDay,next",
       }}
+      height="100%" /* Ajusta o calendário para ocupar 100% do contêiner */
+      contentHeight="auto" /* Ajusta o conteúdo para a altura automática */
     />
+      </div>
+      </div>
   );
 };
 
