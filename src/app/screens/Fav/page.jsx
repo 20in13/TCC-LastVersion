@@ -7,8 +7,9 @@ import Card from '../../components/Card/page';
 import styles from './page.module.css';
 import NavigationRail from '../../components/NavRail/page';
 import { IconButton } from "@mui/material";
+import ambientes from '../../../data/ambientes.json';
 
-const HomeW = () => {
+const Fav = () => {
   const router = useRouter();
 
   const goTo = () => {
@@ -42,8 +43,8 @@ const HomeW = () => {
           </header>
           <div className={styles.contentWrapper}>
             <div className={styles.content}>
-              {favoriteItems.map((item) => (
-                <Card key={item.id} item={item} />
+            {ambientes.map((local, index) => (
+                <Card key={index} local={local} />
               ))}
             </div>
           </div>
@@ -53,4 +54,4 @@ const HomeW = () => {
   );
 };
 
-export default HomeW;
+export default Fav;

@@ -124,7 +124,7 @@ export default function NavigationRail() {
                 backgroundColor: "#FFDAD8",
               },
             }}
-            onClick={() => handleIconClick(3, "/screens/Pagina3")} // Navega para a página 3
+            onClick={() => handleIconClick(3, "/screens/CalendarioPage")} // Navega para a página 3
           >
             <EventIcon sx={{ color: "#2D0002" }} />
           </IconButton>
@@ -134,7 +134,6 @@ export default function NavigationRail() {
         {[
           { icon: <HomeIcon sx={{ color: "#2D0002" }} />, route: "/screens/HomeW" },
           { icon: <FavoriteIcon sx={{ color: "#2D0002" }} />, route: "/screens/Fav" },
-          { icon: <SearchIcon sx={{ color: "#2D0002" }} />, route: "/screens/Pagina2" },
         ].map((item, index) => (
           <ListItem
             button
