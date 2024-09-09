@@ -1,6 +1,7 @@
+// components/Card/page.js
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -9,15 +10,38 @@ import Box from "@mui/material/Box";
 import LikeButton from "./LikeButton/page";
 
 export default function LibraryCard({ local }) {
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  // Checa se o item é favorito ao montar o componente
+  useEffect(() => {
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const isFavorited = favorites.some((fav) => fav.id === local.id);
+    setIsFavorite(isFavorited);
+  }, [local.id]);
+
+  // Função para adicionar/remover favorito
+  const toggleFavorite = () => {
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    if (isFavorite) {
+      // Remove dos favoritos
+      const newFavorites = favorites.filter((fav) => fav.id !== local.id);
+      localStorage.setItem("favorites", JSON.stringify(newFavorites));
+      setIsFavorite(false);
+    } else {
+      // Adiciona aos favoritos
+      favorites.push(local);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      setIsFavorite(true);
+    }
+  };
 
   const handleCardClick = () => {
-    // Passando o título, descrição e a URL da imagem via URL
     window.location.href = `/screens/Agendamento?title=${encodeURIComponent(local.name)}&description=${encodeURIComponent(local.description)}&img=${encodeURIComponent(local.image)}`;
   };
 
-
   return (
-    <Box onClick={handleCardClick} sx={{ cursor: "pointer", display: "inline-block", paddingBottom:"3rem" }}>
+    <Box onClick={handleCardClick} sx={{ cursor: "pointer", display: "inline-block", paddingBottom: "3rem" }}>
       <Card
         sx={{
           width: 250,
@@ -32,7 +56,7 @@ export default function LibraryCard({ local }) {
         <CardMedia
           component="img"
           height="140"
-          image={local.image} 
+          image={local.image}
           alt="Imagem"
           sx={{ borderTopLeftRadius: "16px", borderTopRightRadius: "16px" }}
         />
@@ -45,17 +69,13 @@ export default function LibraryCard({ local }) {
             alignItems: "center",
           }}
         >
-          <Typography 
-            variant="h7" 
-            component="div" 
-            sx={{ flexGrow: 1 }}>
-              {local.name}
+          <Typography variant="h7" component="div" sx={{ flexGrow: 1 }}>
+            {local.name}
           </Typography>
-          <LikeButton />
-          
+          {/* Passa a função de alternar favorito e o estado de favorito para o LikeButton */}
+          <LikeButton onClick={toggleFavorite} isFavorite={isFavorite} />
         </CardContent>
       </Card>
     </Box>
   );
 }
-
