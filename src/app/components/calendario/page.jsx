@@ -1,55 +1,58 @@
-import React, { useState } from 'react';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import styled from 'styled-components';
+"use client"; // Certifique-se de que este componente seja um Client Component
+
+import React, { useState } from "react";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import ptBrLocale from "@fullcalendar/core/locales/pt-br"; // Ajuste correto para importar o idioma
 
 
 const CalendarComponent = () => {
-const CalendarWrapper = styled.div`
+  // Defina os eventos manualmente
+  const [events] = useState([
 
-width: 456px;
-height: 310px;
-border-top: 2px solid #ccc;
-border-radius: 8px;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-
-  .react-calendar {
-    width: 600px;
-    border: none;
-  }
-
-  .react-calendar__tile {
-    max-width: 600px;
-    padding: 10px;
-    text-align: center;
-    background: none;
-    border: none;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-
-    &:hover {
-      background-color: #f0f0f0;
-    }
-  }
-
-  .react-calendar__tile--active {
-    background-color: #007bff;
-    color: white;
-  }
-`;
-  const [date, setDate] = useState(new Date());
-
-  const onChange = (newDate) => {
-    setDate(newDate);
-  };
+    {
+      id: 2,
+      title: "Reservado - Alexandre",
+      start: "2024-09-03T10:30:00",
+      end: "2024-09-03T12:30:00",
+    },
+    {
+      id: 3,
+      title: "Reservado - Victor",
+      start: "2024-09-03T12:30:00",
+    },
+    {
+      id: 4,
+      title: "Reservado - João Paulo",
+      start: "2024-09-04T07:00:00",
+    },
+  ]);
 
   return (
 
-
-    <CalendarWrapper>
-      <Calendar onChange={onChange} value={date} />
-    </CalendarWrapper>
+    <div style={{ width: "auto", height: "45vh", position: "relative" }}> {/* Contêiner pequeno */}
+      <div className="calendario-pequeno">
+    <FullCalendar
+      plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+      initialView="timeGridWeek" // Visualização inicial
+      events={events} // Passando os eventos manualmente
+      locale={ptBrLocale}
+      editable={true} 
+      // Permite arrastar e soltar
+      selectable={true} 
+      // Permite selecionar intervalos de tempo
+      headerToolbar={{
+        left: "prev,today",
+        center: "title",
+        right: "dayGridMonth,timeGridWeek,timeGridDay,next",
+      }}
+      height="100%" /* Ajusta o calendário para ocupar 100% do contêiner */
+      contentHeight="auto" /* Ajusta o conteúdo para a altura automática */
+    />
+      </div>
+      </div>
   );
 };
 
