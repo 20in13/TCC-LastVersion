@@ -1,7 +1,7 @@
 [
     {
       "name": "Biblioteca",
-      "image": "/Lab.jpg",
+      "image": "/biblioteca.png",
       "description": "A biblioteca da escola é um espaço dedicado à promoção da educação, pesquisa e desenvolvimento intelectual dos alunos. Equipada com uma ampla variedade de livros, periódicos e recursos digitais, a biblioteca oferece um ambiente propício para o estudo individual e em grupo."
     },
     {
@@ -41,12 +41,12 @@
     },
     {
       "name": "Sala 7",
-      "image": "/Lab.jpg",
+      "image": "/SalaAula.jpg",
       "description": "Incluir Descrição!"
     },
     {
       "name": "Sala de Aula",
-      "image": "/Lab.jpg",
+      "image": "/SalaAula.jpg",
       "description": "Incluir Descrição!"
     },
     {
@@ -61,7 +61,7 @@
     },
     {
         "name": "Laboratório de Pranchetas",
-        "image": "/Lab.jpg",
+        "image": "/SalaAula.jpg",
         "description": "Incluir Descrição!"
     }
   ]
