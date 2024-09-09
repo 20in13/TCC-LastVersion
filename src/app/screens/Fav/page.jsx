@@ -1,26 +1,29 @@
-// pages/screens/Fav.js
+// pages/Fav/page.js
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation'; 
 import { FaUserCircle } from 'react-icons/fa';
 import Card from '../../components/Card/page';
 import styles from './page.module.css';
 import NavigationRail from '../../components/NavRail/page';
 import { IconButton } from "@mui/material";
+import ambientes from '../../../data/ambientes.json';
 
 const Fav = () => {
   const router = useRouter();
-  const [favorites, setFavorites] = useState([]);
 
   const goTo = () => {
     router.push('/screens/Perfil');
   };
 
-  // Carrega os favoritos do Local Storage ao montar o componente
+  const [favoriteItems, setFavoriteItems] = useState([]);
+
   useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    setFavorites(storedFavorites);
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    // Filtra os ambientes favoritos
+    const favoriteAmbientes = ambientes.filter(local => favorites.includes(local.name));
+    setFavoriteItems(favoriteAmbientes);
   }, []);
 
   return (
@@ -38,13 +41,9 @@ const Fav = () => {
           </header>
           <div className={styles.contentWrapper}>
             <div className={styles.content}>
-              {favorites.length > 0 ? (
-                favorites.map((local, index) => (
-                  <Card key={index} local={local} />
-                ))
-              ) : (
-                <p>Nenhum item favorito.</p>
-              )}
+              {favoriteItems.map((local, index) => (
+                <Card key={index} local={local} />
+              ))}
             </div>
           </div>
         </div>

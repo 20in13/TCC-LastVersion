@@ -15,9 +15,9 @@ export default function LibraryCard({ local }) {
   // Checa se o item é favorito ao montar o componente
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    const isFavorited = favorites.some((fav) => fav.id === local.id);
+    const isFavorited = favorites.includes(local.name);
     setIsFavorite(isFavorited);
-  }, [local.id]);
+  }, [local.name]);
 
   // Função para adicionar/remover favorito
   const toggleFavorite = () => {
@@ -25,12 +25,12 @@ export default function LibraryCard({ local }) {
 
     if (isFavorite) {
       // Remove dos favoritos
-      const newFavorites = favorites.filter((fav) => fav.id !== local.id);
+      const newFavorites = favorites.filter((favName) => favName !== local.name);
       localStorage.setItem("favorites", JSON.stringify(newFavorites));
       setIsFavorite(false);
     } else {
       // Adiciona aos favoritos
-      favorites.push(local);
+      favorites.push(local.name);
       localStorage.setItem("favorites", JSON.stringify(favorites));
       setIsFavorite(true);
     }
