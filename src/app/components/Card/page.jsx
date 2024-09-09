@@ -11,8 +11,10 @@ import LikeButton from "./LikeButton/page";
 export default function LibraryCard({ local }) {
 
   const handleCardClick = () => {
-    window.location.href = "/screens/Agendamento";
+    // Passando o título, descrição e a URL da imagem via URL
+    window.location.href = `/screens/Agendamento?title=${encodeURIComponent(local.name)}&description=${encodeURIComponent(local.description)}&img=${encodeURIComponent(local.image)}`;
   };
+
 
   return (
     <Box onClick={handleCardClick} sx={{ cursor: "pointer", display: "inline-block", paddingBottom:"3rem" }}>
@@ -56,11 +58,4 @@ export default function LibraryCard({ local }) {
     </Box>
   );
 }
-
-LibraryCard.defaultProps = {
-  local: {
-    name: 'Biblioteca',
-    image: '/biblioteca.png',
-  },
-};
 

@@ -1,24 +1,24 @@
+"use client";
+
 import React from 'react';
 import { Box } from '@mui/material';
 import Image from 'next/image';
 import styles from './page.module.css';
+import { useSearchParams } from 'next/navigation';
 
-export default function ImgAgend({ img }) {
+export default function ImgAgend() {
+  const searchParams = useSearchParams();
+  const img = searchParams.get('img') || '/Lab4.jpg'; // Usa o caminho local
+
   return (
     <Box className={styles.headerContainer}>
       <Image
-        src={img} // 
+        src={img}
         alt="Descrição da Imagem"
-        fill // Faz a imagem preencher o container
-        className={styles.backgroundImage} // Aplica a classe de estilo para posicionamento
-        style={{ objectFit: 'cover' }} // Mantém a imagem proporcional enquanto cobre o container
+        fill
+        className={styles.backgroundImage}
+        style={{ objectFit: 'cover' }}
       />
     </Box>
   );
 }
-
-// Define defaultProps para usar apenas uma string
-ImgAgend.defaultProps = {
-  img: '/biblioteca.png',
-};
-  

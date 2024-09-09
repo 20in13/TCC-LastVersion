@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation'; 
 import { FaUserCircle } from 'react-icons/fa';
 import Card from '../../components/Card/page';
@@ -8,6 +8,9 @@ import SearchBar from '../../components/SearchBar';
 import styles from './page.module.css';
 import NavigationRail from '../../components/NavRail/page';
 import { IconButton } from "@mui/material";
+
+// Importar o arquivo JSON
+import ambientes from '../../../data/ambientes.json';
 
 export default function HomeW() {
 
@@ -35,8 +38,8 @@ export default function HomeW() {
 
           <div className={styles.contentWrapper}>
             <div className={styles.content}>
-              {Array(25).fill().map((_, index) => (
-                <Card key={index} />
+              {ambientes.map((local, index) => (
+                <Card key={index} local={local} />
               ))}
             </div>
           </div>
@@ -45,4 +48,3 @@ export default function HomeW() {
     </div>
   );
 };
-

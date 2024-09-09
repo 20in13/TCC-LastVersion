@@ -1,12 +1,16 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, Rating } from '@mui/material';
 import styles from './page.module.css';
 import LikeButton from '../../Card/LikeButton/page';
+import { useSearchParams } from 'next/navigation'; // Hook para capturar parâmetros da URL
 
-export default function Desc({ title, description }) {
+export default function Desc() {
   const [rating, setRating] = useState(0); // Estado para armazenar a avaliação do usuário
+  const searchParams = useSearchParams();
+  const title = searchParams.get('title') || 'Biblioteca';
+  const description = searchParams.get('description') || 'Descrição padrão da biblioteca.';
 
   return (
     <Box className={styles.descriptionContainer}>
@@ -32,9 +36,3 @@ export default function Desc({ title, description }) {
     </Box>
   );
 }
-
-// Define defaultProps para usar como padrão
-Desc.defaultProps = {
-  title: 'Biblioteca',
-  description: 'A biblioteca da escola é um espaço dedicado à promoção da educação, pesquisa e desenvolvimento intelectual dos alunos. Equipada com uma ampla variedade de livros, periódicos e recursos digitais, a biblioteca oferece um ambiente propício para o estudo individual e em grupo.',
-};

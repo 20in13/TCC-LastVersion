@@ -1,0 +1,68 @@
+[
+    {
+      "name": "Biblioteca",
+      "image": "https://picsum.photos/250/140?random=1",
+      "description": "A biblioteca da escola é um espaço dedicado à promoção da educação, pesquisa e desenvolvimento intelectual dos alunos. Equipada com uma ampla variedade de livros, periódicos e recursos digitais, a biblioteca oferece um ambiente propício para o estudo individual e em grupo."
+    },
+    {
+      "name": "Laboratório 1",
+      "image": "https://picsum.photos/250/140?random=2",
+      "description": "O Laboratório 1 é equipado com 20 Notebooks LeNovo I5 com 8Gb de RAM"
+    },
+    {
+      "name": "Laboratório 2",
+      "image": "https://picsum.photos/250/140?random=3",
+      "description": "O Laboratório 2 é equipado com 20 Notebooks LeNovo I5 com 8Gb de RAM"
+    },
+    {
+      "name": "Laboratório 3",
+      "image": "https://picsum.photos/250/140?random=4",
+      "description": "Incluir Descrição!"
+    },
+    {
+      "name": "Laboratório 4",
+      "image": "/Lab4.jpg",
+      "description": "Incluir Descrição!"
+    },
+    {
+      "name": "Laboratório 5",
+      "image": "https://picsum.photos/250/140?random=6",
+      "description": "Incluir Descrição!"
+    },
+    {
+      "name": "Laboratório 6",
+      "image": "https://picsum.photos/250/140?random=7",
+      "description": "Incluir Descrição!"
+    },
+    {
+      "name": "Laboratório 9",
+      "image": "https://picsum.photos/250/140?random=8",
+      "description": "Incluir Descrição!"
+    },
+    {
+      "name": "Sala 7",
+      "image": "https://picsum.photos/250/140?random=9",
+      "description": "Incluir Descrição!"
+    },
+    {
+      "name": "Sala de Aula",
+      "image": "https://picsum.photos/250/140?random=10",
+      "description": "Incluir Descrição!"
+    },
+    {
+      "name": "Sala de Informática",
+      "image": "https://picsum.photos/250/140?random=11",
+      "description": "Incluir Descrição!"
+    },
+    {
+      "name": "Quadra",
+      "image": "https://picsum.photos/250/140?random=12",
+      "description": "Incluir Descrição!"
+    },
+    {
+        "name": "Laboratório de Pranchetas",
+        "image": "https://picsum.photos/250/140?random=13",
+        "description": "Incluir Descrição!"
+    }
+  ]
+  
