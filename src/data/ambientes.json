@@ -1,68 +1,75 @@
 [
-    {
-      "name": "Biblioteca",
-      "image": "/biblioteca.png",
-      "description": "A biblioteca da escola é um espaço dedicado à promoção da educação, pesquisa e desenvolvimento intelectual dos alunos. Equipada com uma ampla variedade de livros, periódicos e recursos digitais, a biblioteca oferece um ambiente propício para o estudo individual e em grupo."
-    },
-    {
-      "name": "Laboratório 1",
-      "image": "/Lab.jpg",
-      "description": "O Laboratório 1 é equipado com 20 Notebooks LeNovo I5 com 8Gb de RAM"
-    },
+  {
+    "name": "Biblioteca",
+    "image": "/biblioteca.png",
+    "description": "A biblioteca da escola é um espaço dedicado à promoção da educação, pesquisa e desenvolvimento intelectual dos alunos. Equipada com uma ampla variedade de livros, periódicos e recursos digitais, a biblioteca oferece um ambiente propício para o estudo individual e em grupo.",
+    "isFavorite": false
+  },
+  {
+    "name": "Laboratório 1",
+    "image": "/Lab.jpg",
+    "description": "O Laboratório 1 é equipado com 20 Notebooks LeNovo I5 com 8Gb de RAM",
+    "isFavorite": false
+  },
     {
       "name": "Laboratório 2",
       "image": "/Lab.jpg",
-      "description": "O Laboratório 2 é equipado com 20 Notebooks LeNovo I5 com 8Gb de RAM"
+      "description": "O Laboratório 2 é equipado com 20 Notebooks LeNovo I5 com 8Gb de RAM",
+      "isFavorite": false
     },
     {
       "name": "Laboratório 3",
       "image": "/Lab.jpg",
-      "description": "Incluir Descrição!"
+      "description": "Incluir Descrição!",
+      "isFavorite": false
     },
     {
       "name": "Laboratório 4",
       "image": "/Lab4.jpg",
-      "description": "Incluir Descrição!"
+      "description": "Incluir Descrição!",
+      "isFavorite": false
     },
     {
       "name": "Laboratório 5",
       "image": "/Lab.jpg",
-      "description": "Incluir Descrição!"
+      "description": "Incluir Descrição!",
+      "isFavorite": false
     },
     {
       "name": "Laboratório 6",
       "image": "/Lab.jpg",
-      "description": "Incluir Descrição!"
-    },
-    {
-      "name": "Laboratório 9",
-      "image": "/Lab.jpg",
-      "description": "Incluir Descrição!"
+      "description": "Incluir Descrição!",
+      "isFavorite": false
     },
     {
       "name": "Sala 7",
       "image": "/SalaAula.jpg",
-      "description": "Incluir Descrição!"
+      "description": "Incluir Descrição!",
+      "isFavorite": false
     },
     {
       "name": "Sala de Aula",
       "image": "/SalaAula.jpg",
-      "description": "Incluir Descrição!"
+      "description": "Incluir Descrição!",
+      "isFavorite": false
     },
     {
       "name": "Sala de Informática",
       "image": "/Lab.jpg",
-      "description": "Incluir Descrição!"
+      "description": "Incluir Descrição!",
+      "isFavorite": false
     },
     {
       "name": "Quadra",
       "image": "/Lab.jpg",
-      "description": "Incluir Descrição!"
+      "description": "Incluir Descrição!",
+      "isFavorite": false
     },
     {
         "name": "Laboratório de Pranchetas",
         "image": "/SalaAula.jpg",
-        "description": "Incluir Descrição!"
+        "description": "Incluir Descrição!",
+        "isFavorite": false
     }
   ]
   

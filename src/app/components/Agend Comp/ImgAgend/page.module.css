@@ -5,7 +5,7 @@
     height: 30vw;
     max-height: 80vh;
     box-sizing: border-box;
-    background-color: aquamarine;
+    background-color: #aaa5a5;
     position: relative; /* Define o container principal como relativo */
     overflow: hidden; /* Garante que a imagem não transborde */
   }

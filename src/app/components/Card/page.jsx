@@ -1,4 +1,3 @@
-// components/Card/page.js
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -12,24 +11,20 @@ import LikeButton from "./LikeButton/page";
 export default function LibraryCard({ local }) {
   const [isFavorite, setIsFavorite] = useState(false);
 
-  // Checa se o item é favorito ao montar o componente
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     const isFavorited = favorites.includes(local.name);
     setIsFavorite(isFavorited);
   }, [local.name]);
 
-  // Função para adicionar/remover favorito
   const toggleFavorite = () => {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
     if (isFavorite) {
-      // Remove dos favoritos
       const newFavorites = favorites.filter((favName) => favName !== local.name);
       localStorage.setItem("favorites", JSON.stringify(newFavorites));
       setIsFavorite(false);
     } else {
-      // Adiciona aos favoritos
       favorites.push(local.name);
       localStorage.setItem("favorites", JSON.stringify(favorites));
       setIsFavorite(true);
@@ -72,8 +67,7 @@ export default function LibraryCard({ local }) {
           <Typography variant="h7" component="div" sx={{ flexGrow: 1 }}>
             {local.name}
           </Typography>
-          {/* Passa a função de alternar favorito e o estado de favorito para o LikeButton */}
-          <LikeButton onClick={toggleFavorite} isFavorite={isFavorite} />
+          <LikeButton onClick={toggleFavorite} isFavorite={isFavorite} localName={local.name} />
         </CardContent>
       </Card>
     </Box>
