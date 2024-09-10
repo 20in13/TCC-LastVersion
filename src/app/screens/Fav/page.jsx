@@ -1,4 +1,3 @@
-// pages/Fav/page.js
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -7,7 +6,7 @@ import { FaUserCircle } from 'react-icons/fa';
 import Card from '../../components/Card/page';
 import styles from './page.module.css';
 import NavigationRail from '../../components/NavRail/page';
-import { IconButton } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import ambientes from '../../../data/ambientes.json';
 
 const Fav = () => {
@@ -41,9 +40,15 @@ const Fav = () => {
           </header>
           <div className={styles.contentWrapper}>
             <div className={styles.content}>
-              {favoriteItems.map((local, index) => (
-                <Card key={index} local={local} />
-              ))}
+              {favoriteItems.length === 0 ? (
+                <Typography variant="h6" align="center" color="textSecondary">
+                  Nenhum Favorito Adicionado
+                </Typography>
+              ) : (
+                favoriteItems.map((local, index) => (
+                  <Card key={index} local={local} />
+                ))
+              )}
             </div>
           </div>
         </div>

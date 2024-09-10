@@ -1,25 +1,25 @@
 [
   {
     "name": "Biblioteca",
-    "image": "/biblioteca.png",
+    "image": "/Bibli.jpg",
     "description": "A biblioteca da escola é um espaço dedicado à promoção da educação, pesquisa e desenvolvimento intelectual dos alunos. Equipada com uma ampla variedade de livros, periódicos e recursos digitais, a biblioteca oferece um ambiente propício para o estudo individual e em grupo.",
     "isFavorite": false
   },
   {
     "name": "Laboratório 1",
-    "image": "/Lab.jpg",
+    "image": "/Lab6.jpg",
     "description": "O Laboratório 1 é equipado com 20 Notebooks LeNovo I5 com 8Gb de RAM",
     "isFavorite": false
   },
     {
       "name": "Laboratório 2",
-      "image": "/Lab.jpg",
+      "image": "/Lab6.jpg",
       "description": "O Laboratório 2 é equipado com 20 Notebooks LeNovo I5 com 8Gb de RAM",
       "isFavorite": false
     },
     {
       "name": "Laboratório 3",
-      "image": "/Lab.jpg",
+      "image": "/Lab6.jpg",
       "description": "Incluir Descrição!",
       "isFavorite": false
     },
@@ -31,13 +31,13 @@
     },
     {
       "name": "Laboratório 5",
-      "image": "/Lab.jpg",
+      "image": "/Lab6.jpg",
       "description": "Incluir Descrição!",
       "isFavorite": false
     },
     {
       "name": "Laboratório 6",
-      "image": "/Lab.jpg",
+      "image": "/Lab6.jpg",
       "description": "Incluir Descrição!",
       "isFavorite": false
     },
@@ -61,13 +61,13 @@
     },
     {
       "name": "Quadra",
-      "image": "/Lab.jpg",
+      "image": "/Quadra.jpg",
       "description": "Incluir Descrição!",
       "isFavorite": false
     },
     {
         "name": "Laboratório de Pranchetas",
-        "image": "/SalaAula.jpg",
+        "image": "/LabPranch.jpg",
         "description": "Incluir Descrição!",
         "isFavorite": false
     }
