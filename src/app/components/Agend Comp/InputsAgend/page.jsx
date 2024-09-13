@@ -7,16 +7,17 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import styles from './page.module.css';
 
-const Inputs = () => {
+const Inputs = ({ names, setNames }) => { // Recebendo names e setNames como props
   const [name, setName] = useState('');
   const [namesList, setNamesList] = useState([]);
 
   const handleAddName = () => {
     if (name.trim()) {
-      setNamesList((prevNames) => [...prevNames, name.trim()]);
+      setNames((prevNames) => [...prevNames, name.trim()]); // Usando setNames passado por props
       setName(''); // Limpa o campo de input após adicionar o nome
     }
   };
+  
 
   return (
     <Box className={styles.formContainer}>

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Box, Input, Button, Text, Flex } from '@chakra-ui/react';
 import { IoMdMail, IoMdLock, IoMdEye, IoMdEyeOff } from 'react-icons/io';
 
+
 const InputComponent = (props) => {
   const [sec, setSec] = useState(props.secureTextEntry);
 

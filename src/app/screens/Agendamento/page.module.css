@@ -13,7 +13,7 @@
   
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
+  gap: 10px;
 
   position: relative; /* Garante que o conteúdo seja posicionado acima da imagem */
   z-index: 1;
