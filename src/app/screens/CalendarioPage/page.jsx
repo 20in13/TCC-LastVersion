@@ -6,7 +6,7 @@ export default function Page() {
   return (
     <div style={{ paddingLeft: '80px' }}>
       <NavigationRail />
-      <h1>Agenda Semanal</h1>
+      <h1>.</h1>
       <CalendarComponent />
     </div>
   );
