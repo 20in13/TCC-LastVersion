@@ -1,82 +1,43 @@
+/* page.module.css */
+
 .formContainer {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 16px;
-  /* background-color: aquamarine; */
-  border-radius: 8px;
-  max-width: 400px;
-  margin: auto;
+  gap: 16px; /* Espaçamento entre os elementos */
+  padding: 20px;
+  background-color: #f5f5f5; /* Cor de fundo do formulário */
+  border-radius: 8px; /* Bordas arredondadas */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Sombra leve para dar destaque */
 }
 
 .textField {
-  margin-bottom: 16px;
-}
-
-.namesList {
-  margin-bottom: 16px;
-  padding: 0;
-}
-
-
-.textField label {
-  font-size: 14px;
-  color: #6f6f6f;
-  justify-content: center;
-  align-items: center;
-}
-
-.buttonContainer {
-  display: flex;
-  justify-content: center;
-  margin-top: 24px;
+  background-color: white;
 }
 
 .iconButton {
-  padding: 10px;
-  background-color: #ffffff;
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.buttonContainer button {
-  background-color: #6f6f6f;
-  color: #ffffff;
-  text-transform: none;
-  font-size: 16px;
-  border-radius: 10px;
-  padding: 12px 0;
-}
-
-.iconButton:hover {
-  background-color: #e0e0e0;
-}
-
-.textField .MuiInputBase-root {
-  background-color: #ffffff;
-  border-radius: 8px;
-  border: 1px solid #c4c4c4;
-}
-
-.textField .MuiInputAdornment-root {
-  margin-left: 0;
-}
-
-.textField .MuiInputAdornment-positionEnd {
-  margin-left: -12px;
-}
-
-.textField .MuiInputBase-input {
-  padding: 10px;
-  font-size: 14px;
-}
-
-.iconButton svg {
-  font-size: 20px;
-  color: #6f6f6f;
+  color: #3f51b5; /* Cor azul para os ícones */
 }
 
 .pe {
-  font-size: 0.8rem;
-  margin-top: -1.7rem;
+  font-size: 12px;
+  color: #888;
+  margin-top: -10px; /* Alinha o texto de ajuda mais próximo do input */
+}
+
+.buttonContainer {
+  margin-top: 20px;
+}
+
+.namesList {
+  max-height: 200px; /* Define uma altura máxima para a lista */
+  overflow-y: auto; /* Permite rolagem caso a lista ultrapasse a altura máxima */
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+/* Adiciona uma pequena margem nos itens da lista para espaçamento */
+.namesList li {
+  margin-bottom: 8px;
 }
