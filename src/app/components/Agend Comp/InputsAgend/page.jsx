@@ -42,6 +42,7 @@ const Inputs = ({ names, setNames }) => {
             </IconButton>
           )
         }}
+        margin="dense" // Adicionando margin
       />
 
       {/* Input para Data do Agendamento usando DatePicker */}
@@ -61,6 +62,7 @@ const Inputs = ({ names, setNames }) => {
                 </IconButton>
               )
             }}
+            margin="dense" // Adicionando margin
           />
         }
       />
@@ -81,6 +83,7 @@ const Inputs = ({ names, setNames }) => {
             </IconButton>
           )
         }}
+        margin="dense" // Adicionando margin
       />
       <p className={styles.pe}>HH/MM</p>
 
@@ -99,6 +102,7 @@ const Inputs = ({ names, setNames }) => {
             </IconButton>
           )
         }}
+        margin="dense" // Adicionando margin
       />
       <p className={styles.pe}>HH/MM</p>
 

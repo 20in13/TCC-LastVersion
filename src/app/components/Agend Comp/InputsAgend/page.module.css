@@ -19,9 +19,9 @@
 }
 
 .pe {
-  font-size: 12px;
+  font-size: 12px;  
   color: #888;
-  margin-top: -10px; /* Alinha o texto de ajuda mais próximo do input */
+  margin-top: -5px; /* Menor margin-top para alinhamento melhor */
 }
 
 .buttonContainer {
