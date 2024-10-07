@@ -7,18 +7,21 @@
 }
 
 .header {
-  background-color: #404040;
+  display: flex;
+  justify-content: center; /* Centraliza o conteúdo */
+  align-items: center; /* Centraliza verticalmente */
+  background-color: #44464f;
   color: white;
   padding: 1.5rem 2rem;
   width: 100%;
-  text-align: left;
   position: relative;
 }
 
 .backButton {
   position: absolute;
-  top: 20px;
+  top: 50%; 
   left: 20px;
+  transform: translateY(-50%); /* Centraliza verticalmente em relação ao header */
   background: none;
   border: none;
   cursor: pointer;
@@ -27,40 +30,59 @@
 .headerText {
   text-align: center;
   margin-top: -24px; /* Para centralizar o texto após o botão */
+  align-items: center; /* Alinha o texto no centro horizontalmente */
 }
 
 .headerText h1 {
   margin: 0;
   font-size: 1.5rem;
+  transform: translateX(-21%);
 }
 
 .headerText h2 {
   margin: 0;
   font-size: 1rem;
   color: #d3d3d3;
+  transform: translateX(-21%);
 }
 
 .avatarWrapper {
-  margin-top: -75px;
-  transform: translateY(70%);
-  background-color: white;
-  border-radius: 50%;
+  position: relative; /* Deixar o posicionamento relativo ao container */
+  display: flex;
+  justify-content: center; /* Alinha horizontalmente ao centro */
+  align-items: center; /* Alinha verticalmente ao centro */
+  transform: translateY(50%);
 }
-
+.bigAvatar {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  border: 0.5rem solid white;
+  
+}
 .infoSection {
-  background-color: white;
   padding: 2rem;
   width: 90%;
   max-width: 800px;
   border-radius: 10px;
-  margin-top: 1.5rem;
+  margin-top: 3rem;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  transform: translateY(-20%);
 }
 
 .infoCard {
   margin-top: 1rem;
   border-top: 1px solid #ddd;
   padding-top: 1rem;
+}
+
+.titulo{
+  font-size: 1.2rem;
+}
+.subtitulo{
+  font-size: 0.9rem;
+  transform: translateY(-50%);
 }
 
 .infoHeader {
@@ -71,11 +93,6 @@
 
 .smallAvatar {
   border-radius: 50%;
-}
-
-.bigAvatar {
-  border-radius: 50%;
-  margin: 0.7rem;
 }
 
 .infoItem {
@@ -123,3 +140,70 @@
   border: none;
   cursor: pointer;
 }
+
+.content {
+  width: 90%;
+  background-color: #fff;
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
+  padding: 10% 5% 0 5%;
+  display: grid;
+  gap: 16px; /* Espaço entre os cards */
+  justify-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: #44464f;
+}
+
+.infoSection {
+  padding: 2rem;
+  width: 90%;
+  max-width: 800px;
+  background-color: #f4f4f9;
+  border-radius: 15px; /* Bordas arredondadas */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+  margin-top: 2rem;
+}
+
+.infoCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 1rem;
+  border-top: 1px solid #ddd;
+  padding-top: 1rem;
+}
+
+.infoItem {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ddd; /* Linha separadora */
+}
+
+.infoItem span:first-child {
+  font-weight: bold; /* Negrito para os rótulos */
+  color: #44464f;
+}
+
+.manageBtn {
+  background-color: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: 1px solid #007bff;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 1.5rem;
+}
+
+.manageBtn:hover {
+  background-color: white;
+  color: #007bff;;
+}
+

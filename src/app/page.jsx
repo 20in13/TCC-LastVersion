@@ -28,6 +28,14 @@ const LoginScreenW = () => {
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
 
+  const handleLogin = () => {
+    if (username === '20in.nascimento.13@gmail.com' && password === 'a') {
+      navigation.navigate('HomePage');
+    } else {
+      alert('Login ou senha incorretos');
+    }
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -54,12 +62,13 @@ const LoginScreenW = () => {
           autoCorrect="off"
         />
         <button className={styles.loginButton}>
-          <a href="/screens/HomeW">
+          <a href="/screens/HomeW" onPress={handleLogin}>
             <Text
               color="#FFF"
               fontSize={14}
               fontWeight={600}
               cursor="pointer"
+
             >
               Login
             </Text>
