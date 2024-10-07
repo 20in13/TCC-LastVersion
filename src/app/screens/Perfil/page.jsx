@@ -30,7 +30,7 @@ export default function Profile({ user }) {
             alt="Profile Avatar"
             width={150}
             height={150}
-            className={styles.avatar}
+            className={styles.bigAvatar}
           />
         ) : (
           <AccountCircleIcon style={{ fontSize: 150, color: '#777' }} />
@@ -45,13 +45,18 @@ export default function Profile({ user }) {
         <div className={styles.infoCard}>
           <div className={styles.infoHeader}>
             <h4>Informações pessoais</h4>
-            <Image
+            
+            {user.image ? (
+              <Image
               src={user.image || '/img/default-avatar.png'}
               alt="Profile Avatar"
               width={50}
               height={50}
               className={styles.smallAvatar}
             />
+        ) : (
+          <AccountCircleIcon style={{ fontSize: 50, color: '#777' }} />
+        )}
           </div>
           <div className={styles.infoItem}>
             <span>Nome</span>
@@ -90,6 +95,6 @@ Profile.defaultProps = {
   user: {
     name: 'Fulano da Silva',
     email: 'fulano.silva737@gmail.com',
-    image: '',
+    image: '/perfilVitu.jpg',
   },
 };
