@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -10,44 +10,86 @@ export default function Profile({ user }) {
   const router = useRouter();
 
   return (
-    <div className={styles.container}>
-      <button className={styles.backButton} onClick={() => router.back()}>
-        <ArrowBackIcon style={{ fontSize: 24 }} />
-      </button>
-      <h1 className={styles.title}>Space School</h1>
-      <h2 className={styles.subtitle}>Meu Perfil</h2>
-      <div className={styles.container}>
-        <div className={styles.profileWrapper}>
-          <div className={styles.avatarWrapper}>
-            {user.image ? (
-              <Image
-                src={user.image}
-                alt="Profile Avatar"
-                width={150}
-                height={150}
-                className={styles.avatar}
-              />
-            ) : (
-              <AccountCircleIcon style={{ fontSize: 150, color: '#777' }} />
-            )}
+    <div className={styles.pageWrapper}>
+      {/* Cabeçalho com botão de voltar */}
+      <header className={styles.header}>
+        <button className={styles.backButton} onClick={() => router.back()}>
+          <ArrowBackIcon style={{ fontSize: 24 }} />
+        </button>
+        <div className={styles.headerText}>
+          <h1>Space School</h1>
+          <h2>Meu Perfil</h2>
+        </div>
+      </header>
+
+      {/* Avatar sobreposto ao cabeçalho */}
+      <div className={styles.avatarWrapper}>
+        {user.image ? (
+          <Image
+            src={user.image}
+            alt="Profile Avatar"
+            width={150}
+            height={150}
+            className={styles.avatar}
+          />
+        ) : (
+          <AccountCircleIcon style={{ fontSize: 150, color: '#777' }} />
+        )}
+      </div>
+
+      {/* Seção de Informações Pessoais */}
+      <section className={styles.infoSection}>
+        <h3>Bem vindo, {user.name}</h3>
+        <p>Gerencie suas informações, privacidade e segurança para que o Space School atenda suas necessidades.</p>
+
+        <div className={styles.infoCard}>
+          <div className={styles.infoHeader}>
+            <h4>Informações pessoais</h4>
+            <Image
+              src={user.image || '/img/default-avatar.png'}
+              alt="Profile Avatar"
+              width={50}
+              height={50}
+              className={styles.smallAvatar}
+            />
           </div>
-          <div className={styles.profileBox}>
-            <h3 className={styles.name}>{user.name}</h3>
-            <p className={styles.email}>{user.email}</p>
-            <p><button className={styles.manageBtn}>Gerenciar sua conta</button></p>
-            <button className={styles.logoutBtn}>Sair</button>
+          <div className={styles.infoItem}>
+            <span>Nome</span>
+            <span>{user.name}</span>
+          </div>
+          <div className={styles.infoItem}>
+            <span>E-mail</span>
+            <span>{user.email}</span>
+          </div>
+          <button className={styles.manageBtn}>Alterar suas informações</button>
+        </div>
+      </section>
+
+      {/* Seção de Reservas */}
+      <section className={styles.reservationsSection}>
+        <h4>Minhas Reservas</h4>
+        <div className={styles.reservationCard}>
+          <Image
+            src="/img/sala-tematica.jpg"
+            alt="Sala Temática"
+            width={100}
+            height={100}
+          />
+          <div className={styles.reservationDetails}>
+            <p>Sala Temática</p>
+            <button className={styles.deleteBtn}>Excluir</button>
           </div>
         </div>
-      </div>
+        {/* Outras reservas podem ser adicionadas */}
+      </section>
     </div>
   );
 }
 
-// Simulação de um usuário (teste)
 Profile.defaultProps = {
   user: {
     name: 'Fulano da Silva',
     email: 'fulano.silva737@gmail.com',
-    image: '', 
+    image: '',
   },
 };
