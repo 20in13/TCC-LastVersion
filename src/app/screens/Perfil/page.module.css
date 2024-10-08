@@ -62,13 +62,13 @@
 }
 .infoSection {
   padding: 2rem;
-  width: 90%;
-  max-width: 800px;
-  border-radius: 10px;
-  margin-top: 3rem;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  flex: 1;
-  transform: translateY(-20%);
+  width: 100%;
+  background-color: #f4f4f9;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+  position: relative;
+  box-sizing: border-box; /* Garante que o padding e a largura não causem overflow */
 }
 
 .infoCard {
@@ -77,12 +77,16 @@
   padding-top: 1rem;
 }
 
-.titulo{
+.titulo {
   font-size: 1.2rem;
+  margin-bottom: 0.5rem; /* Adicionado espaço abaixo do título */
+  position: relative; /* Alterado de 'fixed' para 'relative' */
 }
-.subtitulo{
+
+.subtitulo {
   font-size: 0.9rem;
-  transform: translateY(-50%);
+  margin-bottom: 1.5rem; /* Adicionado espaço abaixo do subtítulo */
+  position: relative; /* Alterado de 'fixed' para 'relative' */
 }
 
 .infoHeader {
@@ -109,17 +113,6 @@
   border-radius: 20px;
   cursor: pointer;
 }
-
-.reservationsSection {
-  background-color: white;
-  padding: 2rem;
-  width: 90%;
-  max-width: 800px;
-  border-radius: 10px;
-  margin-top: 1.5rem;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
 .reservationCard {
   display: flex;
   align-items: center;
@@ -146,9 +139,8 @@
   background-color: #fff;
   border-top-right-radius: 30px;
   border-top-left-radius: 30px;
-  padding: 10% 5% 0 5%;
+  padding: 6rem 5% 0 5%;
   display: grid;
-  gap: 16px; /* Espaço entre os cards */
   justify-items: center;
 }
 
@@ -166,6 +158,9 @@
   border-radius: 15px; /* Bordas arredondadas */
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra */
   margin-top: 2rem;
+    margin-top: 1.5rem; /* Ajustado para garantir que não sobreponha o subtítulo */
+    transform: none; /* Removido o translateY */
+    position: relative; /* Certificando que está corretamente posicionado */
 }
 
 .infoCard {
@@ -207,3 +202,53 @@
   color: #007bff;;
 }
 
+.reservationCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Alinha o conteúdo para ocupar as colunas */
+  background-color: white;
+  border-radius: 10px; /* Bordas arredondadas para o card */
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra para o card */
+}
+
+.reservationDetails {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.reservationDetails span {
+  font-size: 0.9rem; /* Ajuste no tamanho da fonte */
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.reservationDetails p {
+  font-size: 0.7rem; /* Ajuste no tamanho da fonte */
+  margin-bottom: 0.5rem;
+}
+
+.deleteBtn {
+  color: red;
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
+  background: none;
+}
+
+.reservationsSection {
+  background-color: white;
+  padding: 2rem;
+  width: 90%;
+  max-width: 800px;
+  border-radius: 10px;
+  margin-top: 1.5rem;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.reservationsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsividade */
+  gap: 1rem;
+}

@@ -5,8 +5,9 @@ import Image from 'next/image';
 import styles from './page.module.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ReservationCard from '../../components/reservCard/page'
 
-export default function Profile({ user }) {
+export default function Profile({ user, reservations }) {
   const router = useRouter();
 
   return (
@@ -39,7 +40,7 @@ export default function Profile({ user }) {
               )}
             </div>
 
-          <div className={styles.contentWrapper}>
+
             <div className={styles.content}>
               {/* Seção de Informações Pessoais */}
         
@@ -76,10 +77,25 @@ export default function Profile({ user }) {
               <button className={styles.manageBtn}>Alterar suas informações</button>
             </div>
           </section>
-  
+
+          <section className={styles.reservationsSection}>
+            <h2>Minhas Reservas</h2>
+            <div className={styles.reservationsContainer}>
+              {reservations.map((reservation, index) => (
+                <ReservationCard
+                  key={index}
+                  image={reservation.image}
+                  title={reservation.title}
+                  date={reservation.date}
+                  onDelete={() => handleDelete(reservation.id)}
+                />
+              ))}
+            </div>
+          </section>
+            
             </div>
           </div>
-        </div>
+
       </main>
     </div>
   );
@@ -87,6 +103,11 @@ export default function Profile({ user }) {
 
 Profile.defaultProps = {
   user: {
+    name: 'Fulano da Silva',
+    email: 'fulano.silva737@gmail.com',
+    image: '/perfilVitu.jpg',
+  },
+  reservation: {
     name: 'Fulano da Silva',
     email: 'fulano.silva737@gmail.com',
     image: '/perfilVitu.jpg',

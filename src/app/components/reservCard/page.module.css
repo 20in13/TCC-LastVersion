@@ -1,0 +1,28 @@
+/* ReservationCard.module.css */
+.reservationCard {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .cardImage {
+    width: 100px;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .reservationDetails {
+    flex: 1;
+    margin-left: 1rem;
+    text-align: left;
+  }
+  
+  .deleteBtn {
+    background-color: transparent;
+    color: red;
+    border: none;
+    cursor: pointer;
+  }
+  
