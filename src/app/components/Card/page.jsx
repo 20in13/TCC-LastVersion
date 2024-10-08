@@ -7,69 +7,88 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import LikeButton from "./LikeButton/page";
+import ReservationCard from "../reservCard/page";
 
-export default function LibraryCard({ local }) {
+export default function LibraryCard({ local, image, title, date, onDelete, isSmallCard }) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    const isFavorited = favorites.includes(local.name);
-    setIsFavorite(isFavorited);
-  }, [local.name]);
+    if (local?.name) { // Verifica se local e local.name existem
+      const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+      const isFavorited = favorites.includes(local.name);
+      setIsFavorite(isFavorited);
+    }
+  }, [local?.name]);
 
   const toggleFavorite = () => {
-    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-
-    if (isFavorite) {
-      const newFavorites = favorites.filter((favName) => favName !== local.name);
-      localStorage.setItem("favorites", JSON.stringify(newFavorites));
-      setIsFavorite(false);
-    } else {
-      favorites.push(local.name);
-      localStorage.setItem("favorites", JSON.stringify(favorites));
-      setIsFavorite(true);
+    if (local?.name) { // Verifica se local e local.name existem antes de manipular favoritos
+      const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+      
+      if (isFavorite) {
+        const newFavorites = favorites.filter((favName) => favName !== local.name);
+        localStorage.setItem("favorites", JSON.stringify(newFavorites));
+        setIsFavorite(false);
+      } else {
+        favorites.push(local.name);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        setIsFavorite(true);
+      }
     }
   };
 
   const handleCardClick = () => {
-    window.location.href = `/screens/Agendamento?title=${encodeURIComponent(local.name)}&description=${encodeURIComponent(local.description)}&img=${encodeURIComponent(local.image)}`;
+    if (local?.name && local?.description && local?.image) {
+      window.location.href = `/screens/Agendamento?title=${encodeURIComponent(local.name)}&description=${encodeURIComponent(local.description)}&img=${encodeURIComponent(local.image)}`;
+    }
   };
 
-  return (
-    <Box onClick={handleCardClick} sx={{ cursor: "pointer", display: "inline-block", paddingBottom: "3rem" }}>
-      <Card
-        sx={{
-          width: 250,
-          height: 200,
-          borderRadius: "16px",
-          backgroundColor: "#F4F3FA",
-          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-          position: "relative",
-          overflow: "visible",
-        }}
-      >
-        <CardMedia
-          component="img"
-          height="140"
-          image={local.image}
-          alt="Imagem"
-          sx={{ borderTopLeftRadius: "16px", borderTopRightRadius: "16px" }}
-        />
-        <CardContent
+  if (isSmallCard) {
+    return (
+      <Box onClick={handleCardClick} sx={{ cursor: "pointer", display: "inline-block", paddingBottom: "3rem" }}>
+        <Card
           sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            padding: "8px 16px",
-            alignItems: "center",
+            width: 250,
+            height: 200,
+            borderRadius: "16px",
+            backgroundColor: "#F4F3FA",
+            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+            position: "relative",
+            overflow: "visible",
           }}
         >
-          <Typography variant="h7" component="div" sx={{ flexGrow: 1 }}>
-            {local.name}
-          </Typography>
-          <LikeButton onClick={toggleFavorite} isFavorite={isFavorite} localName={local.name} />
-        </CardContent>
-      </Card>
-    </Box>
-  );
+          <CardMedia
+            component="img"
+            height="140"
+            image={local?.image || image}
+            alt="Imagem"
+            sx={{ borderTopLeftRadius: "16px", borderTopRightRadius: "16px" }}
+          />
+          <CardContent
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              padding: "8px 16px",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="h7" component="div" sx={{ flexGrow: 1 }}>
+              {local?.name || title}
+            </Typography>
+            <LikeButton onClick={toggleFavorite} isFavorite={isFavorite} localName={local?.name || title} />
+          </CardContent>
+        </Card>
+      </Box>
+    );
+  } else {
+    // Renderiza ReservationCard se o card for pequeno
+    return (
+      <ReservationCard
+        image={image || local?.image}
+        title={title || local?.name}
+        date={date || local?.date}
+        onDelete={onDelete}
+      />
+    );
+  }
 }
