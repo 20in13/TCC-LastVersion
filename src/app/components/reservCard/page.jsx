@@ -1,4 +1,4 @@
-// ReservationCard.js
+// ReservationCard.jsx
 import styles from './page.module.css'; // Supondo que você tenha um arquivo CSS separado
 import ambientes from '../../../data/ambientes.json';
 
