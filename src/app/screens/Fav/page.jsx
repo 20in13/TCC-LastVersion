@@ -46,7 +46,7 @@ const Fav = () => {
                 </Typography>
               ) : (
                 favoriteItems.map((local, index) => (
-                  <Card key={index} local={local} />
+                  <Card key={index} local={local} isSmallCard={true} />
                 ))
               )}
             </div>
