@@ -7,9 +7,22 @@ import styles from './page.module.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import LibraryCard from '../../components/Card/page';
+import { useEffect, useState } from 'react';
 
-export default function Profile({ user, reservations }) {
+export default function Profile({ user }) {
   const router = useRouter();
+  const [reservations, setReservations] = useState([]);
+
+  useEffect(() => {
+    // Simulação de uma chamada ao banco de dados para buscar reservas
+    const fetchReservations = async () => {
+      const response = await fetch(`/api/reservations?userId=${user.id}`);
+      const data = await response.json();
+      setReservations(data); // Atualiza o estado com as reservas recuperadas
+    };
+
+    fetchReservations();
+  }, [user.id]);
 
   return (
     <div className={styles.scrollView}>
@@ -99,6 +112,9 @@ export default function Profile({ user, reservations }) {
           </div>
 
       </main>
+      <footer className={styles.footer}>
+        <p> Victor Nasc. e Gabriel Henrique - TCC 2024</p>
+      </footer>
     </div>
   );
 };
@@ -109,29 +125,6 @@ Profile.defaultProps = {
     email: 'fulano.silva737@gmail.com',
     image: '/perfilVitu.jpg',
   },
-  reservations: [
-    {
-      id: 1,
-      image: '/sala-tematica.jpg',
-      title: 'Sala Temática',
-      date: '21/11/2024 | 13:30 - 14:00',
-    },
-    {
-      id: 2,
-      image: '/sala-tematica.jpg',
-
-      title: 'Sala Temática',
-      title: 'Quadra',
-      date: '22/11/2024 | 10:00 - 11:00',
-    },
-    {
-      id: 3,
-      image: '/sala-tematica.jpg',
-
-      title: 'Sala Temática',
-      date: '23/11/2024 | 15:00 - 16:00',
-    },
-  ],
 };
 
 
