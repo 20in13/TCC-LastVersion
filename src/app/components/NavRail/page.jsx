@@ -9,14 +9,15 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import EventIcon from "@mui/icons-material/Event";
 import HomeIcon from "@mui/icons-material/Home";
 import FavoriteIcon from "@mui/icons-material/Favorite"; 
-import SearchIcon from "@mui/icons-material/Search"; 
 import PersonIcon from "@mui/icons-material/Person"; 
 import { IconButton } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { useState, useEffect } from "react";
+import styles from './page.module.css';
+import Image from 'next/image';
 
 
-export default function NavigationRail() {
+export default function NavigationRail({ user }) {
   const router = useRouter();
   const pathname = usePathname(); // Obtém o caminho atual
   const drawerWidth = 80;
@@ -215,11 +216,28 @@ export default function NavigationRail() {
               }}
               onClick={() => handleIconClick(4, "/screens/Perfil")}
               >
-              <PersonIcon sx={{ color: "#2D0002" }} />
+              {user.image ? (
+                <Image
+                src={user.image || '/img/default-avatar.png'}
+                alt="Profile Avatar"
+                width={50}
+                height={50}
+                className={styles.smallAvatar}
+                />
+              ) : (
+                  <PersonIcon sx={{ color: "#2D0002" }} />
+                )}
             </IconButton>
           </ListItemIcon>
         </ListItem>
       </List>
     </Drawer>
   );
+}
+
+NavigationRail.defaultProps = {
+  user: {
+    name: 'Fulano da Silva',
+    image: '/perfilVitu.jpg',
+  },
 }

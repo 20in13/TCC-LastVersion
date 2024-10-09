@@ -79,3 +79,6 @@
     justify-items: center;
   }
   
+  .smallAvatar {
+  border-radius: 50%;
+  }
