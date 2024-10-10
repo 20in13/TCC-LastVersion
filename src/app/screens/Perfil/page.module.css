@@ -58,7 +58,6 @@
   width: 150px;
   height: 150px;
   border: 0.5rem solid white;
-  
 }
 .infoSection {
   padding: 2rem;
@@ -142,11 +141,10 @@
   padding: 6rem 5% 0 5%;
   display: grid;
   justify-items: center;
+  align-items: center;
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
   background-color: #44464f;
 }
 
@@ -239,8 +237,8 @@
 .reservationsSection {
   background-color: #f4f4f9;
   padding: 2rem;
-  width: 90%;
-  max-width: 800px;
+  width: 100%;
+  max-width: 750px;
   border-radius: 10px;
   margin-top: 2rem;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);

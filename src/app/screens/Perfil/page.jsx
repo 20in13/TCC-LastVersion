@@ -31,7 +31,7 @@ export default function Profile({ user }) {
           {/* Cabeçalho com botão de voltar */}
           <header className={styles.header}>
                   <button className={styles.backButton} onClick={() => router.back()}>
-                    <ArrowBackIcon style={{ fontSize: 24 }} />
+                    <ArrowBackIcon style={{ fontSize: 24, color:'white' }} />
                   </button>
                   <div className={styles.headerText}>
                     <h1>Space School</h1>
@@ -50,7 +50,7 @@ export default function Profile({ user }) {
                   className={styles.bigAvatar}
                 />
               ) : (
-                <AccountCircleIcon style={{ fontSize: 150, color: '#777' }} />
+                <AccountCircleIcon style={{ fontSize: 170, color: '#777', background: 'white' , borderRadius: '50%' }} />
               )}
             </div>
 
