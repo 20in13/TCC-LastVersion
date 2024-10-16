@@ -42,6 +42,7 @@ const Inputs = ({ names, setNames }) => { // Recebendo names e setNames como pro
 
       {/* Input para Data do Agendamento */}
       <TextField
+        type='date'
         fullWidth
         label="Data do agendamento"
         className={styles.textField}

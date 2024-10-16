@@ -6,6 +6,8 @@ import styles from './page.module.css';
 import InputComponent from './components/Input/page';
 import { Flex, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';  
 
 
 const LoginScreenW = () => {
@@ -28,25 +30,76 @@ const LoginScreenW = () => {
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
 
+
   const handleLogin = () => {
     if (username === '20in.nascimento.13@gmail.com' && password === 'a') {
-      navigation.navigate('HomePage');
+      navigation.navigate('/screens/HomeW');
     } else {
       alert('Login ou senha incorretos');
     }
   };
 
+  
   return (
     <div className={styles.container}>
       <Head>
-        <title>Login Screen</title>
+        <title>Login</title>
       </Head>
-      <div className={`${styles.leftContainer} ${isMobile ? styles.hiddenOnMobile : ''}`}>
+      <div className={`${styles.leftContainer}`}>
         <div className={styles.logoContainer2}>
-          <Flex justifyContent="center" alignItems="center">
-            <Image src="/SpaceSchool.png" width={400} height={400} className={styles.logoGrande} />
+          <Flex justifyContent="center" alignItems="center" width="100%" className={styles.carouselWrapper}>
+            {/* Carrossel de imagens */}
+            <Carousel
+              showThumbs={false}
+              showArrows={false}
+              autoPlay={true}
+              interval={3000}
+              infiniteLoop={true}
+              showStatus={false}
+              emulateTouch={false}
+              renderArrowPrev={(clickHandler, hasPrev, label) => (
+                <button
+                  type="button"
+                  onClick={clickHandler}
+                  className={styles.customArrowPrev}
+                  aria-label={label}
+                  disabled={!hasPrev}
+                >
+                  ❮
+                </button>
+              )}
+              renderArrowNext={(clickHandler, hasNext, label) => (
+                <button
+                  type="button"
+                  onClick={clickHandler}
+                  className={styles.customArrowNext}
+                  aria-label={label}
+                  disabled={!hasNext}
+                >
+                  ❯
+                </button>
+              )}
+            >
+              <div>
+                <Image src="/SpaceSchool.png" width={400} height={400} alt="Logo Grande" className={styles.logoGrande} />
+                <Text className={styles.carouselText}>BEM-VINDO AO LOUVEAPP</Text>
+                <Text className={styles.carouselSubtitle}>Grande é o Senhor e digno de ser louvado.</Text>
+                <Text className={styles.carouselBible}>Salmos 145:3</Text>
+              </div>
+              <div>
+                <Image src="/image2.jpg" width={400} height={400} alt="Slide 2" />
+                <Text className={styles.carouselText}>OUTRA MENSAGEM AQUI</Text>
+              </div>
+              <div>
+                <Image src="/image3.jpg" width={400} height={400} alt="Slide 3" />
+                <Text className={styles.carouselText}>EXEMPLO DE TEXTO 3</Text>
+              </div>
+              <div>
+                <Image src="/image4.jpg" width={400} height={400} alt="Slide 4" />
+                <Text className={styles.carouselText}>EXEMPLO DE TEXTO 4</Text>
+              </div>
+            </Carousel>
           </Flex>
-          <h2 className={styles.bemvindo}>Bem-vindo ao Space School</h2>
         </div>
       </div>
 
@@ -57,40 +110,23 @@ const LoginScreenW = () => {
           </Flex>
           <h2 className={styles.spaceSchool}>SpaceSchool</h2>
         </div>
-        <InputComponent
-          autoCapitalize="none"
-          autoCorrect="off"
-        />
+        <InputComponent autoCapitalize="none" autoCorrect="off" />
         <button className={styles.loginButton}>
-          <a href="/screens/HomeW" onPress={handleLogin}>
-            <Text
-              color="#FFF"
-              fontSize={14}
-              fontWeight={600}
-              cursor="pointer"
-
-            >
+          <a href="/screens/HomeW" onClick={handleLogin}>
+            <Text color="#FFF" fontSize={14} fontWeight={600} cursor="pointer">
               Login
             </Text>
-            </a>
-          </button>
+          </a>
+        </button>
 
-          <Flex justifyContent="center" position="absolute" bottom="15">
+        <Flex justifyContent="center" position="absolute" bottom="15">
           <Text>Não tem conta?</Text>
           <a href="/screens/Cadastro">
-            <Text
-              color="#CC3737"
-              textDecoration="underline"
-              fontSize={16}
-              fontWeight={600}
-              cursor="pointer"
-              ml={2}
-            >
+            <Text color="#CC3737" textDecoration="underline" fontSize={16} fontWeight={600} cursor="pointer" ml={2}>
               Cadastre-se
             </Text>
           </a>
         </Flex>
-
       </div>
     </div>
   );
