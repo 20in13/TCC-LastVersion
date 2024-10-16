@@ -41,3 +41,30 @@
 .namesList li {
   margin-bottom: 8px;
 }
+
+.customTimePicker {
+  border: 1px solid #504B58; /* Borda externa */
+  border-radius: 4px; /* Arredondamento da borda */
+  padding: 10px; /* Espaçamento interno */
+  background-color: #F9F7FD; /* Fundo personalizado */
+}
+
+.textField input {
+  font-size: 1.2rem; /* Ajuste no tamanho da fonte */
+  color: #504B58; /* Cor do texto */
+  text-align: center; /* Centralizar o texto */
+}
+
+.iconButton {
+  background-color: #E6E2EB; /* Cor de fundo do botão */
+  padding: 5px; /* Espaçamento interno do ícone */
+}
+
+.textField label {
+  color: #504B58; /* Cor do label */
+}
+
+.textField .Mui-focused {
+  color: #504B58 !important; /* Manter a cor quando o campo estiver focado */
+}
+

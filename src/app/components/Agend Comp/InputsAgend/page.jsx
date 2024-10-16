@@ -1,127 +1,79 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Box, TextField, Button, IconButton, List, ListItem, ListItemText } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import { Box, TextField, Button, IconButton } from '@mui/material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import DatePicker from 'react-datepicker'; // Importando react-datepicker
-import "react-datepicker/dist/react-datepicker.css"; // Importando os estilos do calendário
+import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import styles from './page.module.css';
 
-const Inputs = ({ names, setNames }) => {
-  const [name, setName] = useState('');
-  const [selectedDate, setSelectedDate] = useState(null); // Estado para a data do calendário
-  const [startTime, setStartTime] = useState(''); // Estado para o horário de início
-  const [endTime, setEndTime] = useState(''); // Estado para o horário de fim
-
-  const handleAddName = () => {
-    if (name.trim()) {
-      setNames((prevNames) => [...prevNames, name.trim()]); // Atualiza o estado names
-      setName('');
-    }
-  };
-
-  const handleTimeChange = (setter) => (e) => {
-    setter(e.target.value);
-  };
+const Inputs = () => {
+  const [startTime, setStartTime] = useState(null); // Estado para o horário de início
+  const [endTime, setEndTime] = useState(null); // Estado para o horário de fim
 
   return (
-    <Box className={styles.formContainer}>
-      {/* Input para adicionar nomes com botão "+" */}
-      <TextField
-        fullWidth
-        label="Nomes"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        className={styles.textField}
-        InputProps={{
-          endAdornment: (
-            <IconButton onClick={handleAddName} className={styles.iconButton}>
-              <AddIcon />
-            </IconButton>
-          )
-        }}
-        margin="dense" // Adicionando margin
-      />
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <Box className={styles.formContainer}>
+        
+        {/* TimePicker para Horário Início */}
+        <MobileTimePicker
+          label="Horário Início"
+          value={startTime}
+          onChange={(newValue) => setStartTime(newValue)}
+          ampm={false} // 24 horas
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              fullWidth
+              className={`${styles.textField} ${styles.customTimePicker}`} // Classe customizada
+              InputProps={{
+                endAdornment: (
+                  <IconButton className={styles.iconButton}>
+                    <AccessTimeIcon />
+                  </IconButton>
+                ),
+                disableUnderline: true // Remover sublinhado padrão do TextField
+              }}
+              margin="dense"
+            />
+          )}
+        />
+        <p className={styles.pe}>HH/MM</p>
 
-      {/* Input para Data do Agendamento usando DatePicker */}
-      <DatePicker
-        selected={selectedDate}
-        onChange={(date) => setSelectedDate(date)}
-        dateFormat="dd/MM/yyyy"
-        customInput={
-          <TextField
-            fullWidth
-            label="Data do agendamento"
-            className={styles.textField}
-            InputProps={{
-              endAdornment: (
-                <IconButton className={styles.iconButton}>
-                  <CalendarTodayIcon />
-                </IconButton>
-              )
-            }}
-            margin="dense" // Adicionando margin
-          />
-        }
-      />
-      <p className={styles.pe}>DD/MM/AAAA</p>
+        {/* TimePicker para Horário Fim */}
+        <MobileTimePicker
+          label="Horário Fim"
+          value={endTime}
+          onChange={(newValue) => setEndTime(newValue)}
+          ampm={false} // 24 horas
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              fullWidth
+              className={`${styles.textField} ${styles.customTimePicker}`} // Classe customizada
+              InputProps={{
+                endAdornment: (
+                  <IconButton className={styles.iconButton}>
+                    <AccessTimeIcon />
+                  </IconButton>
+                ),
+                disableUnderline: true // Remover sublinhado padrão do TextField
+              }}
+              margin="dense"
+            />
+          )}
+        />
+        <p className={styles.pe}>HH/MM</p>
 
-      {/* Input para Horário Início */}
-      <TextField
-        fullWidth
-        label="Horário Início"
-        type="time"
-        value={startTime}
-        onChange={handleTimeChange(setStartTime)}
-        className={styles.textField}
-        InputProps={{
-          endAdornment: (
-            <IconButton className={styles.iconButton}>
-              <AccessTimeIcon />
-            </IconButton>
-          )
-        }}
-        margin="dense" // Adicionando margin
-      />
-      <p className={styles.pe}>HH/MM</p>
-
-      {/* Input para Horário Fim */}
-      <TextField
-        fullWidth
-        label="Horário Fim"
-        type="time"
-        value={endTime}
-        onChange={handleTimeChange(setEndTime)}
-        className={styles.textField}
-        InputProps={{
-          endAdornment: (
-            <IconButton className={styles.iconButton}>
-              <AccessTimeIcon />
-            </IconButton>
-          )
-        }}
-        margin="dense" // Adicionando margin
-      />
-      <p className={styles.pe}>HH/MM</p>
-
-      {/* Botão para Finalizar o Agendamento */}
-      <div className={styles.buttonContainer}>
-        <Button variant="contained" color="primary" fullWidth>
-          Finalizar Agendamento
-        </Button>
-      </div>
-
-      {/* Lista de Nomes Adicionados */}
-      <List className={styles.namesList}>
-        {names.map((addedName, index) => ( // Usando 'names' do estado
-          <ListItem key={index}>
-            <ListItemText primary={addedName} />
-          </ListItem>
-        ))}
-      </List>
-    </Box>
+        {/* Botão para Finalizar o Agendamento */}
+        <div className={styles.buttonContainer}>
+          <Button variant="contained" color="primary" fullWidth>
+            Finalizar Agendamento
+          </Button>
+        </div>
+      </Box>
+    </LocalizationProvider>
   );
 };
 
