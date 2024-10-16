@@ -7,6 +7,13 @@
   border-radius: 8px;
   max-width: 400px;
   margin: auto;
+  width: 100%;
+  z-index: 10; /* Camada superior */
+  position: relative; /* Necessário para z-index funcionar */
+}
+
+.teste {
+    background-color: rgb(179, 24, 24);
 }
 
 .textField {
@@ -24,6 +31,7 @@
   color: #6f6f6f;
   justify-content: center;
   align-items: center;
+  min-height: 56px;
 }
 
 .buttonContainer {
@@ -79,4 +87,8 @@
 .pe {
   font-size: 0.8rem;
   margin-top: -1.7rem;
+}
+.pe2 {
+  font-size: 0.8rem;
+  margin-top: -0.7rem;
 }

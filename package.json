@@ -20,6 +20,8 @@
     "@geist-ui/react": "^2.2.5",
     "@mui/icons-material": "^5.16.7",
     "@mui/material": "^5.16.7",
+    "@mui/x-date-pickers": "^7.20.0",
+    "dayjs": "^1.11.13",
     "framer-motion": "^11.3.24",
     "next": "^14.2.14",
     "react": "^18.3.1",
