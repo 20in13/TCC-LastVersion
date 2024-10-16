@@ -8,12 +8,7 @@
   max-width: 400px;
   margin: auto;
   width: 100%;
-  z-index: 10; /* Camada superior */
-  position: relative; /* Necessário para z-index funcionar */
-}
 
-.teste {
-    background-color: rgb(179, 24, 24);
 }
 
 .textField {
@@ -48,7 +43,7 @@
 }
 
 .buttonContainer button {
-  background-color: #6f6f6f;
+  background-color: #142b56;
   color: #ffffff;
   text-transform: none;
   font-size: 16px;

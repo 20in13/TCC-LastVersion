@@ -6,14 +6,15 @@ import { IoMdPerson } from 'react-icons/io';
 
 const NameList = ({ names }) => {
   return (
-    <Box 
+    <Box
       w="80%" 
       p={5} 
       borderWidth={1} 
       borderRadius={8} 
       borderColor="#E5E8ED" 
-      backgroundColor="#F9FAFB"
       mb={10}
+      margin={15}
+      // backgroundColor="red"
     >
       <Text fontSize="lg" fontWeight="bold" mb={4}>Lista de Nomes</Text>
       {names.length > 0 ? (

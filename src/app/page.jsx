@@ -82,9 +82,9 @@ const LoginScreenW = () => {
             >
               <div>
                 <Image src="/SpaceSchool.png" width={400} height={400} alt="Logo Grande" className={styles.logoGrande} />
-                <Text className={styles.carouselText}>BEM-VINDO AO LOUVEAPP</Text>
-                <Text className={styles.carouselSubtitle}>Grande é o Senhor e digno de ser louvado.</Text>
-                <Text className={styles.carouselBible}>Salmos 145:3</Text>
+                <Text className={styles.carouselText}>Bem-Vindo ao SpaceSchool</Text>
+                {/* <Text className={styles.carouselSubtitle}>Grande é o Senhor e digno de ser louvado.</Text>
+                <Text className={styles.carouselBible}>Salmos 145:3</Text> */}
               </div>
               <div>
                 <Image src="/image2.jpg" width={400} height={400} alt="Slide 2" />

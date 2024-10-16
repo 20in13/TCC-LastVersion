@@ -19,7 +19,7 @@ const Agend = () => {
       <ImgAgend />
       <Container className={styles.container}>
             <Desc />
-            <Inputs names={names} setNames={setNames}/>
+            <Inputs  names={names} setNames={setNames} />
             <NameList names={names} />
       </Container>
       </main>

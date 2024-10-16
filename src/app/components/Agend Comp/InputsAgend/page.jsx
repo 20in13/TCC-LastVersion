@@ -7,12 +7,16 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import DatePicker from 'react-datepicker'; // Importando react-datepicker
+import "react-datepicker/dist/react-datepicker.css"; // Importando os estilos do calendário
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import styles from './page.module.css';
 
 const Inputs = ({ names, setNames }) => { // Recebendo names e setNames como props
   const [name, setName] = useState('');
   const [namesList, setNamesList] = useState([]);
+
+  const [selectedDate, setSelectedDate] = useState(null); // Estado para a data do calendário
 
   const [startTime, setStartTime] = useState(null); // Estado para o horário de início
   const [endTime, setEndTime] = useState(null); // Estado para o horário de fim
@@ -47,15 +51,29 @@ const Inputs = ({ names, setNames }) => { // Recebendo names e setNames como pro
           
         {/* </Box> */}
 
-        {/* Input para Data do Agendamento */}
-        <TextField
-          // type='date'
-          placeholder='dd/mm/aaaa'
-          fullWidth
-          label="Data do agendamento"
-          className={styles.textField}
-        />
-        <p className={styles.pe}>DD/MM/AAAA</p>
+      {/* Input para Data do Agendamento usando DatePicker */}
+      <DatePicker
+        selected={selectedDate}
+        onChange={(date) => setSelectedDate(date)}
+        dateFormat="dd/MM/yyyy"
+        customInput={
+          <TextField
+            fullWidth
+            label="Data do agendamento"
+            className={styles.textField}
+            InputProps={{
+              endAdornment: (
+                <IconButton className={styles.iconButton}>
+                  <CalendarTodayIcon />
+                </IconButton>
+              )
+            }}
+          />
+        }
+      />
+      <p className={styles.pe}>DD/MM/AAAA</p>
+
+
 
         {/* TimePicker para Horário Início */}
           <MobileTimePicker
