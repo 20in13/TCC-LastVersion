@@ -10,6 +10,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import DatePicker from 'react-datepicker'; // Importando react-datepicker
 import "react-datepicker/dist/react-datepicker.css"; // Importando os estilos do calendário
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import styles from './page.module.css';
 
 const Inputs = ({ names, setNames }) => { // Recebendo names e setNames como props
@@ -20,6 +22,9 @@ const Inputs = ({ names, setNames }) => { // Recebendo names e setNames como pro
 
   const [startTime, setStartTime] = useState(null); // Estado para o horário de início
   const [endTime, setEndTime] = useState(null); // Estado para o horário de fim
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
 
   const handleAddName = () => {
     if (name.trim()) {
@@ -127,9 +132,50 @@ const Inputs = ({ names, setNames }) => { // Recebendo names e setNames como pro
 
         {/* Botão para Finalizar o Agendamento */}
         <div className={styles.buttonContainer}>
-          <Button variant="contained" color="primary" fullWidth>
-            Finalizar Agendamento
+        <Button variant="contained" color="primary" fullWidth onClick={handleOpen}>
+          Finalizar Agendamento
+        </Button>
+
+        <Dialog
+          open={open}
+          onClose={() => setOpen(false)}
+          PaperProps={{
+            sx: {
+              borderRadius: '8px',
+              width:'100%',
+              maxWidth: '500px',
+              margin: 'auto',
+            },
+          }}
+        >
+        <DialogTitle sx={{ textAlign: 'center', backgroundColor: '#68c392', color: '#fff' }}>
+          <CheckCircleIcon sx={{ fontSize: 40 }} />
+        </DialogTitle>
+        <DialogContent sx={{ textAlign: 'center', padding: '16px 24px' }}>
+          <DialogContentText sx={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#4a9a5d', marginTop: '1rem', }}>
+            Agendamento Finalizado
+          </DialogContentText>
+          <DialogContentText sx={{ fontSize: '0.9rem', color: '#666' }}>
+            Sua reserva foi feita com sucesso!
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions sx={{ justifyContent: 'center', padding: '16px' }}>
+          <Button
+            onClick={() => setOpen(false)}
+            sx={{
+              backgroundColor: '#4a9a5d',
+              marginTop:'-1rem',
+              color: '#fff',
+              borderRadius: '10px',
+              padding: '8px 24px',
+              width:'10rem',
+              '&:hover': { backgroundColor: '#3e8b50' },
+            }}
+          >
+            Ok
           </Button>
+        </DialogActions>
+        </Dialog>
         </div>
         {/* Lista de Nomes Adicionados */}
         <List className={styles.namesList}>
