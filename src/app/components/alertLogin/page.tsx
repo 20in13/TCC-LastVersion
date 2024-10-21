@@ -1,5 +1,6 @@
 import { Flex, Text } from "@chakra-ui/react";
-import { CloseIcon } from "@chakra-ui/icons";
+import { SmallCloseIcon, WarningTwoIcon } from "@chakra-ui/icons";
+
 
 interface AlertProps {
   message: string;
@@ -16,16 +17,17 @@ const AlertComponent: React.FC<AlertProps> = ({ message, onClose }) => {
       backgroundColor="#f8d7da"
       padding="16px"
       color="red"
-      position="relative"
-      width="100%"
-      maxWidth="400px"
+      position="absolute"
+      width="40rem"
       boxShadow="0px 4px 6px rgba(0, 0, 0, 0.1)"
+      cursor="not-allowed"
+      marginTop="2rem"
     >
       <Flex alignItems="center">
-        <Text mr="10px">⚠️</Text>
+        <Text mr="10px"><WarningTwoIcon cursor="not-allowed"/></Text>
         <Text>{message}</Text>
       </Flex>
-      <CloseIcon cursor="pointer" onClick={onClose} />
+      <SmallCloseIcon cursor="pointer" onClick={onClose} />
     </Flex>
   );
 };

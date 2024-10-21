@@ -102,7 +102,7 @@ const LoginScreenW = () => {
           </Flex>
         )}
 
-        <Flex justifyContent="center" position="absolute" bottom="15">
+        <Flex justifyContent="center" position="absolute" bottom="15" cursor="help">
           <Text>Não tem conta?</Text>
           <a href="/screens/Cadastro">
             <Text color="#CC3737" textDecoration="underline" fontSize={16} fontWeight={600} cursor="pointer" ml={2}>

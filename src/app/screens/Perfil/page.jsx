@@ -99,7 +99,7 @@ export default function Profile({ user }) {
               reservations.map((reservation, index) => (
                 <LibraryCard 
                   onDelete={() => console.log("Deleted")} 
-                  isSmallCard={false} 
+                  isSmallCard={true} 
                 />
               ))
             ) : (

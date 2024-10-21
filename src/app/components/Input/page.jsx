@@ -79,7 +79,7 @@ const InputComponent = (props) => {
         </Box>
       </Box>
 
-      <Flex justify="flex-end">
+      <Flex justify="flex-end" cursor="help">
         <Text
           color="#CC3737"
           textDecoration="underline"

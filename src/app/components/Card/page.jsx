@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import LikeButton from "./LikeButton/page";
 import ReservationCard from "../reservCard/page";
+import styles from './page.module.css';
 
 export default function LibraryCard({ local, image, title, date, onDelete, isSmallCard }) {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -44,6 +45,18 @@ export default function LibraryCard({ local, image, title, date, onDelete, isSma
 
   if (isSmallCard) {
     return (
+      <div className={styles.reservationCard}>
+      <img src={image || local?.image} alt={title} className={styles.cardImage} />
+      <div className={styles.reservationDetails}>
+        <h3 className={styles.h3_}>{title || local?.name}</h3>
+        <p className={styles.pe}>{date || local?.date}</p>
+      </div>
+      <button className={styles.deleteBtn} onClick={onDelete}>Excluir</button>
+    </div>
+    );
+  } else {
+    // Renderiza ReservationCard se o card for pequeno
+    return (
       <Box onClick={handleCardClick} sx={{ cursor: "pointer", display: "inline-block", paddingBottom: "3rem" }}>
         <Card
           sx={{
@@ -79,16 +92,6 @@ export default function LibraryCard({ local, image, title, date, onDelete, isSma
           </CardContent>
         </Card>
       </Box>
-    );
-  } else {
-    // Renderiza ReservationCard se o card for pequeno
-    return (
-      <ReservationCard
-        image={image || local?.image}
-        title={title || local?.name}
-        date={date || local?.date}
-        onDelete={onDelete}
-      />
     );
   }
 }
