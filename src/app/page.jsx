@@ -4,42 +4,40 @@ import Head from 'next/head';
 import Image from 'next/image';
 import styles from './page.module.css';
 import InputComponent from './components/Input/page';
-import { Flex, Text } from '@chakra-ui/react'
+import AlertComponent from './components/alertLogin/page'; // Importe o novo componente
+import { Flex, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation'; // Corrected import for useRouter in App Router
 import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';  
-
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const LoginScreenW = () => {
-
   const [isMobile, setIsMobile] = useState(false);
+  const [username, setUsername] = useState(''); // Adicione estados para username e password
+  const [password, setPassword] = useState('');
+  const [showAlert, setShowAlert] = useState(false); // Estado para mostrar o alerta
+  const router = useRouter(); // Correct useRouter hook for App Router
 
   useEffect(() => {
-    // Função para verificar se a tela é mobile
     const checkIfMobile = () => {
       setIsMobile(window.innerWidth <= 960);
     };
 
-    // Adicione o event listener para redimensionar
     window.addEventListener('resize', checkIfMobile);
-
-    // Verifique o tamanho da tela ao carregar
     checkIfMobile();
 
-    // Remova o event listener ao desmontar
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
 
-
-  const handleLogin = () => {
-    if (username === '20in.nascimento.13@gmail.com' && password === 'a') {
-      navigation.navigate('/screens/HomeW');
+  const handleLogin = (e) => {
+    e.preventDefault(); // Previna o comportamento padrão do link
+    if (username == 'a' && password == 'a') {
+      router.push('/screens/HomeW'); // Redireciona usando router.push
     } else {
-      alert('Login ou senha incorretos');
+      setShowAlert(true); // Mostre o alerta
     }
   };
 
-  
   return (
     <div className={styles.container}>
       <Head>
@@ -48,7 +46,6 @@ const LoginScreenW = () => {
       <div className={`${styles.leftContainer}`}>
         <div className={styles.logoContainer2}>
           <Flex justifyContent="center" alignItems="center" width="100%" className={styles.carouselWrapper}>
-            {/* Carrossel de imagens */}
             <Carousel
               showThumbs={false}
               showArrows={false}
@@ -57,34 +54,10 @@ const LoginScreenW = () => {
               infiniteLoop={true}
               showStatus={false}
               emulateTouch={false}
-              renderArrowPrev={(clickHandler, hasPrev, label) => (
-                <button
-                  type="button"
-                  onClick={clickHandler}
-                  className={styles.customArrowPrev}
-                  aria-label={label}
-                  disabled={!hasPrev}
-                >
-                  ❮
-                </button>
-              )}
-              renderArrowNext={(clickHandler, hasNext, label) => (
-                <button
-                  type="button"
-                  onClick={clickHandler}
-                  className={styles.customArrowNext}
-                  aria-label={label}
-                  disabled={!hasNext}
-                >
-                  ❯
-                </button>
-              )}
             >
               <div>
                 <Image src="/SpaceSchool.png" width={400} height={400} alt="Logo Grande" className={styles.logoGrande} />
                 <Text className={styles.carouselText}>Bem-Vindo ao SpaceSchool</Text>
-                {/* <Text className={styles.carouselSubtitle}>Grande é o Senhor e digno de ser louvado.</Text>
-                <Text className={styles.carouselBible}>Salmos 145:3</Text> */}
               </div>
               <div>
                 <Image src="/image2.jpg" width={400} height={400} alt="Slide 2" />
@@ -110,7 +83,10 @@ const LoginScreenW = () => {
           </Flex>
           <h2 className={styles.spaceSchool}>SpaceSchool</h2>
         </div>
+
+        {/* Componente de Input */}
         <InputComponent autoCapitalize="none" autoCorrect="off" />
+
         <button className={styles.loginButton}>
           <a href="/screens/HomeW" onClick={handleLogin}>
             <Text color="#FFF" fontSize={14} fontWeight={600} cursor="pointer">
@@ -118,6 +94,13 @@ const LoginScreenW = () => {
             </Text>
           </a>
         </button>
+
+        {/* Exibir alerta se houver erro de login */}
+        {showAlert && (
+          <Flex justifyContent="center" mt={4}>
+            <AlertComponent message="Login ou senha incorretos" onClose={() => setShowAlert(false)} />
+          </Flex>
+        )}
 
         <Flex justifyContent="center" position="absolute" bottom="15">
           <Text>Não tem conta?</Text>
