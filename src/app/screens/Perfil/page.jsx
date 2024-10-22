@@ -8,6 +8,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import LibraryCard from '../../components/Card/page';
 import { useEffect, useState } from 'react';
+import ambientes from '../../../data/ambientes.json';
+import Card from '../../components/Card/page';
 
 export default function Profile({ user }) {
   const router = useRouter();
@@ -61,7 +63,7 @@ export default function Profile({ user }) {
           <h3 className={styles.titulo}>Bem vindo, {user.name}</h3>
           <p className={styles.subtitulo}>Gerencie suas informações, privacidade e segurança para que o Space School atenda suas necessidades.</p>
   
-          <section className={styles.infoSection}>
+          <section className={styles.infoSection}> 
             <h2>Informações pessoais</h2>
             <div className={styles.infoCard}>
               <div className={styles.infoItem}>
@@ -93,9 +95,9 @@ export default function Profile({ user }) {
           </section>
 
           <section className={styles.reservationsSection}>
-            <h2>Minhas Reservas</h2>
+            <h2 className={styles.minRe}>Minhas Reservas</h2>
             <div className={styles.reservationsContainer}>
-            {reservations && reservations.length > 0 ? (
+            {/* {reservations && reservations.length > 0 ? (
               reservations.map((reservation, index) => (
                 <LibraryCard 
                   onDelete={() => console.log("Deleted")} 
@@ -104,7 +106,11 @@ export default function Profile({ user }) {
               ))
             ) : (
               <p>Você não tem reservas no momento.</p>
-            )}
+            )} */}
+
+              {ambientes.map((local, index) => (
+                <Card key={index} local={local} isSmallCard={true} />
+              ))}
             </div>
           </section>
             
