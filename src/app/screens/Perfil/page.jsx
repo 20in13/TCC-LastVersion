@@ -63,7 +63,7 @@ export default function Profile({ user }) {
           <h3 className={styles.titulo}>Bem vindo, {user.name}</h3>
           <p className={styles.subtitulo}>Gerencie suas informações, privacidade e segurança para que o Space School atenda suas necessidades.</p>
   
-          <section className={styles.infoSection}> 
+          <section className={styles.infoSection}>
             <h2>Informações pessoais</h2>
             <div className={styles.infoCard}>
               <div className={styles.infoItem}>

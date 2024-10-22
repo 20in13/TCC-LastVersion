@@ -177,6 +177,8 @@ const Inputs = ({ names, setNames }) => { // Recebendo names e setNames como pro
         </DialogActions>
         </Dialog>
         </div>
+
+
         {/* Lista de Nomes Adicionados */}
         <List className={styles.namesList}>
           {namesList.map((addedName, index) => (

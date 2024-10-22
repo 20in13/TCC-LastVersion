@@ -50,7 +50,7 @@ export default function HomeW({ user }) {
           <div className={styles.contentWrapper}>
             <div className={styles.content}>
               {ambientes.map((local, index) => (
-                <Card key={index} local={local} isSmallCard={true} />
+                <Card key={index} local={local} isSmallCard={false} />
               ))}
             </div>
           </div>

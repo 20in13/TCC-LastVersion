@@ -7,14 +7,20 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import LikeButton from "./LikeButton/page";
-import ReservationCard from "../reservCard/page";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
 import styles from './page.module.css';
 
 export default function LibraryCard({ local, image, title, date, onDelete, isSmallCard }) {
   const [isFavorite, setIsFavorite] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (local?.name) { // Verifica se local e local.name existem
+    if (local?.name) {
       const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
       const isFavorited = favorites.includes(local.name);
       setIsFavorite(isFavorited);
@@ -22,9 +28,8 @@ export default function LibraryCard({ local, image, title, date, onDelete, isSma
   }, [local?.name]);
 
   const toggleFavorite = () => {
-    if (local?.name) { // Verifica se local e local.name existem antes de manipular favoritos
+    if (local?.name) {
       const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-      
       if (isFavorite) {
         const newFavorites = favorites.filter((favName) => favName !== local.name);
         localStorage.setItem("favorites", JSON.stringify(newFavorites));
@@ -43,19 +48,73 @@ export default function LibraryCard({ local, image, title, date, onDelete, isSma
     }
   };
 
+  const handleDeleteClick = () => {
+    setOpen(true); // Abre o diálogo de confirmação
+  };
+
+  const handleClose = (confirm) => {
+    setOpen(false);
+    if (confirm) {
+      onDelete(); // Executa a função de exclusão se confirmado
+    }
+  };
+
   if (isSmallCard) {
     return (
       <div className={styles.reservationCard}>
-      <img src={image || local?.image} alt={title} className={styles.cardImage} />
-      <div className={styles.reservationDetails}>
-        <h3 className={styles.h3_}>{title || local?.name}</h3>
-        <p className={styles.pe}>{date || local?.date}</p>
+        <img src={image || local?.image} alt={title} className={styles.cardImage} />
+        <div className={styles.reservationDetails}>
+          <h3 className={styles.h3_}>{title || local?.name}</h3>
+          <p className={styles.pe}>{date || local?.date}</p>
+        </div>
+        <button className={styles.deleteBtn} onClick={handleDeleteClick}>Excluir</button>
+
+        {/* Caixa de diálogo de confirmação */}
+        <Dialog
+          open={open}
+          onClose={() => handleClose(false)}
+          PaperProps={{
+            sx: {
+              borderRadius: "16px", // Borda arredondada como na imagem
+              padding: "16px", // Espaçamento interno
+              textAlign: "left",
+              backgroundColor: "#F4F3FA", // Cor de fundo igual à da imagem
+            },
+          }}
+        >
+          <DialogTitle sx={{ fontSize: "1.4rem", fontWeight: "500", color: "#1A1B21", textAlign: "left", }}>
+            Você quer mesmo fazer isso?
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText sx={{ color: "#666", fontSize: "0.9rem" }}>
+              Essa ação não pode ser desfeita
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions sx={{ justifyContent: "flex-end" }}>
+            <Button
+              onClick={() => handleClose(false)}
+              sx={{
+                color: "#666",
+                textTransform: "none",
+              }}
+            >
+              Cancelar
+            </Button>
+            <Button
+              onClick={() => handleClose(true)}
+              sx={{
+                fontWeight: "bold",
+                color: "red",
+                textTransform: "none",
+              }}
+            >
+              Excluir
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
-      <button className={styles.deleteBtn} onClick={onDelete}>Excluir</button>
-    </div>
     );
   } else {
-    // Renderiza ReservationCard se o card for pequeno
     return (
       <Box onClick={handleCardClick} sx={{ cursor: "pointer", display: "inline-block", paddingBottom: "3rem" }}>
         <Card
