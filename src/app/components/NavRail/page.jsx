@@ -85,16 +85,34 @@ export default function NavigationRail({ user }) {
           paddingTop: spacing,
         }}
       >
+        <IconButton
+              sx={{
+                width: "60px",
+                height: "60px",
+                borderRadius: "50%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "transparent",
+                "&:hover": {
+                  backgroundColor: "rgba(0, 0, 0, 0.1)",
+                },
+                position: "relative",
+              }}
+              onClick={() => handleIconClick(5, "/")}
+              >
+
         <img
           src="/SpaceSchool.png"
           alt="Profile"
           style={{
-            width: "40px",
-            height: "40px",
+            width: "50px",
+            height: "50px",
             borderRadius: "50%",
             objectFit: "cover",
           }}
-        />
+          />
+          </IconButton>
       </ListItem>
 
       <List

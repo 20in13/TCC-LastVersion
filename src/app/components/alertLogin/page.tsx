@@ -18,10 +18,10 @@ const AlertComponent: React.FC<AlertProps> = ({ message, onClose }) => {
       padding="16px"
       color="red"
       position="absolute"
-      width="40rem"
+      width="30%"
       boxShadow="0px 4px 6px rgba(0, 0, 0, 0.1)"
       cursor="not-allowed"
-      marginTop="2rem"
+      // marginTop="2rem"
     >
       <Flex alignItems="center">
         <Text mr="10px"><WarningTwoIcon cursor="not-allowed"/></Text>
