@@ -8,25 +8,25 @@
   },
   {
     "name": "Laboratório 1",
-    "image": "/Lab6.jpg",
+    "image": "/labNote.jpg",
     "description": "O Laboratório 1 é equipado com 20 Notebooks LeNovo I5 com 8Gb de RAM",
     "isFavorite": false
   },
     {
       "name": "Laboratório 2",
-      "image": "/Lab6.jpg",
+      "image": "/labNote.jpg",
       "description": "O Laboratório 2 é equipado com 20 Notebooks LeNovo I5 com 8Gb de RAM",
       "isFavorite": false
     },
     {
       "name": "Laboratório 3",
-      "image": "/Lab6.jpg",
+      "image": "/labNote.jpg",
       "description": "Incluir Descrição!",
       "isFavorite": false
     },
     {
       "name": "Laboratório 4",
-      "image": "/Lab4.jpg",
+      "image": "/Lab6.jpg",
       "description": "Incluir Descrição!",
       "isFavorite": false
     },
@@ -44,8 +44,8 @@
     },
     {
       "name": "Sala 7",
-      "image": "/SalaAula.jpg",
-      "description": "Incluir Descrição!",
+      "image": "/Sala7.jpg",
+      "description": "Laboratório adaptado para processos criativos práticos equipado com X computadores (Especificações dos PCs). O ambiente proporciona versatilidade, confortabilidade e estética agradável aos olhos",
       "isFavorite": false
     },
     {
