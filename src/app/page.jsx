@@ -13,10 +13,10 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const LoginScreenW = () => {
   const [isMobile, setIsMobile] = useState(false);
-  const [username, setUsername] = useState(''); // Adicione estados para username e password
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState(''); // Gerenciar estados para username
+  const [password, setPassword] = useState(''); // Gerenciar estados para password
   const [showAlert, setShowAlert] = useState(false); // Estado para mostrar o alerta
-  const router = useRouter(); // Correct useRouter hook for App Router
+  const router = useRouter(); // Hook para navegação
 
   useEffect(() => {
     const checkIfMobile = () => {
@@ -30,11 +30,11 @@ const LoginScreenW = () => {
   }, []);
 
   const handleLogin = (e) => {
-    e.preventDefault(); // Previna o comportamento padrão do link
-    if (username == 'a' && password == 'a') {
+    e.preventDefault(); // Previna o comportamento padrão
+    if (username === '20in.nascimento.13@gmail.com' && password === 'testeteste') {
       router.push('/screens/HomeW'); // Redireciona usando router.push
     } else {
-      setShowAlert(true); // Mostre o alerta
+      setShowAlert(true); // Mostra o alerta se login for incorreto
     }
   };
 
@@ -84,15 +84,27 @@ const LoginScreenW = () => {
           <h2 className={styles.spaceSchool}>SpaceSchool</h2>
         </div>
 
-        {/* Componente de Input */}
-        <InputComponent autoCapitalize="none" autoCorrect="off" />
+        {/* Inputs de username e password com estados controlados */}
+        <InputComponent
+          value={username}
+          onChange={(e) => setUsername(e.target.value)} // Captura do username
+          autoCapitalize="none"
+          autoCorrect="off"
+          placeholder="E-mail"
+        />
+        <InputComponent
+          value={password}
+          onChange={(e) => setPassword(e.target.value)} // Captura do password
+          autoCapitalize="none"
+          autoCorrect="off"
+          placeholder="Senha"
+          type="password"
+        />
 
-        <button className={styles.loginButton}>
-          <a href="/screens/HomeW" onClick={handleLogin}>
-            <Text color="#FFF" fontSize={14} fontWeight={600} cursor="pointer">
-              Login
-            </Text>
-          </a>
+        <button className={styles.loginButton} onClick={handleLogin} cursor="pointer">          
+          <Text color="#FFF" fontSize={14} fontWeight={600} cursor="pointer">
+            Login
+          </Text>
         </button>
 
         {/* Exibir alerta se houver erro de login */}
