@@ -14,7 +14,51 @@
     background-color: #cc3737;
     padding: 16px;
   }
-  
+
+/* BottomBar específica para dispositivos móveis */
+@media (max-width: 768px) {
+  .navrail {
+    display: none; /* Oculta a NavigationRail no mobile */
+  }
+
+  .bottomBar {
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #cc3737;
+    padding: 0 16px;
+    z-index: 1000;
+  }
+
+  .bottomBar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    cursor: pointer;
+  }
+
+  .bottomBar-item.active {
+    background-color: #FFDAD7; /* Cor de fundo para o item selecionado */
+  }
+
+  .bottomBar-icon {
+    color: #3b0909; /* Cor dos ícones */
+    font-size: 24px;
+  }
+
+  .bottomBar-label {
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
   .butagend {
     width: 56px;
     height: 56px;

@@ -15,7 +15,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import styles from './page.module.css';
 
-export default function LibraryCard({ local, image, title, date, onDelete, isSmallCard }) {
+export default function LibraryCard({ local, image, title, date, timeInicio, timeFim, onDelete, isSmallCard }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -66,6 +66,7 @@ export default function LibraryCard({ local, image, title, date, onDelete, isSma
         <div className={styles.reservationDetails}>
           <h3 className={styles.h3_}>{title || local?.name}</h3>
           <p className={styles.pe}>{date || local?.date}</p>
+          <p className={styles.pe}>{timeInicio || local?.timeInicio} - {timeFim || local?.timeFim}</p>
         </div>
         <button className={styles.deleteBtn} onClick={handleDeleteClick}>Excluir</button>
 

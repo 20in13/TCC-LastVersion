@@ -57,23 +57,32 @@ export default function NavigationRail({ user }) {
 
 
   return (
-    <Drawer
-      sx={{
-        width: drawerWidth,
-        flexShrink: 0,
-        "& .MuiDrawer-paper": {
-          width: drawerWidth,
-          boxSizing: "border-box",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          paddingTop: spacing,
-          backgroundColor: "#CC3737",
-        },
-      }}
-      variant="permanent"
-      anchor="left"
-    >
+      <Drawer
+        sx={{
+          width: drawerWidth, // Atual largura para desktop
+          flexShrink: 0,
+          "& .MuiDrawer-paper": {
+            width: drawerWidth,
+            boxSizing: "border-box",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            paddingTop: spacing,
+            backgroundColor: "#CC3737",
+            "@media (max-width: 600px)": { // Alterações para telas pequenas
+              flexDirection: "row",
+              justifyContent: "space-around",
+              height: "70px", // Altura da bottom bar
+              width: "100%", // Ocupa a largura total
+              padding: "0", // Remove padding lateral
+              position: "fixed",
+              bottom: 0,
+            },
+          },
+        }}
+        variant="permanent"
+        anchor="left"
+      >
       {/* LOGO */}
       <ListItem
         sx={{
@@ -174,6 +183,13 @@ export default function NavigationRail({ user }) {
                 justifyContent: "center",
                 width: "100%",
                 position: "relative",
+                "@media (max-width: 600px)": { // Ajuste para telas menores
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "auto", // Ícones centralizados
+                  height: "56px", // Mantém o tamanho do ícone adequado
+                },
               }}
             >
               <IconButton

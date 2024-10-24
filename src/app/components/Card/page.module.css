@@ -61,7 +61,7 @@
   background-color: #f4f3fa;
   border-radius: 8px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-  width: 16rem;
+  width: 19rem;
   max-width: 600px;
   border: 1px solid #e0e0e0;
   /* background-color: aquamarine; */
@@ -72,11 +72,15 @@
   height: 80px;
   border-radius: 8px;
   object-fit: cover;
+  min-width: 80px;
+  min-height: 80px;
 }
 
 .reservationDetails {
   flex-grow: 1;
+  text-align: left;
   margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .h3_ {
@@ -86,7 +90,7 @@
 }
 
 .pe {
-  margin: 0.5rem 0 0;
+  margin: 0.2rem 0 0;
   font-size: 0.9rem;
   color: #666;
 }

@@ -57,7 +57,7 @@ export default function Fav ({ user }) {
                 </Typography>
               ) : (
                 favoriteItems.map((local, index) => (
-                  <Card key={index} local={local} isSmallCard={true} />
+                  <Card key={index} local={local} isSmallCard={false} />
                 ))
               )}
             </div>
