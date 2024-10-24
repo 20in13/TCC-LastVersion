@@ -58,18 +58,23 @@ const LoginScreenW = () => {
               <div>
                 <Image src="/SpaceSchool.png" width={400} height={400} alt="Logo Grande" className={styles.logoGrande} />
                 <Text className={styles.carouselText}>Bem-Vindo ao SpaceSchool</Text>
+                <Text className={styles.carouselSubtitle}>Um site feito para a sua escola</Text>
+                {/* <Text className={styles.carouselBible}>Salmos 145:3</Text> */}
               </div>
               <div>
                 <Image src="/image2.jpg" width={400} height={400} alt="Slide 2" />
-                <Text className={styles.carouselText}>OUTRA MENSAGEM AQUI</Text>
+                <Text className={styles.carouselText}>Agenda</Text>
+                <Text className={styles.carouselSubtitle}>Todos os detalhes das reservas na palma de sua mão</Text>
               </div>
               <div>
                 <Image src="/image3.jpg" width={400} height={400} alt="Slide 3" />
-                <Text className={styles.carouselText}>EXEMPLO DE TEXTO 3</Text>
+                <Text className={styles.carouselText}>Organização</Text>
+                <Text className={styles.carouselSubtitle}>Mantenha as informações de Agendamento centrados em um só lugar</Text>
               </div>
               <div>
                 <Image src="/image4.jpg" width={400} height={400} alt="Slide 4" />
-                <Text className={styles.carouselText}>EXEMPLO DE TEXTO 4</Text>
+                <Text className={styles.carouselText}>Lorem Impsum</Text>
+                <Text className={styles.carouselSubtitle}>dolor amet</Text>
               </div>
             </Carousel>
           </Flex>
