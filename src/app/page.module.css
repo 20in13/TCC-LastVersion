@@ -49,6 +49,11 @@
   max-height: 400px;
   border-radius: 100%;
 }
+.imgCarroussel {
+  width: 400px;
+  max-width: 1000px;
+  height: 666px;
+}
 
 .spaceSchool {
   font-weight: bold;
@@ -138,45 +143,7 @@
 
 }
 
-.customArrowPrev,
-.customArrowNext {
-  position: absolute; /* Posiciona dentro do contêiner do carrossel */
-  top: 50%; /* Centraliza verticalmente */
-  transform: translateY(-50%); /* Ajusta para que fiquem perfeitamente no meio vertical */
-  background-color: rgb(253, 3, 3);
-  color: white;
-  border: none;
-  cursor: pointer;
-  z-index: 1;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-}
 
-.customArrowPrev {
-  left: 3000vh; /* Ajuste a posição para ficar dentro do contêiner à esquerda */
-}
-
-.customArrowNext {
-  right: 30rem; /* Ajuste a posição para ficar dentro do contêiner à direita */
-}
-
-.customArrowPrev:disabled,
-.customArrowNext:disabled {
-  opacity: 0;
-  cursor: not-allowed;
-}
-
-.customIndicator {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin: 0 4px;
-  background-color: #ccc;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.selectedIndicator {
-  background-color: #666666;
+.input {
+  width: 80%;
 }

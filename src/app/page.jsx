@@ -49,7 +49,7 @@ const LoginScreenW = () => {
             <Carousel
               showThumbs={false}
               showArrows={false}
-              autoPlay={true}
+              autoPlay={false}
               interval={3000}
               infiniteLoop={true}
               showStatus={false}
@@ -62,7 +62,7 @@ const LoginScreenW = () => {
                 {/* <Text className={styles.carouselBible}>Salmos 145:3</Text> */}
               </div>
               <div>
-                <Image src="/image2.jpg" width={400} height={400} alt="Slide 2" />
+                <Image src="/agenda.png" width={400} height={400} alt="Slide 2" className={styles.imgCarroussel} />
                 <Text className={styles.carouselText}>Agenda</Text>
                 <Text className={styles.carouselSubtitle}>Todos os detalhes das reservas na palma de sua mão</Text>
               </div>
@@ -71,11 +71,11 @@ const LoginScreenW = () => {
                 <Text className={styles.carouselText}>Organização</Text>
                 <Text className={styles.carouselSubtitle}>Mantenha as informações de Agendamento centrados em um só lugar</Text>
               </div>
-              <div>
+              {/* <div>
                 <Image src="/image4.jpg" width={400} height={400} alt="Slide 4" />
                 <Text className={styles.carouselText}>Lorem Impsum</Text>
                 <Text className={styles.carouselSubtitle}>dolor amet</Text>
-              </div>
+              </div> */}
             </Carousel>
           </Flex>
         </div>
@@ -90,6 +90,7 @@ const LoginScreenW = () => {
         </div>
 
         {/* Inputs de username e password com estados controlados */}
+        <div className={styles.input}>
         <InputComponent
           value={username}
           onChange={(e) => setUsername(e.target.value)} // Captura do username
@@ -97,6 +98,8 @@ const LoginScreenW = () => {
           autoCorrect="off"
           placeholder="E-mail"
         />
+        </div>
+        <div className={styles.input}>
         <InputComponent
           value={password}
           onChange={(e) => setPassword(e.target.value)} // Captura do password
@@ -104,7 +107,20 @@ const LoginScreenW = () => {
           autoCorrect="off"
           placeholder="Senha"
           type="password"
+          mb={20}
         />
+        <Flex justifyContent="flex-end" w="100%" mb={20} cursor="help" >
+          <Text
+            color="#CC3737"
+            textDecoration="underline"
+            fontSize={15}
+            fontWeight={600}
+            cursor="pointer"
+            >
+            Esqueceu a senha?
+          </Text>
+        </Flex>
+            </div>
 
         <button className={styles.loginButton} onClick={handleLogin} cursor="pointer">          
           <Text color="#FFF" fontSize={14} fontWeight={600} cursor="pointer">
