@@ -49,7 +49,7 @@ const LoginScreenW = () => {
             <Carousel
               showThumbs={false}
               showArrows={false}
-              autoPlay={false}
+              autoPlay={true}
               interval={3000}
               infiniteLoop={true}
               showStatus={false}
@@ -62,12 +62,12 @@ const LoginScreenW = () => {
                 {/* <Text className={styles.carouselBible}>Salmos 145:3</Text> */}
               </div>
               <div>
-                <Image src="/agenda.png" width={400} height={400} alt="Slide 2" className={styles.imgCarroussel} />
+                <Image src="/agenda.png" width={5000} height={3333} alt="Slide 2" className={styles.imgCarroussel} />
                 <Text className={styles.carouselText}>Agenda</Text>
                 <Text className={styles.carouselSubtitle}>Todos os detalhes das reservas na palma de sua mão</Text>
               </div>
               <div>
-                <Image src="/image3.jpg" width={400} height={400} alt="Slide 3" />
+                <Image src="/organização.png" width={5000} height={5000} alt="Slide 3" className={styles.imgCarroussel3}/>
                 <Text className={styles.carouselText}>Organização</Text>
                 <Text className={styles.carouselSubtitle}>Mantenha as informações de Agendamento centrados em um só lugar</Text>
               </div>

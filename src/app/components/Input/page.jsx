@@ -42,9 +42,10 @@ const InputComponent = ({ value, onChange, placeholder, type = 'text' }) => {
         borderWidth={0}
         borderRadius={8}
         pl="2.5rem" // Espaço para o ícone
+        pr="2.5rem" // Espaço para o ícone
         paddingBottom={10}
         paddingTop={10}
-        fontSize={18}
+        fontSize={15}
         w="100%"
         value={value}
         onChange={onChange}
