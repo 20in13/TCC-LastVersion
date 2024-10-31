@@ -1,4 +1,3 @@
-
 'use client'
 
 import { useRouter } from 'next/navigation';
@@ -33,7 +32,11 @@ export default function Profile({ user }) {
           {/* Cabeçalho com botão de voltar */}
           <header className={styles.header}>
                   <button className={styles.backButton} onClick={() => router.back()}>
-                    <ArrowBackIcon style={{ fontSize: 24, color:'white' }} />
+                  <ArrowBackIcon 
+                    style={{ fontSize: 24, color: 'white', transition: 'color 0.3s' }} 
+                    onMouseEnter={(e) => e.target.style.color = '#CC3737'} 
+                    onMouseLeave={(e) => e.target.style.color = 'white'} 
+                  />
                   </button>
                   <div className={styles.headerText}>
                     <h1>Space School</h1>

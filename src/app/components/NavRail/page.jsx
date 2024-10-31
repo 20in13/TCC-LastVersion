@@ -3,33 +3,35 @@
 import * as React from "react";
 import { useRouter, usePathname } from "next/navigation"; 
 import Drawer from "@mui/material/Drawer";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
+import BottomNavigation from "@mui/material/BottomNavigation";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import EventIcon from "@mui/icons-material/Event";
 import HomeIcon from "@mui/icons-material/Home";
 import FavoriteIcon from "@mui/icons-material/Favorite"; 
-import PersonIcon from "@mui/icons-material/Person"; 
+import PersonIcon from "@mui/icons-material/Person";
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import ListItem from "@mui/material/ListItem";
 import { IconButton } from "@mui/material";
+import List from "@mui/material/List";
+import ListItemIcon from "@mui/material/ListItemIcon";
 import Typography from "@mui/material/Typography";
-import { useState, useEffect } from "react";
 import styles from './page.module.css';
 import Image from 'next/image';
-
+import { useState, useEffect } from "react";
 
 export default function NavigationRail({ user }) {
   const router = useRouter();
-  const pathname = usePathname(); // Obtém o caminho atual
-  const drawerWidth = 80;
-  const spacing = 2;
-  const spacing2 = 8;
-  const spacing3 = 4;
+  const pathname = usePathname();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
-
-
-  // Atualiza o estado selectedIndex com base no caminho atual
+  const handleNavigation = (index, route) => {
+    setSelectedIndex(index);
+    router.push(route);
+  };
   useEffect(() => {
     const path = pathname;
     switch (path) {
@@ -55,34 +57,42 @@ export default function NavigationRail({ user }) {
     router.push(route); // Navega para a rota correspondente
   };
 
+  const spacing = 2;
+  const spacing2 = 8;
+  const spacing3 = 4;
 
-  return (
-      <Drawer
-        sx={{
-          width: drawerWidth, // Atual largura para desktop
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: drawerWidth,
-            boxSizing: "border-box",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            paddingTop: spacing,
-            backgroundColor: "#CC3737",
-            "@media (max-width: 600px)": { // Alterações para telas pequenas
-              flexDirection: "row",
-              justifyContent: "space-around",
-              height: "70px", // Altura da bottom bar
-              width: "100%", // Ocupa a largura total
-              padding: "0", // Remove padding lateral
-              position: "fixed",
-              bottom: 0,
-            },
-          },
-        }}
-        variant="permanent"
-        anchor="left"
-      >
+  return isMobile ? (
+    <BottomNavigation
+      value={selectedIndex}
+      onChange={(event, newIndex) => handleNavigation(newIndex, ["/screens/HomeW", "/screens/Fav", "/screens/CalendarioPage", "/screens/Perfil"][newIndex])}
+      sx={{ width: "100%", position: "fixed", bottom: 0, backgroundColor: "#CC3737", zIndex:"1", }}
+    >
+      <BottomNavigationAction label="Home" icon={<HomeIcon />} />
+      <BottomNavigationAction label="Favoritos" icon={<FavoriteIcon />} />
+      <BottomNavigationAction label="Agenda" icon={<EventIcon />} />
+      <BottomNavigationAction label="Perfil" icon={             
+         user.image ? (
+                <Image
+                src={user.image || '/img/default-avatar.png'}
+                alt="Profile Avatar"
+                width={30}
+                height={30}
+                className={styles.smallAvatar}
+                />
+              ) : (
+                  <PersonIcon sx={{ color: "#2D0002" }} />
+                )
+                } />
+    </BottomNavigation>
+  ) : (
+    <Drawer
+      variant="permanent"
+      anchor="left"
+      sx={{
+        width: 80,
+        "& .MuiDrawer-paper": { width: 80, boxSizing: "border-box", backgroundColor: "#CC3737" },
+      }}
+    >
       {/* LOGO */}
       <ListItem
         sx={{
@@ -183,13 +193,6 @@ export default function NavigationRail({ user }) {
                 justifyContent: "center",
                 width: "100%",
                 position: "relative",
-                "@media (max-width: 600px)": { // Ajuste para telas menores
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  width: "auto", // Ícones centralizados
-                  height: "56px", // Mantém o tamanho do ícone adequado
-                },
               }}
             >
               <IconButton
@@ -270,8 +273,5 @@ export default function NavigationRail({ user }) {
 }
 
 NavigationRail.defaultProps = {
-  user: {
-    name: 'Fulano da Silva',
-    image: '/perfilVitu.jpg',
-  },
-}
+  user: { name: 'Fulano da Silva', image: '/perfilVitu.jpg' },
+};

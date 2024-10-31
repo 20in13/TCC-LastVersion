@@ -9,6 +9,7 @@ import styles from './page.module.css';
 import NavigationRail from '../../components/NavRail/page';
 import { IconButton } from "@mui/material";
 import Image from 'next/image';
+import { useMediaQuery, useTheme } from '@mui/material';
 
 // Importar o arquivo JSON
 import ambientes from '../../../data/ambientes.json';
@@ -21,10 +22,13 @@ export default function HomeW({ user }) {
     router.push('/screens/Perfil');
   };
 
+  const theme = useTheme();
+  const isAbove600px = useMediaQuery('(min-width:600px)');
+
   return (
     <div className={styles.scrollView}>
       <NavigationRail />
-      <main style={{ flexGrow: 1, paddingLeft: '80px' }}>
+      <main style={{ flexGrow: 1, paddingLeft: isAbove600px ? '80px' : '0' }}>
         <div className={styles.container}>
           <header className={styles.header}>
             <h1 className={styles.title}>Space School</h1>

@@ -8,15 +8,18 @@ import NameList from '../../components/NameList/page'; // Importando o novo comp
 import ImgAgend from '../../components/Agend Comp/ImgAgend/page';
 import styles from './page.module.css';
 import NavigationRail from '../../components/NavRail/page';
+import { useMediaQuery, useTheme } from '@mui/material';
 
 
 const Agend = () => {
   const [names, setNames] = useState([]);
+  const theme = useTheme();
+  const isAbove600px = useMediaQuery('(min-width:600px)');
 
   return (
-    <main style={{ paddingLeft: '80px' }}>
-    <NavigationRail />
-      <ImgAgend />
+    <main style={{ flexGrow: 1, paddingLeft: isAbove600px ? '80px' : '0' }}>
+    <NavigationRail style={{zIndex:"0", position: "absolute"}}/>
+      <ImgAgend style={{flex:"3"}}/>
       <Container className={styles.container}>
             <Desc />
             <Inputs  names={names} setNames={setNames} />
