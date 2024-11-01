@@ -1,10 +1,32 @@
 'use client'
 import React from 'react';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Flex, Text } from '@chakra-ui/react'
+import { useRouter } from 'next/navigation';
 
 const CadastroScreen = () => {
+  const router = useRouter();
+
   return (
     <div className="fundo">
+  {/* <div className="fundo">
+    <main style={{ flexGrow: 1}}>
+      <div className="container2">
+        <header className="header">
+        </header>
+        </div>
+        </main> */}
+                    <button className="backButton" onClick={() => router.back()}>
+                    <ArrowBackIcon 
+                      style={{ fontSize: 24, color: 'white', transition: 'color 0.3s' }} 
+                      onMouseEnter={(e) => e.target.style.color = '#CC3737'} 
+                      onMouseLeave={(e) => e.target.style.color = 'white'} 
+                    />
+                    </button>
+        <div className="headerText">
+          <h1>Space School</h1>
+          <h2>Meu Perfil</h2>
+        </div>
       <h1 className="title">Cadastre-se</h1>
       <div className="container">
         <input className="input" placeholder="Nome" />
@@ -75,8 +97,61 @@ const CadastroScreen = () => {
           font-weight: bold;
           display: block;
         }
+        .header {
+  display: flex;
+  justify-content: center; /* Centraliza o conteúdo */
+  align-items: center; /* Centraliza verticalmente */
+  background-color: #44464f;
+  color: white;
+  padding: 1.5rem 2rem;
+  width: 100%;
+  position: relative;
+}
+  .headerText {
+  text-align: center;
+  margin-top: -24px; /* Para centralizar o texto após o botão */
+  align-items: center; /* Alinha o texto no centro horizontalmente */
+    transform: translateY(50%); /* Centraliza verticalmente em relação ao header */
+  top: 0;
+  position: absolute;
+}
+
+.headerText h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  transform: translateX(-21%);
+}
+
+.headerText h2 {
+  margin: 0;
+  font-size: 1rem;
+  color: #d3d3d3;
+  transform: translateX(-21%);
+}
+.backButton {
+  position: absolute;
+  top: 50%; 
+  left: 20px;
+  transform: translateY(50%); /* Centraliza verticalmente em relação ao header */
+  top: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+  .container2 {
+  width: 90%;
+  background-color: #fff;
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
+  padding: 6rem 5% 0 5%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
       `}</style>
-    </div>
+      </div>
+    // </div>
   );
 };
 
