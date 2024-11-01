@@ -65,7 +65,7 @@ export default function NavigationRail({ user }) {
     <BottomNavigation
       value={selectedIndex}
       onChange={(event, newIndex) => handleNavigation(newIndex, ["/screens/HomeW", "/screens/Fav", "/screens/CalendarioPage", "/screens/Perfil"][newIndex])}
-      sx={{ width: "100%", position: "fixed", bottom: 0, backgroundColor: "#CC3737", zIndex:"1", }}
+      sx={{ width: "100%", position: "fixed", bottom: 0, backgroundColor: "#CC3737", zIndex:"2", }}
     >
       <BottomNavigationAction label="Home" icon={<HomeIcon />} />
       <BottomNavigationAction label="Favoritos" icon={<FavoriteIcon />} />

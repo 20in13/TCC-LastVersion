@@ -130,8 +130,8 @@ export default function Profile({ user }) {
 
 Profile.defaultProps = {
   user: {
-    name: 'Fulano da Silva',
-    email: 'fulano.silva737@gmail.com',
+    name: 'Victor Hugo',
+    email: '20in.nascimento.13@gmail.com',
     image: '/perfilVitu.jpg',
   },
 };
