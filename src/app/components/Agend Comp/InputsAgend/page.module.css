@@ -87,3 +87,46 @@
   font-size: 0.8rem;
   margin-top: -0.7rem;
 }
+
+.customInput {
+  border-radius: 8px;
+}
+
+.addButton {
+  margin-top: -1rem;
+  padding: 0.4rem;
+  font-size: 15px;
+  text-transform: none;
+  background-color: #80828a;
+  color: #fff;
+  border-radius: 8px;
+}
+
+.addButton:hover {
+  background-color: #9396a0;
+}
+
+.inputsRow {
+  display: flex;
+  gap: 16px;
+}
+.inputItem {
+  flex: 1;
+}
+
+.selectField {
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #c4c4c4;
+  padding: 10px;
+}
+
+.selectField .MuiSelect-select {
+  padding: 10px;
+  font-size: 14px;
+  color: #6f6f6f;
+}
+
+.selectField .MuiOutlinedInput-notchedOutline {
+  border: none;
+}

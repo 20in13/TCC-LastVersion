@@ -1,10 +1,8 @@
 "use client"
 
 import React, { useState } from 'react';
-import { Box, TextField, Button, IconButton, List, ListItem, ListItemText, responsiveFontSizes } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
+import { Box, TextField, Button, IconButton, List, ListItem, ListItemText, Select, MenuItem } from '@mui/material';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import DatePicker from 'react-datepicker'; // Importando react-datepicker
@@ -17,6 +15,8 @@ import styles from './page.module.css';
 const Inputs = ({ names, setNames }) => { // Recebendo names e setNames como props
   const [name, setName] = useState('');
   const [namesList, setNamesList] = useState([]);
+  const [itinerary, setItinerary] = useState(''); // Novo estado para o campo Itinerário
+  const itineraries = ['1 - Etim', 'Itinerário 2', 'Itinerário 3'];
 
   const [selectedDate, setSelectedDate] = useState(null); // Estado para a data do calendário
 
@@ -27,9 +27,10 @@ const Inputs = ({ names, setNames }) => { // Recebendo names e setNames como pro
   const handleOpen = () => setOpen(true);
 
   const handleAddName = () => {
-    if (name.trim()) {
-      setNames((prevNames) => [...prevNames, name.trim()]); // Usando setNames passado por props
+    if (name.trim() && itinerary) {
+      setNames((prevNames) => [...prevNames, { name: name.trim(), itinerary }]);
       setName(''); // Limpa o campo de input após adicionar o nome
+      setItinerary(''); // Limpa o campo de itinerário selecionado
     }
   };
   
@@ -37,24 +38,45 @@ const Inputs = ({ names, setNames }) => { // Recebendo names e setNames como pro
   return (
 
     <Box className={styles.formContainer}>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-        {/* Input para adicionar nomes com botão "+" */}
-          <TextField 
-            fullWidth
-            label="Nomes"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className={styles.textField}
-            InputProps={{
-              endAdornment: (
-          <IconButton onClick={handleAddName} className={styles.iconButton}>
-            <AddIcon />
-          </IconButton>
-              )
-            }}
-          />
-          
-        {/* </Box> */}
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+    {/* Inputs de Nome e Itinerário alinhados lado a lado */}
+    <Box className={styles.inputsRow}>
+      <TextField
+        fullWidth
+        label="Nome e Sobrenome"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        className={`${styles.textField} ${styles.inputItem}`}
+      />
+      <Select
+        value={itinerary}
+        onChange={(e) => setItinerary(e.target.value)}
+        displayEmpty
+        fullWidth
+        className={`${styles.selectField} ${styles.inputItem}`} // Classe para customização
+      >
+        <MenuItem value="" disabled>
+          Selecione um itinerário
+        </MenuItem>
+        {itineraries.map((item, index) => (
+          <MenuItem key={index} value={item}>
+            {item}
+          </MenuItem>
+        ))}
+      </Select>
+    </Box>
+
+    {/* Botão Adicionar */}
+    <Button
+      fullWidth
+      variant="contained"
+      color="primary"
+      className={styles.addButton}
+      onClick={handleAddName} // Ação para adicionar nome e itinerário
+    >
+      Adicionar
+    </Button>
+
 
       {/* Input para Data do Agendamento usando DatePicker */}
       <DatePicker
@@ -92,11 +114,6 @@ const Inputs = ({ names, setNames }) => { // Recebendo names e setNames como pro
                 fullWidth
                 className={`${styles.textField} ${styles.customTimePicker}`} // Classe customizada
                 InputProps={{
-                  endAdornment: (
-                    <IconButton className={styles.iconButton}>
-                      <AccessTimeIcon />
-                    </IconButton>
-                  ),
                   disableUnderline: true // Remover sublinhado padrão do TextField
                 }}
                 margin="dense"
@@ -117,11 +134,6 @@ const Inputs = ({ names, setNames }) => { // Recebendo names e setNames como pro
                 fullWidth
                 className={`${styles.textField} ${styles.customTimePicker}`} // Classe customizada
                 InputProps={{
-                  endAdornment: (
-                    <IconButton className={styles.iconButton}>
-                      <AccessTimeIcon />
-                    </IconButton>
-                  ),
                   disableUnderline: true // Remover sublinhado padrão do TextField
                 }}
                 margin="dense"
@@ -129,6 +141,12 @@ const Inputs = ({ names, setNames }) => { // Recebendo names e setNames como pro
             )}
           />
           <p className={styles.pe2}>HH/MM</p>
+
+        <TextField 
+          fullWidth
+          label="Motivo"
+          className={styles.textField}
+        />
 
         {/* Botão para Finalizar o Agendamento */}
         <div className={styles.buttonContainer}>

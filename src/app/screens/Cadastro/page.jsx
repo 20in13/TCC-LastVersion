@@ -23,10 +23,10 @@ const CadastroScreen = () => {
                       onMouseLeave={(e) => e.target.style.color = 'white'} 
                     />
                     </button>
-        <div className="headerText">
+        {/* <div className="headerText">
           <h1>Space School</h1>
           <h2>Meu Perfil</h2>
-        </div>
+        </div> */}
       <h1 className="title">Cadastre-se</h1>
       <div className="container">
         <input className="input" placeholder="Nome" />
