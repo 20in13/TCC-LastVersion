@@ -12,7 +12,7 @@ import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import styles from './page.module.css';
 
-const Inputs = ({ names, setNames }) => { // Recebendo names e setNames como props
+const Inputs = ({ names, addName }) => {
   const [name, setName] = useState('');
   const [namesList, setNamesList] = useState([]);
   const [itinerary, setItinerary] = useState(''); // Novo estado para o campo Itinerário
@@ -27,12 +27,23 @@ const Inputs = ({ names, setNames }) => { // Recebendo names e setNames como pro
   const handleOpen = () => setOpen(true);
 
   const handleAddName = () => {
-    if (name.trim() && itinerary) {
-      setNames((prevNames) => [...prevNames, { name: name.trim(), itinerary }]);
-      setName(''); // Limpa o campo de input após adicionar o nome
-      setItinerary(''); // Limpa o campo de itinerário selecionado
+
+    // if (name.trim() && itinerary) {
+    //   setNames((prevNames) => [...prevNames, { name: name.trim(), itinerary }]);
+    //   setName(''); // Limpa o campo de input após adicionar o nome
+    //   setItinerary(''); // Limpa o campo de itinerário selecionado
+      
+    if (names.length >= 20) {
+      alert("O limite de 20 nomes foi atingido.");
+      return;
+    }
+    if (name.trim()) {
+      addName(name.trim()); // Use addName
+      setName(''); // Limpa o campo
+
     }
   };
+  
   
 
   return (
@@ -199,8 +210,8 @@ const Inputs = ({ names, setNames }) => { // Recebendo names e setNames como pro
 
         {/* Lista de Nomes Adicionados */}
         <List className={styles.namesList}>
-          {namesList.map((addedName, index) => (
-            <ListItem key={index}>
+          {names.map((addedName, index) => (
+            <ListItem>
               <ListItemText primary={addedName} />
             </ListItem>
           ))}
