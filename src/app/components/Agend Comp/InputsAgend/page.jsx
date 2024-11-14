@@ -50,6 +50,7 @@ const Inputs = ({ names, addName }) => {
 
     <Box className={styles.formContainer}>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
+      
     {/* Inputs de Nome e Itinerário alinhados lado a lado */}
     <Box className={styles.inputsRow}>
       <TextField
@@ -66,7 +67,7 @@ const Inputs = ({ names, addName }) => {
         fullWidth
         className={`${styles.selectField} ${styles.inputItem}`} // Classe para customização
       >
-        <MenuItem value="" disabled>
+        <MenuItem value="" className={styles.textField} disabled>
           Selecione um itinerário
         </MenuItem>
         {itineraries.map((item, index) => (
