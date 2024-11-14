@@ -3,54 +3,54 @@
       "id_ambiente": 1,
       "nome_ambiente": "Quadra",
       "descricao_ambiente": "Quadra poliesportiva coberta",
-      "imagem_ambiente": "/public/ambientes/Quadra.jpg"
+      "imagem_ambiente": "/ambientes/Quadra.jpg"
   },
   {
       "id_ambiente": 2,
       "nome_ambiente": "LAB1",
       "descricao_ambiente": "Laboratório de informática 1",
-      "imagem_ambiente": "/public/ambientes/labNote.jpg"
+      "imagem_ambiente": "/ambientes/labNote.jpg"
   },
   {
       "id_ambiente": 3,
       "nome_ambiente": "LAB2",
       "descricao_ambiente": "Laboratório de informática 2",
-      "imagem_ambiente": "/public/ambientes/labNote.jpg"
+      "imagem_ambiente": "/ambientes/labNote.jpg"
   },
   {
       "id_ambiente": 4,
       "nome_ambiente": "LAB3",
       "descricao_ambiente": "Laboratório de informática 3",
-      "imagem_ambiente": "/public/ambientes/labNote.jpg"
+      "imagem_ambiente": "/ambientes/labNote.jpg"
   },
   {
       "id_ambiente": 5,
       "nome_ambiente": "LAB4",
       "descricao_ambiente": "Laboratório de informática 4",
-      "imagem_ambiente": "/public/ambientes/labNote.jpg"
+      "imagem_ambiente": "/ambientes/labNote.jpg"
   },
   {
       "id_ambiente": 6,
       "nome_ambiente": "Sala 7 (Temática)",
       "descricao_ambiente": "Laboratório adaptado para processos criativos práticos equipado com X computadores (Especificações dos PCs). O ambiente proporciona versatilidade, confortabilidade e estética agradável aos olhos",
-      "imagem_ambiente": "/public/ambientes/Sala7.jpg"
+      "imagem_ambiente": "/ambientes/Sala7.jpg"
   },
   {
       "id_ambiente": 7,
       "nome_ambiente": "Laboratório de Pranchetas",
       "descricao_ambiente": "Laboratório para desenhos",
-      "imagem_ambiente": "/public/ambientes/LabPranch.jpg"
+      "imagem_ambiente": "/ambientes/LabPranch.jpg"
   },
   {
       "id_ambiente": 8,
       "nome_ambiente": "Audiovisual",
       "descricao_ambiente": "Sala de Audiovisual",
-      "imagem_ambiente": "/public/ambientes/SalaAula.jpg"
+      "imagem_ambiente": "/ambientes/SalaAula.jpg"
   },
   {
       "id_ambiente": 9,
       "nome_ambiente": "Biblioteca",
       "descricao_ambiente": "Biblioteca da instituição",
-      "imagem_ambiente": "/public/ambientes/Bibli.jpg"
+      "imagem_ambiente": "/ambientes/Bibli.jpg"
   }
 ]

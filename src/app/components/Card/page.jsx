@@ -43,8 +43,8 @@ export default function LibraryCard({ local, image, title, date, timeInicio, tim
   };
 
   const handleCardClick = () => {
-    if (local?.nome_ambiente && local?.description && local?.imagem_ambiente) {
-      window.location.href = `/screens/Agendamento?title=${encodeURIComponent(local.nome_ambiente)}&description=${encodeURIComponent(local.description)}&img=${encodeURIComponent(local.imagem_ambiente)}`;
+    if (local?.nome_ambiente && local?.descricao_ambiente && local?.imagem_ambiente) {
+      window.location.href = `/screens/Agendamento?title=${encodeURIComponent(local.nome_ambiente)}&description=${encodeURIComponent(local.descricao_ambiente)}&img=${encodeURIComponent(local.imagem_ambiente)}`;
     }
   };
 

@@ -63,15 +63,11 @@ const Inputs = ({ names, addName }) => {
         value={itinerary}
         onChange={(e) => setItinerary(e.target.value)}
         displayEmpty
-        fullWidth
-        className={`${styles.selectField} ${styles.inputItem}`} // Classe para customização
+        className={`${styles.textField} ${styles.inputItem}`} // Aplicar os mesmos estilos do TextField
       >
-        <MenuItem value="" disabled>
-          Selecione um itinerário
-        </MenuItem>
-        {itineraries.map((item, index) => (
-          <MenuItem key={index} value={item}>
-            {item}
+        {itineraries.map((option, index) => (
+          <MenuItem key={index} value={option} className={styles.menuItem}>
+            {option}
           </MenuItem>
         ))}
       </Select>
