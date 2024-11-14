@@ -16,7 +16,8 @@ const Inputs = ({ names, addName }) => {
   const [name, setName] = useState('');
   const [namesList, setNamesList] = useState([]);
   const [itinerary, setItinerary] = useState(''); // Novo estado para o campo Itinerário
-  const itineraries = ['1 - Etim', 'Itinerário 2', 'Itinerário 3'];
+
+  const itineraries = ['1º - Etim', '2º - Etim', '3º - Etim'];
 
   const [selectedDate, setSelectedDate] = useState(null); // Estado para a data do calendário
 
@@ -27,21 +28,21 @@ const Inputs = ({ names, addName }) => {
   const handleOpen = () => setOpen(true);
 
   const handleAddName = () => {
-
+    if (name.trim() && itinerary) {
+      if (namesList.length >= 20) { // Valide o array correto
+        alert("O limite de 20 nomes foi atingido.");
+        return;
+      }
+  
+      setNamesList((prevNames) => [...prevNames, { name: name.trim(), itinerary }]);
+      setName('');
+      setItinerary('');
+    }
     // if (name.trim() && itinerary) {
-    //   setNames((prevNames) => [...prevNames, { name: name.trim(), itinerary }]);
-    //   setName(''); // Limpa o campo de input após adicionar o nome
-    //   setItinerary(''); // Limpa o campo de itinerário selecionado
-      
-    if (names.length >= 20) {
-      alert("O limite de 20 nomes foi atingido.");
-      return;
-    }
-    if (name.trim()) {
-      addName(name.trim()); // Use addName
-      setName(''); // Limpa o campo
+    //   addName(name.trim()); // Use addName
+    //   setName(''); // Limpa o campo
 
-    }
+    // }
   };
   
   
@@ -65,11 +66,14 @@ const Inputs = ({ names, addName }) => {
         displayEmpty
         className={`${styles.textField} ${styles.inputItem}`} // Aplicar os mesmos estilos do TextField
       >
-        {itineraries.map((option, index) => (
-          <MenuItem key={index} value={option} className={styles.menuItem}>
-            {option}
+        <MenuItem value="" disabled>
+            Selecione um itinerário
           </MenuItem>
-        ))}
+          {itineraries.map((item, index) => (
+            <MenuItem key={index} value={item}>
+              {item}
+            </MenuItem>
+          ))}
       </Select>
     </Box>
 
@@ -206,9 +210,9 @@ const Inputs = ({ names, addName }) => {
 
         {/* Lista de Nomes Adicionados */}
         <List className={styles.namesList}>
-          {names.map((addedName, index) => (
-            <ListItem>
-              <ListItemText primary={addedName} />
+          {namesList.map((addedName, index) => (
+            <ListItem key={index}>
+              <ListItemText primary={addedName.name} secondary={addedName.itinerary} />
             </ListItem>
           ))}
         </List>

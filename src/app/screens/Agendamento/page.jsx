@@ -34,7 +34,7 @@ const Agend = () => {
             <Desc />
             <Inputs names={names} addName={addName} />
             {/* <NameList names={names} /> */}
-            <Tabela dados={names.map((name) => ({ nome: name, serie: "Série Padrão" }))} />
+            <Tabela dados={names.map((name) => ({ nome: addedName.name, serie: addedName.itinerary }))} />
       </Container>
       </main>
   );
