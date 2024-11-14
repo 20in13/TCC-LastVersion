@@ -20,15 +20,15 @@ export default function LibraryCard({ local, image, title, date, timeInicio, tim
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (local?.nome_ambiente) {
+    if (local?.name) {
       const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-      const isFavorited = favorites.includes(local.nome_ambiente);
+      const isFavorited = favorites.includes(local.name);
       setIsFavorite(isFavorited);
     }
-  }, [local?.nome_ambiente]);
+  }, [local?.name]);
 
   const toggleFavorite = () => {
-    if (local?.nome_ambiente) {
+    if (local?.name) {
       const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
       if (isFavorite) {
         const newFavorites = favorites.filter((favName) => favName !== local.name);
@@ -43,8 +43,8 @@ export default function LibraryCard({ local, image, title, date, timeInicio, tim
   };
 
   const handleCardClick = () => {
-    if (local?.nome_ambiente && local?.description && local?.imagem_ambiente) {
-      window.location.href = `/screens/Agendamento?title=${encodeURIComponent(local.nome_ambiente)}&description=${encodeURIComponent(local.description)}&img=${encodeURIComponent(local.imagem_ambiente)}`;
+    if (local?.name && local?.description && local?.image) {
+      window.location.href = `/screens/Agendamento?title=${encodeURIComponent(local.name)}&description=${encodeURIComponent(local.description)}&img=${encodeURIComponent(local.image)}`;
     }
   };
 
@@ -62,9 +62,9 @@ export default function LibraryCard({ local, image, title, date, timeInicio, tim
   if (isSmallCard) {
     return (
       <div className={styles.reservationCard}>
-        <img src={image || local?.imagem_ambiente} alt={title} className={styles.cardImage} />
+        <img src={image || local?.image} alt={title} className={styles.cardImage} />
         <div className={styles.reservationDetails}>
-          <h3 className={styles.h3_}>{title || local?.nome_ambiente}</h3>
+          <h3 className={styles.h3_}>{title || local?.name}</h3>
           <p className={styles.pe}>{date || local?.date}</p>
           <p className={styles.pe}>{timeInicio || local?.timeInicio} - {timeFim || local?.timeFim}</p>
         </div>
@@ -132,7 +132,7 @@ export default function LibraryCard({ local, image, title, date, timeInicio, tim
           <CardMedia
             component="img"
             height="140"
-            image={local?.imagem_ambiente}
+            image={local?.image || image}
             alt="Imagem"
             sx={{ borderTopLeftRadius: "16px", borderTopRightRadius: "16px" }}
           />
@@ -146,9 +146,9 @@ export default function LibraryCard({ local, image, title, date, timeInicio, tim
             }}
           >
             <Typography variant="h7" component="div" sx={{ flexGrow: 1 }}>
-              {local?.nome_ambiente || title}
+              {local?.name || title}
             </Typography>
-            <LikeButton onClick={toggleFavorite} isFavorite={isFavorite} localName={local?.nome_ambiente || title} />
+            <LikeButton onClick={toggleFavorite} isFavorite={isFavorite} localName={local?.name || title} />
           </CardContent>
         </Card>
       </Box>
