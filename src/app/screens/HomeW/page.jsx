@@ -24,11 +24,14 @@ export default function HomeW({ user }) {
   const isAbove600px = useMediaQuery("(min-width:600px)");
 
   // Fetch data from the API
+
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchAmbientes = async () => {
       try {
-        console.log("Base URL:", process.env.NEXT_PUBLIC_API_BASE_URL); // Verificar se a variável está sendo lida
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/ambientes`);
+        console.log("Base URL:", process.env.NEXT_PUBLIC_API_URL); // Verificar se a variável está sendo lida
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/ambientes`);
         console.log("Resposta da API:", response.data); // Verificar o retorno da API
         if (response.data.sucesso) {
           setAmbientes(response.data.dados); // Atualizar estado com os dados da API
@@ -37,6 +40,8 @@ export default function HomeW({ user }) {
         }
       } catch (error) {
         console.error("Erro ao buscar os ambientes:", error);
+      } finally {
+        setLoading(false); // Atualiza o estado de loading ao finalizar a requisição
       }
     };
   
@@ -73,12 +78,14 @@ export default function HomeW({ user }) {
 
           <div className={styles.contentWrapper}>
             <div className={styles.content}>
-              {ambientes.length > 0 ? (
-                ambientes.map((local, index) => (
-                  <Card key={index} local={local} isSmallCard={false} />
-                ))
-              ) : (
+              {loading ? (
                 <p>Carregando ambientes...</p>
+              ) :  ambientes.length > 0 ? (             
+                ambientes.map((local) => (
+                  <Card local={local} key={local.id_ambiente} isSmallCard={false} />
+                )) 
+              ) : (
+                  <h1>Não foi possível carregar ambientes</h1>
               )}
             </div>
           </div>
