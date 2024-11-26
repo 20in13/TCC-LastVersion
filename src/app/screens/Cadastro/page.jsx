@@ -4,105 +4,120 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Flex, Text, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter, Button } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-// import { useDisclosure } from '@chakra-ui/react';
-
-
 import api from '../../../services/api';
 
 const CadastroScreen = () => {
   const [dados, setDados] = useState({
-        nome_usu: '',
-        email_usu: '',
-        senha_usu: '',
-        id_Tipo_Usu: '3',
-        data_cad_usu: '', // Nova chave para a data
-    });
+    nome_usu: '',
+    email_usu: '',
+    senha_usu: '',
+    id_Tipo_Usu: '3',
+    data_cad_usu: '',
+  });
 
-    const { isOpen, onOpen, onClose: handleCloseModal } = useDisclosure(); // Renomear `onClose` para evitar conflitos
+  const { isOpen, onOpen, onClose: handleCloseModal } = useDisclosure(); // Para o modal de sucesso
+  const { isOpen: isAlertOpen, onOpen: showAlert, onClose: closeAlert } = useDisclosure(); // Para o modal de validação
+  const [alertMessage, setAlertMessage] = useState(''); // Mensagem do modal de validação
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setDados((prev) => ({ ...prev, [name]: value }));
+  };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setDados((prev) => ({ ...prev, [name]: value }));
-    };
-
-    function handleValida() {
-        let validado = true;
-        if (dados.nome_usu === '') {
-            alert('O campo de nome deve ser preenchido!');
-            validado = false;
-        }
-        if (dados.email_usu === '') {
-          alert('O campo de e-mail deve ser preenchido!');
-          validado = false;
-      }
-        if (dados.senha_usu === '') {
-          alert('O campo de senha deve ser preenchido!');
-          validado = false;
-      }
-        return validado;
+  function handleValida() {
+    let validado = true;
+    if (dados.nome_usu === '') {
+      setAlertMessage('O campo de nome deve ser preenchido!');
+      showAlert();
+      validado = false;
+    } else if (dados.email_usu === '') {
+      setAlertMessage('O campo de e-mail deve ser preenchido!');
+      showAlert();
+      validado = false;
+    } else if (dados.senha_usu === '') {
+      setAlertMessage('O campo de senha deve ser preenchido!');
+      showAlert();
+      validado = false;
     }
+    return validado;
+  }
 
-    const getCurrentDate = () => {
-      const now = new Date();
-      return now.toISOString().split('T')[0]; // Data no formato YYYY-MM-DD
-    };
-    
-    
-    const handleCadUsu = async () => {
-      const validacao = handleValida();
-      if (validacao === true) {
-        setDados((prev) => ({
-          ...prev,
-          data_cad_usu: getCurrentDate(), // Define a data de cadastro
-        }));
-        
-        try {
-          const response = await api.post('/usuario', { ...dados, data_cad_usu: getCurrentDate() }); // Inclui a data no envio
-          if (response.data.sucesso) {
-            onOpen();
-          }
-        } catch (error) {
-          if (error.response) {
-            alert(error.response.data.mensagem + '\n' + error.response.data.dados);
-          } else {
-            alert('Não foi possível cadastrar o usuário (Front-end)' + '\n' + error);
-          }
+  const getCurrentDate = () => {
+    const now = new Date();
+    return now.toISOString().split('T')[0]; // Data no formato YYYY-MM-DD
+  };
+
+  const handleCadUsu = async () => {
+    const validacao = handleValida();
+    if (validacao === true) {
+      setDados((prev) => ({
+        ...prev,
+        data_cad_usu: getCurrentDate(), // Define a data de cadastro
+      }));
+
+      try {
+        const response = await api.post('/usuario', { ...dados, data_cad_usu: getCurrentDate() }); // Inclui a data no envio
+        if (response.data.sucesso) {
+          onOpen();
+        }
+      } catch (error) {
+        if (error.response) {
+          setAlertMessage(error.response.data.mensagem + '\n' + error.response.data.dados);
+          showAlert();
+        } else {
+          setAlertMessage('Não foi possível cadastrar o usuário (Front-end)\n' + error);
+          showAlert();
         }
       }
-    };
-    
-  
-  
+    }
+  };
+
   const router = useRouter();
 
   return (
     <div className="fundo">
-                    <button className="backButton" onClick={() => router.back()}>
-                    <ArrowBackIcon 
-                      style={{ fontSize: 24, color: 'white', transition: 'color 0.3s' }} 
-                      onMouseEnter={(e) => e.target.style.color = '#CC3737'} 
-                      onMouseLeave={(e) => e.target.style.color = 'white'} 
-                    />
-                    </button>
+      <button className="backButton" onClick={() => router.back()}>
+        <ArrowBackIcon
+          style={{ fontSize: 24, color: 'white', transition: 'color 0.3s' }}
+          onMouseEnter={(e) => (e.target.style.color = '#CC3737')}
+          onMouseLeave={(e) => (e.target.style.color = 'white')}
+        />
+      </button>
       <h1 className="title">Cadastre-se</h1>
       <div className="container">
-        <input className="input" placeholder="Nome e Sobrenome" type="text" name="nome_usu" value={dados.nome_usu} onChange={handleChange} />
-        <input className="input" placeholder="E-mail" type="email" name="email_usu" value={dados.email_usu} onChange={handleChange} />
-        <input className="input" placeholder="Senha" type="password" name="senha_usu" value={dados.senha_usu} onChange={handleChange} />
-        <input className="input" placeholder="Confirme sua Senha" type="password"  onChange={handleChange} /> {/* FAZER A CONFIRMAÇÃO DE SENHA */}
-  
+        <input
+          className="input"
+          placeholder="Nome e Sobrenome"
+          type="text"
+          name="nome_usu"
+          value={dados.nome_usu}
+          onChange={handleChange}
+        />
+        <input
+          className="input"
+          placeholder="E-mail"
+          type="email"
+          name="email_usu"
+          value={dados.email_usu}
+          onChange={handleChange}
+        />
+        <input
+          className="input"
+          placeholder="Senha"
+          type="password"
+          name="senha_usu"
+          value={dados.senha_usu}
+          onChange={handleChange}
+        />
+        <input className="input" placeholder="Confirme sua Senha" type="password" />
+
         <button className="button" onClick={() => handleCadUsu()}>
-              <Text
-                color="#FFF"
-                fontSize={14}
-                fontWeight={600}
-                cursor="pointer"
-              >
-                Registrar
-              </Text>
+          <Text color="#FFF" fontSize={14} fontWeight={600} cursor="pointer">
+            Registrar
+          </Text>
         </button>
 
+        {/* Modal de Sucesso */}
         <Modal isOpen={isOpen} onClose={handleCloseModal} isCentered>
           <ModalOverlay />
           <ModalContent>
@@ -114,12 +129,28 @@ const CadastroScreen = () => {
               <Button colorScheme="blue" mr={3} onClick={() => router.push('/')}>
                 Sim, voltar para a página inicial
               </Button>
-              <Button variant="ghost" onClick={handleCloseModal}>Fechar</Button>
+              <Button variant="ghost" onClick={handleCloseModal}>
+                Fechar
+              </Button>
             </ModalFooter>
           </ModalContent>
         </Modal>
 
-
+        {/* Modal de Validação */}
+        <Modal isOpen={isAlertOpen} onClose={closeAlert} isCentered>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Validação</ModalHeader>
+            <ModalBody>
+              <Text>{alertMessage}</Text>
+            </ModalBody>
+            <ModalFooter>
+              <Button colorScheme="red" onClick={closeAlert}>
+                Fechar
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
       </div>
       <style jsx>{`
         .fundo {
@@ -160,7 +191,7 @@ const CadastroScreen = () => {
           width: 100%;
         }
         .button {
-          background-color: #CC3737;
+          background-color: #cc3737;
           padding: 12px 20px;
           border-radius: 15px;
           margin-bottom: 10px;
@@ -168,67 +199,8 @@ const CadastroScreen = () => {
           width: 105%;
           border: none;
         }
-        .text {
-          color: #3b0909;
-          text-align: center;
-          font-weight: bold;
-          display: block;
-        }
-        .header {
-  display: flex;
-  justify-content: center; /* Centraliza o conteúdo */
-  align-items: center; /* Centraliza verticalmente */
-  background-color: #44464f;
-  color: white;
-  padding: 1.5rem 2rem;
-  width: 100%;
-  position: relative;
-}
-  .headerText {
-  text-align: center;
-  margin-top: -24px; /* Para centralizar o texto após o botão */
-  align-items: center; /* Alinha o texto no centro horizontalmente */
-    transform: translateY(50%); /* Centraliza verticalmente em relação ao header */
-  top: 0;
-  position: absolute;
-}
-
-.headerText h1 {
-  margin: 0;
-  font-size: 1.5rem;
-  transform: translateX(-21%);
-}
-
-.headerText h2 {
-  margin: 0;
-  font-size: 1rem;
-  color: #d3d3d3;
-  transform: translateX(-21%);
-}
-.backButton {
-  position: absolute;
-  top: 50%; 
-  left: 20px;
-  transform: translateY(50%); /* Centraliza verticalmente em relação ao header */
-  top: 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-  .container2 {
-  width: 90%;
-  background-color: #fff;
-  border-top-right-radius: 30px;
-  border-top-left-radius: 30px;
-  padding: 6rem 5% 0 5%;
-  display: grid;
-  justify-items: center;
-  align-items: center;
-}
-
       `}</style>
-      </div>
-    // </div>
+    </div>
   );
 };
 

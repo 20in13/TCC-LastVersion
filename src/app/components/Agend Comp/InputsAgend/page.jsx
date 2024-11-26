@@ -1,224 +1,190 @@
-"use client"
-
 import React, { useState } from 'react';
-import { Box, TextField, Button, IconButton, List, ListItem, ListItemText, Select, MenuItem } from '@mui/material';
+import { Box, TextField, Button, IconButton, Select, MenuItem } from '@mui/material';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import DatePicker from 'react-datepicker'; // Importando react-datepicker
-import "react-datepicker/dist/react-datepicker.css"; // Importando os estilos do calendário
+import DatePicker from 'react-datepicker'; 
+import "react-datepicker/dist/react-datepicker.css";
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import axios from 'axios'; // Importe o axios para fazer a requisição
 import styles from './page.module.css';
+
+import api from '../../../../services/api';
 
 const Inputs = ({ names, addName }) => {
   const [name, setName] = useState('');
-  const [namesList, setNamesList] = useState([]);
-  const [itinerary, setItinerary] = useState(''); // Novo estado para o campo Itinerário
-
-  const itineraries = ['1º - Etim', '2º - Etim', '3º - Etim'];
-
-  const [selectedDate, setSelectedDate] = useState(null); // Estado para a data do calendário
-
-  const [startTime, setStartTime] = useState(null); // Estado para o horário de início
-  const [endTime, setEndTime] = useState(null); // Estado para o horário de fim
-
+  const [itinerary, setItinerary] = useState('');
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [startTime, setStartTime] = useState(null);
+  const [endTime, setEndTime] = useState(null);
+  const [reason, setReason] = useState(''); // Estado para o motivo
   const [open, setOpen] = useState(false);
+
   const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleAddName = () => {
-    if (name.trim() && itinerary) {
-      if (namesList.length >= 20) { // Valide o array correto
-        alert("O limite de 20 nomes foi atingido.");
-        return;
-      }
-  
-      setNamesList((prevNames) => [...prevNames, { name: name.trim(), itinerary }]);
-      setName('');
-      setItinerary('');
+    if (!name || !itinerary) {
+      alert("Por favor, preencha o nome e itinerário antes de adicionar.");
+      return;
     }
-    // if (name.trim() && itinerary) {
-    //   addName(name.trim()); // Use addName
-    //   setName(''); // Limpa o campo
-
-    // }
+  
+    // Usa a função `addName` para atualizar o estado global
+    addName({ name: name.trim(), itinerary });
+  
+    // Limpa os campos
+    setName('');
+    setItinerary('');
   };
   
-  
+
+  const API_ENDPOINT = "/reserva_ambiente"; // Substitua pelo endpoint correto da API
+
+  const handleFinalizeAppointment = async () => {
+    if ( !selectedDate || !startTime || !endTime || !reason) {
+      alert("Por favor, preencha todos os campos.");
+      return;
+    }
+
+    // Estruture os dados para enviar à API
+    const appointmentData = {
+      nome: name.trim(),
+      itinerario: itinerary,
+      data: selectedDate, // Envie no formato ISO se a API espera isso
+      horario_inicio: startTime.format('HH:mm'), // Formato de hora
+      horario_fim: endTime.format('HH:mm'), // Formato de hora
+      motivo: reason.trim(),
+    };
+
+    try {
+      // Envie os dados para a API usando axios
+      const response = await api.post('/reserva_ambiente', { ...dados, data_cad_usu: getCurrentDate() })
+
+      if (response.data.sucesso) {
+        setOpen(true); // Exibe o modal de sucesso
+        // Você pode adicionar lógica para limpar os campos após o sucesso
+        setName('');
+        setItinerary('');
+        setSelectedDate(null);
+        setStartTime(null);
+        setEndTime(null);
+        setReason('');
+      } else {
+        alert("Ocorreu um erro ao tentar agendar. Tente novamente.");
+      }
+    } catch (error) {
+      console.error("Erro ao enviar os dados para a API:", error);
+      alert("Erro ao se conectar com o servidor. Verifique sua conexão.");
+    }
+  };
 
   return (
-
     <Box className={styles.formContainer}>
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-    {/* Inputs de Nome e Itinerário alinhados lado a lado */}
-    <Box className={styles.inputsRow}>
-      <TextField
-        fullWidth
-        label="Nome e Sobrenome"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        className={`${styles.textField} ${styles.inputItem}`}
-      />
-      <Select
-        value={itinerary}
-        onChange={(e) => setItinerary(e.target.value)}
-        displayEmpty
-        className={`${styles.textField} ${styles.inputItem}`} // Aplicar os mesmos estilos do TextField
-      >
-        <MenuItem value="" disabled>
-            Selecione um itinerário
-          </MenuItem>
-          {itineraries.map((item, index) => (
-            <MenuItem key={index} value={item}>
-              {item}
-            </MenuItem>
-          ))}
-      </Select>
-    </Box>
-
-    {/* Botão Adicionar */}
-    <Button
-      fullWidth
-      variant="contained"
-      color="primary"
-      className={styles.addButton}
-      onClick={handleAddName} // Ação para adicionar nome e itinerário
-    >
-      Adicionar
-    </Button>
-
-
-      {/* Input para Data do Agendamento usando DatePicker */}
-      <DatePicker
-        selected={selectedDate}
-        onChange={(date) => setSelectedDate(date)}
-        dateFormat="dd/MM/yyyy"
-        customInput={
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Box className={styles.inputsRow}>
           <TextField
             fullWidth
-            label="Data do agendamento"
-            className={styles.textField}
-            InputProps={{
-              endAdornment: (
-                <IconButton className={styles.iconButton}>
-                  <CalendarTodayIcon />
-                </IconButton>
-              )
-            }}
+            label="Nome e Sobrenome"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className={`${styles.textField} ${styles.inputItem}`}
           />
-        }
-      />
-      <p className={styles.pe}>DD/MM/AAAA</p>
+          <Select
+            value={itinerary}
+            onChange={(e) => setItinerary(e.target.value)}
+            displayEmpty
+            className={`${styles.textField} ${styles.inputItem}`}
+          >
+            <MenuItem value="" disabled>
+              Selecione um itinerário
+            </MenuItem>
+            {['1º - Etim', '2º - Etim', '3º - Etim'].map((item, index) => (
+              <MenuItem key={index} value={item}>
+                {item}
+              </MenuItem>
+            ))}
+          </Select>
+        </Box>
 
+        <Button
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={styles.addButton}
+          onClick={handleAddName} // Ação para adicionar nome e itinerário
+        >
+          Adicionar
+        </Button>
 
+        <DatePicker
+          selected={selectedDate}
+          onChange={(date) => setSelectedDate(date)}
+          dateFormat="dd/MM/yyyy"
+          customInput={
+            <TextField
+              fullWidth
+              label="Data do agendamento"
+              className={styles.textField}
+              InputProps={{
+                endAdornment: (
+                  <IconButton className={styles.iconButton}>
+                    <CalendarTodayIcon />
+                  </IconButton>
+                ),
+              }}
+            />
+          }
+        />
+        <p className={styles.pe}>DD/MM/AAAA</p>
 
-        {/* TimePicker para Horário Início */}
-          <MobileTimePicker
-            label="Horário Início"
-            value={startTime}
-            onChange={(newValue) => setStartTime(newValue)}
-            ampm={false} // 24 horas
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                fullWidth
-                className={`${styles.textField} ${styles.customTimePicker}`} // Classe customizada
-                InputProps={{
-                  disableUnderline: true // Remover sublinhado padrão do TextField
-                }}
-                margin="dense"
-              />
-            )}
-          />
-          <p className={styles.pe2}>HH/MM</p>
+        <MobileTimePicker
+          label="Horário Início"
+          value={startTime}
+          onChange={(newValue) => setStartTime(newValue)}
+          ampm={false}
+          renderInput={(params) => <TextField {...params} fullWidth margin="dense" />}
+        />
+        <p className={styles.pe2}>HH/MM</p>
 
-          {/* TimePicker para Horário Fim */}
-          <MobileTimePicker
-            label="Horário Fim"
-            value={endTime}
-            onChange={(newValue) => setEndTime(newValue)}
-            ampm={false} // 24 horas
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                fullWidth
-                className={`${styles.textField} ${styles.customTimePicker}`} // Classe customizada
-                InputProps={{
-                  disableUnderline: true // Remover sublinhado padrão do TextField
-                }}
-                margin="dense"
-              />
-            )}
-          />
-          <p className={styles.pe2}>HH/MM</p>
+        <MobileTimePicker
+          label="Horário Fim"
+          value={endTime}
+          onChange={(newValue) => setEndTime(newValue)}
+          ampm={false}
+          renderInput={(params) => <TextField {...params} fullWidth margin="dense" />}
+        />
+        <p className={styles.pe2}>HH/MM</p>
 
-        <TextField 
+        <TextField
           fullWidth
           label="Motivo"
+          value={reason}
+          onChange={(e) => setReason(e.target.value)}
           className={styles.textField}
         />
 
-        {/* Botão para Finalizar o Agendamento */}
         <div className={styles.buttonContainer}>
-        <Button variant="contained" color="primary" fullWidth onClick={handleOpen}>
-          Finalizar Agendamento
-        </Button>
-
-        <Dialog
-          open={open}
-          onClose={() => setOpen(false)}
-          PaperProps={{
-            sx: {
-              borderRadius: '8px',
-              width:'100%',
-              maxWidth: '500px',
-              margin: 'auto',
-            },
-          }}
-        >
-        <DialogTitle sx={{ textAlign: 'center', backgroundColor: '#68c392', color: '#fff' }}>
-          <CheckCircleIcon sx={{ fontSize: 40 }} />
-        </DialogTitle>
-        <DialogContent sx={{ textAlign: 'center', padding: '16px 24px' }}>
-          <DialogContentText sx={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#4a9a5d', marginTop: '1rem', }}>
-            Agendamento Finalizado
-          </DialogContentText>
-          <DialogContentText sx={{ fontSize: '0.9rem', color: '#666' }}>
-            Sua reserva foi feita com sucesso!
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions sx={{ justifyContent: 'center', padding: '16px' }}>
-          <Button
-            onClick={() => setOpen(false)}
-            sx={{
-              backgroundColor: '#4a9a5d',
-              marginTop:'-1rem',
-              color: '#fff',
-              borderRadius: '10px',
-              padding: '8px 24px',
-              width:'10rem',
-              '&:hover': { backgroundColor: '#3e8b50' },
-            }}
-          >
-            Ok
+          <Button variant="contained" color="primary" fullWidth onClick={handleFinalizeAppointment}>
+            Finalizar Agendamento
           </Button>
-        </DialogActions>
-        </Dialog>
+
+          <Dialog open={open} onClose={handleClose}>
+            <DialogTitle>
+              <CheckCircleIcon />
+              Agendamento Finalizado
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText>Sua reserva foi feita com sucesso!</DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>Ok</Button>
+            </DialogActions>
+          </Dialog>
         </div>
-
-
-        {/* Lista de Nomes Adicionados */}
-        <List className={styles.namesList}>
-          {namesList.map((addedName, index) => (
-            <ListItem key={index}>
-              <ListItemText primary={addedName.name} secondary={addedName.itinerary} />
-            </ListItem>
-          ))}
-        </List>
-    </LocalizationProvider>
-      </Box>  
-
+      </LocalizationProvider>
+    </Box>
   );
 };
 

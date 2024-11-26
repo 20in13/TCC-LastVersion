@@ -1,3 +1,4 @@
+// Agendamento.jsx
 'use client'
 
 import React, { useState } from "react";
@@ -17,12 +18,13 @@ const Agend = () => {
   const [names, setNames] = useState([]);
   const theme = useTheme();
   const isAbove600px = useMediaQuery('(min-width:600px)');
-  const addName = (name) => {
+  
+  const addName = (newEntry) => {
     if (names.length >= 20) {
       alert("O limite de 20 nomes foi atingido.");
       return;
     }
-    setNames([...names, name]);
+    setNames([...names, newEntry]); // Adiciona o novo nome ao estado global
   };
   
 
@@ -34,7 +36,7 @@ const Agend = () => {
             <Desc />
             <Inputs names={names} addName={addName} />
             {/* <NameList names={names} /> */}
-            <Tabela dados={names.map((name) => ({ nome: addedName.name, serie: addedName.itinerary }))} />
+            <Tabela dados={names.map((entry) => ({ nome: entry.name, serie: entry.itinerary }))} />
       </Container>
       </main>
   );

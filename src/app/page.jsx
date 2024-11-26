@@ -11,6 +11,8 @@ import { useRouter } from 'next/navigation'; // Corrected import for useRouter i
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
+import api from '../services/api';
+
 const LoginScreenW = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [username, setUsername] = useState(''); // Gerenciar estados para username
@@ -30,21 +32,50 @@ const LoginScreenW = () => {
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
 
-  const handleLogin = async (e) => {
-    e.preventDefault(); // Previna o comportamento padrão
-    setIsLoading(true); // Inicia o loading
-    setShowAlert(false); // Reseta o alerta
+  // const handleLogin = async (e) => {
+  //   e.preventDefault(); // Previna o comportamento padrão
+  //   setIsLoading(true); // Inicia o loading
+  //   setShowAlert(false); // Reseta o alerta
 
-    // Simulação de requisição (você pode trocar pelo seu fetch/axios)
-    setTimeout(() => {
-      if (username === '20in.nascimento.13@gmail.com' && password === 'testeteste') {
-        router.push('/screens/HomeW'); // Redireciona usando router.push
+  //   // Simulação de requisição (você pode trocar pelo seu fetch/axios)
+  //   setTimeout(() => {
+  //     if (username === '20in.nascimento.13@gmail.com' && password === 'testeteste') {
+  //       router.push('/screens/HomeW'); // Redireciona usando router.push
+  //     } else {
+  //       setShowAlert(true); // Mostra o alerta se login for incorreto
+  //     }
+  //     setIsLoading(false); // Para o loading
+  //   }, 1000); // Simulação de 2 segundos
+  // };
+
+  const handleLogin = async (e) => {
+    e.preventDefault(); // Previne o comportamento padrão
+    setIsLoading(false); // Inicia o loading
+    setShowAlert(false); // Reseta o alerta
+  
+    try {
+      // Substitua o endpoint pelo caminho correto da sua API
+      const response = await api.post('/usuario/login', {
+        email_usu: username, // Campo esperado pela API
+        senha_usu: password, // Campo esperado pela API
+      });
+  
+      if (response.data.sucesso) {
+        // Login bem-sucedido
+        router.push('/screens/HomeW'); // Redireciona para a página inicial
       } else {
-        setShowAlert(true); // Mostra o alerta se login for incorreto
+        // Login falhou
+        setShowAlert(true); // Mostra mensagem de erro
       }
-      setIsLoading(false); // Para o loading
-    }, 1000); // Simulação de 2 segundos
+    } catch (error) {
+      console.error('Erro ao conectar com a API:', error);
+      setShowAlert(true); // Mostra o alerta se houver erro na conexão
+    } finally {
+            setIsLoading(true); // Para o loading
+    }
   };
+  
+  
 
   return (
     <div className={styles.container}>
