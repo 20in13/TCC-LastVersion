@@ -1,18 +1,25 @@
 'use client'
 import React from 'react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Flex, Text } from '@chakra-ui/react'
+import { Flex, Text, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter, Button } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+// import { useDisclosure } from '@chakra-ui/react';
+
 
 import api from '../../../services/api';
 
-const CadastroScreen = ({ onClose }) => {
+const CadastroScreen = () => {
   const [dados, setDados] = useState({
         nome_usu: '',
         email_usu: '',
         senha_usu: '',
+        id_Tipo_Usu: '3',
+        data_cad_usu: '', // Nova chave para a data
     });
+
+    const { isOpen, onOpen, onClose: handleCloseModal } = useDisclosure(); // Renomear `onClose` para evitar conflitos
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -36,25 +43,35 @@ const CadastroScreen = ({ onClose }) => {
         return validado;
     }
 
-    async function handleCadUsu() {
+    const getCurrentDate = () => {
+      const now = new Date();
+      return now.toISOString().split('T')[0]; // Data no formato YYYY-MM-DD
+    };
+    
+    
+    const handleCadUsu = async () => {
       const validacao = handleValida();
       if (validacao === true) {
-          try {
-              let confirmaCad;
-              const response = await api.post('/usuario', dados);
-              confirmaCad = response.data.sucesso;
-              if (confirmaCad) {
-                  onClose();
-              }
-          } catch (error) {
-              if (error.response) {
-                  alert(error.response.data.mensagem + '\n' + error.response.data.dados);
-              } else {
-                  alert('Não foi possivel Cadastrar o Usuario (Front-end)' + '\n' + error);
-              }
+        setDados((prev) => ({
+          ...prev,
+          data_cad_usu: getCurrentDate(), // Define a data de cadastro
+        }));
+        
+        try {
+          const response = await api.post('/usuario', { ...dados, data_cad_usu: getCurrentDate() }); // Inclui a data no envio
+          if (response.data.sucesso) {
+            onOpen();
           }
+        } catch (error) {
+          if (error.response) {
+            alert(error.response.data.mensagem + '\n' + error.response.data.dados);
+          } else {
+            alert('Não foi possível cadastrar o usuário (Front-end)' + '\n' + error);
+          }
+        }
       }
-  }
+    };
+    
   
   
   const router = useRouter();
@@ -74,7 +91,7 @@ const CadastroScreen = ({ onClose }) => {
         <input className="input" placeholder="E-mail" type="email" name="email_usu" value={dados.email_usu} onChange={handleChange} />
         <input className="input" placeholder="Senha" type="password" name="senha_usu" value={dados.senha_usu} onChange={handleChange} />
         <input className="input" placeholder="Confirme sua Senha" type="password"  onChange={handleChange} /> {/* FAZER A CONFIRMAÇÃO DE SENHA */}
-
+  
         <button className="button" onClick={() => handleCadUsu()}>
               <Text
                 color="#FFF"
@@ -85,6 +102,24 @@ const CadastroScreen = ({ onClose }) => {
                 Registrar
               </Text>
         </button>
+
+        <Modal isOpen={isOpen} onClose={handleCloseModal} isCentered>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Cadastro Realizado com Sucesso!</ModalHeader>
+            <ModalBody>
+              <Text>O seu cadastro foi concluído. Deseja voltar para a página inicial?</Text>
+            </ModalBody>
+            <ModalFooter>
+              <Button colorScheme="blue" mr={3} onClick={() => router.push('/')}>
+                Sim, voltar para a página inicial
+              </Button>
+              <Button variant="ghost" onClick={handleCloseModal}>Fechar</Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+
+
       </div>
       <style jsx>{`
         .fundo {
