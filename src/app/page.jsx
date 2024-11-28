@@ -34,19 +34,22 @@ const LoginScreenW = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault(); // Previne o comportamento padrão
-    setIsLoading(false); // Inicia o loading
+    setIsLoading(true); // Inicia o loading
     setShowAlert(false); // Reseta o alerta
   
     try {
-      // Substitua o endpoint pelo caminho correto da sua API
       const response = await api.post('/usuario/login', {
         email_usu: username, // Campo esperado pela API
         senha_usu: password, // Campo esperado pela API
       });
   
       if (response.data.sucesso) {
-        // Login bem-sucedido
-        router.push('/screens/HomeW'); // Redireciona para a página inicial
+        // Salva os dados do usuário no sessionStorage
+        const userData = response.data.usuario; // Ajuste para acessar os dados do usuário (dependente da estrutura da API)
+        sessionStorage.setItem('loggedUser', JSON.stringify(userData));
+  
+        // Redireciona para a página inicial
+        router.push('/screens/HomeW');
       } else {
         // Login falhou
         setShowAlert(true); // Mostra mensagem de erro
@@ -55,9 +58,10 @@ const LoginScreenW = () => {
       console.error('Erro ao conectar com a API:', error);
       setShowAlert(true); // Mostra o alerta se houver erro na conexão
     } finally {
-            setIsLoading(true); // Para o loading
+      setIsLoading(false); // Para o loading
     }
   };
+  
   
   
 
