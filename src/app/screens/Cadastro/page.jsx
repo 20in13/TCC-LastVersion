@@ -6,6 +6,13 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import api from '../../../services/api';
 import styles from './page.module.css';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogActions from '@mui/material/DialogActions';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+
 
 const CadastroScreen = () => {
   const [dados, setDados] = useState({
@@ -120,8 +127,12 @@ const CadastroScreen = () => {
         </button>
 
         {/* Modal de Sucesso */}
-        <Flex>
-        <Modal isOpen={isOpen} onClose={handleCloseModal} isCentered>
+        {/* <Flex className='center'
+            margin="auto"       // Adicionado para centralizar
+            top="50%"           // Adicionado para alinhar verticalmente
+            transform="translateY(-50%)" // Garante alinhamento vertical
+            >
+        <Modal isOpen={isOpen} onClose={handleCloseModal} isCentered >
           <ModalOverlay />
           <ModalContent
             borderRadius="12px"
@@ -129,6 +140,9 @@ const CadastroScreen = () => {
             padding="20px"
             bg="#E8F5E9"
             maxWidth="350px"
+            margin="auto"       // Adicionado para centralizar
+            top="50%"           // Adicionado para alinhar verticalmente
+            transform="translateY(-50%)" // Garante alinhamento vertical
           >
             <Flex direction="column" align="center" gap={3}>
               <Flex
@@ -170,7 +184,57 @@ const CadastroScreen = () => {
             </Flex>
           </ModalContent>
         </Modal>
-        </Flex>
+        </Flex> */}
+<Dialog open={isOpen} onClose={handleCloseModal}>
+  <DialogContent
+    style={{
+      textAlign: 'center',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      padding: '20px',
+      borderRadius: '12px',
+    }}
+  >
+    <CheckCircleIcon
+      style={{ fontSize: 40, color: '#4CAF50', marginBottom: '10px' }}
+    />
+    <h2 style={{ color: '#388E3C', fontSize: '18px', fontWeight: 'bold' }}>
+      Cadastro realizado com Sucesso!
+    </h2>
+    <p style={{ color: '#555', fontSize: '14px', margin: '10px 0' }}>
+      Seu cadastro foi concluído. Deseja voltar à Página inicial?
+    </p>
+    <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
+      <Button
+        variant="outlined"
+        style={{
+          border: 'none',
+          color: '#000',
+          padding: '5px 15px',
+          borderRadius: '8px',
+        }}
+        onClick={handleCloseModal}
+      >
+        Fechar
+      </Button>
+      <Button
+        variant="contained"
+        style={{
+          backgroundColor: '#4CAF50',
+          color: 'white',
+          padding: '5px 15px',
+          borderRadius: '8px',
+          border: 'none',
+        }}
+        onClick={() => router.push('/')}
+      >
+        Sim
+      </Button>
+    </div>
+  </DialogContent>
+</Dialog>
+
 
         {/* Modal de Validação */}
         <Modal isOpen={isAlertOpen} onClose={closeAlert} isCentered>
@@ -231,7 +295,7 @@ const CadastroScreen = () => {
           border: none;
         }
         .center{
-        textAlign
+         text-align: center;
         }
       `}</style>
     </div>
