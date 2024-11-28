@@ -6,8 +6,6 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import api from '../../../services/api';
 import styles from './page.module.css'
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography, IconButton, Box } from '@mui/material';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 
 const CadastroScreen = () => {
@@ -143,31 +141,21 @@ const CadastroScreen = () => {
           </ModalContent>
         </Modal>
 
-        {/* Dialog de Validação */}
-        <Dialog open={isOpen} onClose={handleCloseModal} maxWidth="xs" fullWidth>
-          <Box sx={{ textAlign: 'center', padding: '20px 0 10px', backgroundColor: '#E5F6E8' }}>
-            <IconButton disableRipple sx={{ color: '#36A970' }}>
-              <CheckCircleIcon sx={{ fontSize: 48 }} />
-            </IconButton>
-          </Box>
-          <DialogTitle sx={{ textAlign: 'center', fontWeight: 'bold', fontSize: '18px', marginBottom: 1 }}>
-            Cadastro realizado com Sucesso!
-          </DialogTitle>
-          <DialogContent>
-            <Typography variant="body2" textAlign="center">
-              Seu cadastro foi concluído. Deseja voltar à Página inicial?
-            </Typography>
-          </DialogContent>
-          <DialogActions sx={{ justifyContent: 'space-between', padding: '10px 20px' }}>
-            <Button variant="outlined" color="success" onClick={handleCloseModal}>
-              Fechar
-            </Button>
-            <Button variant="contained" color="success" onClick={() => router.push('/')}>
-              Sim
-            </Button>
-          </DialogActions>
-        </Dialog>
-
+        {/* Modal de Validação */}
+        <Modal isOpen={isAlertOpen} onClose={closeAlert} isCentered>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Validação</ModalHeader>
+            <ModalBody>
+              <Text>{alertMessage}</Text>
+            </ModalBody>
+            <ModalFooter>
+              <Button colorScheme="red" onClick={closeAlert}>
+                Fechar
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
       </div>
       <style jsx>{`
         .fundo {
