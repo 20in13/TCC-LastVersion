@@ -1,12 +1,11 @@
-'use client'
+'use client';
 import React from 'react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Flex, Text, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter, Button } from '@chakra-ui/react';
+import { Flex, Text, useDisclosure, Modal, ModalOverlay, ModalContent, ModalBody, Button } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import api from '../../../services/api';
-import styles from './page.module.css'
-
+import styles from './page.module.css';
 
 const CadastroScreen = () => {
   const [dados, setDados] = useState({
@@ -78,8 +77,6 @@ const CadastroScreen = () => {
 
   return (
     <div className="fundo">
-
-      
       <button className={styles.backButton} onClick={() => router.back()}>
         <ArrowBackIcon
           style={{ fontSize: 24, color: 'white', transition: 'color 0.3s' }}
@@ -123,37 +120,66 @@ const CadastroScreen = () => {
         </button>
 
         {/* Modal de Sucesso */}
+        <Flex>
         <Modal isOpen={isOpen} onClose={handleCloseModal} isCentered>
           <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Cadastro Realizado com Sucesso!</ModalHeader>
-            <ModalBody>
-              <Text>O seu cadastro foi concluído. Deseja voltar para a página inicial?</Text>
-            </ModalBody>
-            <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={() => router.push('/')}>
-                Sim, voltar para a página inicial
-              </Button>
-              <Button variant="ghost" onClick={handleCloseModal}>
-                Fechar
-              </Button>
-            </ModalFooter>
+          <ModalContent
+            borderRadius="12px"
+            textAlign="center"
+            padding="20px"
+            bg="#E8F5E9"
+            maxWidth="350px"
+          >
+            <Flex direction="column" align="center" gap={3}>
+              <Flex
+                w="60px"
+                h="60px"
+                bg="#4CAF50"
+                borderRadius="full"
+                align="center"
+                justify="center"
+              >
+                <Text color="white" fontSize="24px" fontWeight="bold">✔</Text>
+              </Flex>
+              <Text fontWeight="bold" fontSize="18px" color="#388E3C">
+                Cadastro realizado com Sucesso!
+              </Text>
+              <Text fontSize="14px" color="#555">
+                Seu cadastro foi concluído. Deseja voltar à Página inicial?
+              </Text>
+              <Flex gap={2} mt={4}>
+                <Button
+                  size="sm"
+                  bg="#E0E0E0"
+                  color="#000"
+                  _hover={{ bg: '#BDBDBD' }}
+                  onClick={handleCloseModal}
+                >
+                  Fechar
+                </Button>
+                <Button
+                  size="sm"
+                  bg="#4CAF50"
+                  color="white"
+                  _hover={{ bg: '#388E3C' }}
+                  onClick={() => router.push('/')}
+                >
+                  Sim
+                </Button>
+              </Flex>
+            </Flex>
           </ModalContent>
         </Modal>
+        </Flex>
 
         {/* Modal de Validação */}
         <Modal isOpen={isAlertOpen} onClose={closeAlert} isCentered>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Validação</ModalHeader>
             <ModalBody>
               <Text>{alertMessage}</Text>
             </ModalBody>
-            <ModalFooter>
-              <Button colorScheme="red" onClick={closeAlert}>
-                Fechar
-              </Button>
-            </ModalFooter>
+            <Button onClick={closeAlert}>Fechar</Button>
           </ModalContent>
         </Modal>
       </div>
@@ -203,6 +229,9 @@ const CadastroScreen = () => {
           margin-top: 5px;
           width: 105%;
           border: none;
+        }
+        .center{
+        textAlign
         }
       `}</style>
     </div>
