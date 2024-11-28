@@ -35,7 +35,6 @@ const Agend = () => {
       <Container className={styles.container}>
             <Desc />
             <Inputs names={names} addName={addName} />
-            {/* <NameList names={names} /> */}
             <Tabela dados={names.map((entry) => ({ nome: entry.name, serie: entry.itinerary }))} />
       </Container>
       </main>
