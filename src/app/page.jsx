@@ -126,13 +126,13 @@ const LoginScreenW = () => {
             type="password"
             mb={20}
           />
-          <Flex justifyContent="flex-end" w="100%" mb={20} cursor="help">
+          <Flex justifyContent="flex-end" w="100%" mb={20}>
             <Text
               color="#CC3737"
               textDecoration="underline"
               fontSize={15}
               fontWeight={600}
-              cursor="pointer"
+              cursor="help"
             >
               Esqueceu a senha?
             </Text>
@@ -148,7 +148,7 @@ const LoginScreenW = () => {
             </Flex>
           </Center>
         ) : (
-          <Text color="#FFF" fontSize={14} fontWeight={600}>
+          <Text color="#FFF" fontSize={14} fontWeight={600} cursor='pointer'>
             Login
           </Text>
         )}
