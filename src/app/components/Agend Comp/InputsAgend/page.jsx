@@ -40,7 +40,10 @@ const Inputs = ({ names, addName }) => {
   };
   
 
-  const API_ENDPOINT = "/reserva_ambiente"; // Substitua pelo endpoint correto da API
+  // const response = await api.post('/usuario/login', {
+  //   email_usu: username, // Campo esperado pela API
+  //   senha_usu: password, // Campo esperado pela API
+  // });
 
   const handleFinalizeAppointment = async () => {
     if ( !selectedDate || !startTime || !endTime || !reason) {
@@ -100,7 +103,13 @@ const Inputs = ({ names, addName }) => {
             <MenuItem value="" disabled>
               Selecione um itinerário
             </MenuItem>
-            {['1º - Etim', '2º - Etim', '3º - Etim'].map((item, index) => (
+            {[
+            '1º - Etim', '2º - Etim', '3º - Etim', 
+            '1º - Linguagens', '2º - Linguagens', '3º - Linguagens', 
+            '1º - Exatas', '2º - Exatas', '3º - Exatas',
+            '1º - Biológicas','2º - Biológicas','3º - Biológicas',
+            '1º - NovoTec','2º - NovoTec','3º - NovoTec',
+          ].map((item, index) => (
               <MenuItem key={index} value={item}>
                 {item}
               </MenuItem>

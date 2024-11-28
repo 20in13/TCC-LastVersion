@@ -122,7 +122,7 @@ export default function Profile({ user }) {
 
       </main>
       <footer className={styles.footer}>
-        <p> Victor Nasc. e Gabriel Henrique - TCC 2024</p>
+        <p> Victor Nascimento, Gabriel Henrique e João Paulo - TCC 2024</p>
       </footer>
     </div>
   );

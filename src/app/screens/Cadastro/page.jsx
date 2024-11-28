@@ -12,6 +12,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogActions from '@mui/material/DialogActions';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
 
 const CadastroScreen = () => {
@@ -73,7 +74,7 @@ const CadastroScreen = () => {
           setAlertMessage(error.response.data.mensagem + '\n' + error.response.data.dados);
           showAlert();
         } else {
-          setAlertMessage('Não foi possível cadastrar o usuário (Front-end)\n' + error);
+          setAlertMessage('Não foi possível cadastrar o usuário \n' + error);
           showAlert();
         }
       }
@@ -126,65 +127,7 @@ const CadastroScreen = () => {
           </Text>
         </button>
 
-        {/* Modal de Sucesso */}
-        {/* <Flex className='center'
-            margin="auto"       // Adicionado para centralizar
-            top="50%"           // Adicionado para alinhar verticalmente
-            transform="translateY(-50%)" // Garante alinhamento vertical
-            >
-        <Modal isOpen={isOpen} onClose={handleCloseModal} isCentered >
-          <ModalOverlay />
-          <ModalContent
-            borderRadius="12px"
-            textAlign="center"
-            padding="20px"
-            bg="#E8F5E9"
-            maxWidth="350px"
-            margin="auto"       // Adicionado para centralizar
-            top="50%"           // Adicionado para alinhar verticalmente
-            transform="translateY(-50%)" // Garante alinhamento vertical
-          >
-            <Flex direction="column" align="center" gap={3}>
-              <Flex
-                w="60px"
-                h="60px"
-                bg="#4CAF50"
-                borderRadius="full"
-                align="center"
-                justify="center"
-              >
-                <Text color="white" fontSize="24px" fontWeight="bold">✔</Text>
-              </Flex>
-              <Text fontWeight="bold" fontSize="18px" color="#388E3C">
-                Cadastro realizado com Sucesso!
-              </Text>
-              <Text fontSize="14px" color="#555">
-                Seu cadastro foi concluído. Deseja voltar à Página inicial?
-              </Text>
-              <Flex gap={2} mt={4}>
-                <Button
-                  size="sm"
-                  bg="#E0E0E0"
-                  color="#000"
-                  _hover={{ bg: '#BDBDBD' }}
-                  onClick={handleCloseModal}
-                >
-                  Fechar
-                </Button>
-                <Button
-                  size="sm"
-                  bg="#4CAF50"
-                  color="white"
-                  _hover={{ bg: '#388E3C' }}
-                  onClick={() => router.push('/')}
-                >
-                  Sim
-                </Button>
-              </Flex>
-            </Flex>
-          </ModalContent>
-        </Modal>
-        </Flex> */}
+        {/* Dialog de Sucesso */}
 <Dialog open={isOpen} onClose={handleCloseModal}>
   <DialogContent
     style={{
@@ -213,6 +156,7 @@ const CadastroScreen = () => {
           color: '#000',
           padding: '5px 15px',
           borderRadius: '8px',
+          cursor: 'pointer',
         }}
         onClick={handleCloseModal}
       >
@@ -226,6 +170,7 @@ const CadastroScreen = () => {
           padding: '5px 15px',
           borderRadius: '8px',
           border: 'none',
+          cursor: 'pointer',
         }}
         onClick={() => router.push('/')}
       >
@@ -237,15 +182,46 @@ const CadastroScreen = () => {
 
 
         {/* Modal de Validação */}
-        <Modal isOpen={isAlertOpen} onClose={closeAlert} isCentered>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalBody>
-              <Text>{alertMessage}</Text>
-            </ModalBody>
-            <Button onClick={closeAlert}>Fechar</Button>
-          </ModalContent>
-        </Modal>
+        <Dialog open={isAlertOpen} onClose={closeAlert}>
+  <DialogContent
+    style={{
+      textAlign: 'center',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      padding: '20px',
+      borderRadius: '12px',
+    }}
+  >
+    <WarningAmberIcon
+      style={{ fontSize: 40, color: '#FFC107', marginBottom: '10px' }}
+    />
+    <h2 style={{ color: '#FFA000', fontSize: '18px', fontWeight: 'bold' }}>
+      Aviso!
+    </h2>
+    <p style={{ color: '#555', fontSize: '14px', margin: '10px 0' }}>
+      {alertMessage}
+    </p>
+    <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
+      <Button
+        variant="contained"
+        style={{
+          backgroundColor: '#FFA000',
+          color: 'white',
+          padding: '5px 15px',
+          borderRadius: '8px',
+          border:'none',
+          cursor: 'pointer',
+        }}
+        onClick={closeAlert}
+      >
+        Fechar
+      </Button>
+    </div>
+  </DialogContent>
+</Dialog>
+
+
       </div>
       <style jsx>{`
         .fundo {
