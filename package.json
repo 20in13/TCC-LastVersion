@@ -22,7 +22,7 @@
     "@mui/icons-material": "^5.16.7",
     "@mui/material": "^5.16.7",
     "@mui/x-date-pickers": "^7.20.0",
-    "axios": "^1.7.7",
+    "axios": "^1.7.8",
     "dayjs": "^1.11.13",
     "framer-motion": "^11.3.24",
     "next": "^14.2.14",

@@ -32,22 +32,6 @@ const LoginScreenW = () => {
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
 
-  // const handleLogin = async (e) => {
-  //   e.preventDefault(); // Previna o comportamento padrão
-  //   setIsLoading(true); // Inicia o loading
-  //   setShowAlert(false); // Reseta o alerta
-
-  //   // Simulação de requisição (você pode trocar pelo seu fetch/axios)
-  //   setTimeout(() => {
-  //     if (username === '20in.nascimento.13@gmail.com' && password === 'testeteste') {
-  //       router.push('/screens/HomeW'); // Redireciona usando router.push
-  //     } else {
-  //       setShowAlert(true); // Mostra o alerta se login for incorreto
-  //     }
-  //     setIsLoading(false); // Para o loading
-  //   }, 1000); // Simulação de 2 segundos
-  // };
-
   const handleLogin = async (e) => {
     e.preventDefault(); // Previne o comportamento padrão
     setIsLoading(false); // Inicia o loading
