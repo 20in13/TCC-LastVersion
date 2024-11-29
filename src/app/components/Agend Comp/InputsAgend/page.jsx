@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+'use client';
+
+import { useSearchParams } from 'next/navigation';
+import { useState, useEffect } from 'react';
 import { Box, TextField, Button, IconButton, Select, MenuItem } from '@mui/material';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
@@ -20,10 +23,20 @@ const Inputs = ({ names, addName }) => {
   const [startTime, setStartTime] = useState(null);
   const [endTime, setEndTime] = useState(null);
   const [reason, setReason] = useState('');
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false); 
+  const [usuario, setUsuario] = useState({}); 
+  const searchParams = useSearchParams();
+  const idLocal = searchParams.get('id'); // Obtém o valor do parâmetro "id"
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      setUsuario(user);
+    }
+  }, []);
 
   const handleFinalizeAppointment = async () => {
     if (!selectedDate || !startTime || !endTime || !reason) {
@@ -35,7 +48,9 @@ const Inputs = ({ names, addName }) => {
       data_rsvamb: selectedDate.toISOString().split('T')[0],
       hr_inicial_rsvamb: startTime.format('HH:mm'),
       hr_final_rsvamb: endTime.format('HH:mm'),
-      motivo: reason.trim(),
+      motivo_amb: reason.trim(), 
+      id_ambiente: idLocal, 
+      id_usu: usuario.id
     };
 
     try {

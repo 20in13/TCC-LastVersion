@@ -36,15 +36,24 @@ const LoginScreenW = () => {
     e.preventDefault(); // Previne o comportamento padrão
     setIsLoading(false); // Inicia o loading
     setShowAlert(false); // Reseta o alerta
-  
+
     try {
       // Substitua o endpoint pelo caminho correto da sua API
       const response = await api.post('/usuario/login', {
         email_usu: username, // Campo esperado pela API
         senha_usu: password, // Campo esperado pela API
       });
-  
+
       if (response.data.sucesso) {
+        const usuario = response.data.dados; 
+        const objLogado = {
+          "id": usuario.id_usu,
+          "nome": usuario.nome_usu,
+          "acesso": usuario.id_Tipo_Usu
+        };
+        // signin(JSON.stringify(objLogado));                
+        localStorage.clear();
+        localStorage.setItem('user', JSON.stringify(objLogado));
         // Login bem-sucedido
         router.push('/screens/HomeW'); // Redireciona para a página inicial
       } else {
@@ -55,11 +64,11 @@ const LoginScreenW = () => {
       console.error('Erro ao conectar com a API:', error);
       setShowAlert(true); // Mostra o alerta se houver erro na conexão
     } finally {
-            setIsLoading(true); // Para o loading
+      setIsLoading(true); // Para o loading
     }
   };
-  
-  
+
+
 
   return (
     <div className={styles.container}>
@@ -141,17 +150,17 @@ const LoginScreenW = () => {
 
         {/* Botão de login com loading */}
         <button className={styles.loginButton} onClick={handleLogin} disabled={isLoading}>
-        {isLoading ? (
-          <Center>
-            <Flex direction="column" align="center">
-            <Spinner width="10px" height="10px" color="#FFF" />
-            </Flex>
-          </Center>
-        ) : (
-          <Text color="#FFF" fontSize={14} fontWeight={600} cursor='pointer'>
-            Login
-          </Text>
-        )}
+          {isLoading ? (
+            <Center>
+              <Flex direction="column" align="center">
+                <Spinner width="10px" height="10px" color="#FFF" />
+              </Flex>
+            </Center>
+          ) : (
+            <Text color="#FFF" fontSize={14} fontWeight={600} cursor='pointer'>
+              Login
+            </Text>
+          )}
 
         </button>
 
