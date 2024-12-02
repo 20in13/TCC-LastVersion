@@ -8,7 +8,7 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import EventIcon from "@mui/icons-material/Event";
 import HomeIcon from "@mui/icons-material/Home";
 import FavoriteIcon from "@mui/icons-material/Favorite"; 
-import PersonIcon from "@mui/icons-material/Person";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import ListItem from "@mui/material/ListItem";
@@ -253,7 +253,10 @@ export default function NavigationRail({ user }) {
               }}
               onClick={() => handleIconClick(4, "/screens/Perfil")}
               >
-              {user.image ? (
+              <AccountCircleIcon
+                style={{ fontSize: 50, color: '#FFF', }}
+              />
+              {/* {user.image ? (
                 <Image
                 src={user.image || '/img/default-avatar.png'}
                 alt="Profile Avatar"
@@ -262,8 +265,10 @@ export default function NavigationRail({ user }) {
                 className={styles.smallAvatar}
                 />
               ) : (
-                  <PersonIcon sx={{ color: "#2D0002" }} />
-                )}
+                <AccountCircleIcon
+                style={{ fontSize: 50, color: '#DDD' }}
+              />
+                )} */}
             </IconButton>
           </ListItemIcon>
         </ListItem>
@@ -273,5 +278,5 @@ export default function NavigationRail({ user }) {
 }
 
 NavigationRail.defaultProps = {
-  user: { name: 'Fulano da Silva', image: '/perfilVitu.jpg' },
+  user: { name: 'Fulano da Silva', image: '/' },
 };

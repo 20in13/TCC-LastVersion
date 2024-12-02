@@ -2,13 +2,14 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { FaUserCircle } from "react-icons/fa";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Card from "../../components/Card/page";
 import SearchBar from "../../components/SearchBar";
 import styles from "./page.module.css";
 import NavigationRail from "../../components/NavRail/page";
 import { IconButton } from "@mui/material";
 import Image from "next/image";
+
 import { useMediaQuery, useTheme } from "@mui/material";
 import axios from "axios";
 
@@ -59,7 +60,10 @@ export default function HomeW({ user }) {
             <h1 className={styles.title}>Space School</h1>
             <div className={styles.headerRight}>
               <IconButton onClick={goTo}>
-                {user.image ? (
+              <AccountCircleIcon
+                          style={{ fontSize: 50, color: '#DDD' }}
+                        />
+                {/* {user.image ? (
                   <Image
                     src={user.image || "/img/default-avatar.png"}
                     alt="Profile Avatar"
@@ -68,8 +72,10 @@ export default function HomeW({ user }) {
                     className={styles.smallAvatar}
                   />
                 ) : (
-                  <FaUserCircle className={styles.profileIcon} />
-                )}
+                  <AccountCircleIcon
+                          style={{ fontSize: 50, color: '#777' }}
+                        />
+                )} */}
               </IconButton>
             </div>
           </header>
@@ -99,6 +105,6 @@ HomeW.defaultProps = {
   user: {
     name: "Fulano da Silva",
     email: "fulano.silva737@gmail.com",
-    image: "/perfilVitu.jpg",
+    image: "",
   },
 };

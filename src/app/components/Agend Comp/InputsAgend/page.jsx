@@ -38,6 +38,20 @@ const Inputs = ({ names, addName }) => {
     }
   }, []);
 
+  const handleAddName = () => {
+    if (!name || !itinerary) {
+      alert("Por favor, preencha o nome e itinerário antes de adicionar.");
+      return;
+    }
+  
+    // Usa a função `addName` para atualizar o estado global
+    addName({ name: name.trim(), itinerary });
+  
+    // Limpa os campos
+    setName('');
+    setItinerary('');
+  };
+
   const handleFinalizeAppointment = async () => {
     if (!selectedDate || !startTime || !endTime || !reason) {
       alert("Por favor, preencha todos os campos.");
@@ -73,6 +87,46 @@ const Inputs = ({ names, addName }) => {
   return (
     <Box className={styles.formContainer}>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Box className={styles.inputsRow}>
+          <TextField
+            fullWidth
+            label="Nome e Sobrenome"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className={`${styles.textField} ${styles.inputItem}`}
+          />
+          <Select
+            value={itinerary}
+            onChange={(e) => setItinerary(e.target.value)}
+            displayEmpty
+            className={`${styles.textField} ${styles.inputItem}`}
+          >
+            <MenuItem value="" disabled>
+              Selecione um itinerário
+            </MenuItem>
+            {[
+            '1º - Etim', '2º - Etim', '3º - Etim', 
+            '1º - Linguagens', '2º - Linguagens', '3º - Linguagens', 
+            '1º - Exatas', '2º - Exatas', '3º - Exatas',
+            '1º - Biológicas','2º - Biológicas','3º - Biológicas',
+            '1º - NovoTec','2º - NovoTec','3º - NovoTec',
+          ].map((item, index) => (
+              <MenuItem key={index} value={item}>
+                {item}
+              </MenuItem>
+            ))}
+          </Select>
+        </Box>
+
+        <Button
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={styles.addButton}
+          onClick={handleAddName} // Ação para adicionar nome e itinerário
+        >
+          Adicionar
+        </Button>
         <DatePicker
           selected={selectedDate}
           onChange={(date) => setSelectedDate(date)}
@@ -117,18 +171,46 @@ const Inputs = ({ names, addName }) => {
           <Button variant="contained" color="primary" fullWidth onClick={handleFinalizeAppointment}>
             Finalizar Agendamento
           </Button>
-          <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>
-              <CheckCircleIcon />
-              Agendamento Finalizado
-            </DialogTitle>
-            <DialogContent>
-              <DialogContentText>Sua reserva foi feita com sucesso!</DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClose}>Ok</Button>
-            </DialogActions>
-          </Dialog>
+          <Dialog
+          open={open}
+          onClose={handleClose}
+          PaperProps={{
+            sx: {
+              borderRadius: '8px',
+              width:'100%',
+              maxWidth: '500px',
+              margin: 'auto',
+            },
+          }}
+        >
+        <DialogTitle sx={{ textAlign: 'center', backgroundColor: '#68c392', color: '#fff' }}>
+          <CheckCircleIcon sx={{ fontSize: 40 }} />
+        </DialogTitle>
+        <DialogContent sx={{ textAlign: 'center', padding: '16px 24px' }}>
+          <DialogContentText sx={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#4a9a5d', marginTop: '1rem', }}>
+            Agendamento Finalizado
+          </DialogContentText>
+          <DialogContentText sx={{ fontSize: '0.9rem', color: '#666' }}>
+            Sua reserva foi feita com sucesso!
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions sx={{ justifyContent: 'center', padding: '16px' }}>
+          <Button
+            onClick={handleClose}
+            sx={{
+              backgroundColor: '#4a9a5d',
+              marginTop:'-1rem',
+              color: '#fff',
+              borderRadius: '10px',
+              padding: '8px 24px',
+              width:'10rem',
+              '&:hover': { backgroundColor: '#3e8b50' },
+            }}
+          >
+            Ok
+          </Button>
+        </DialogActions>
+        </Dialog>
         </div>
       </LocalizationProvider>
     </Box>
