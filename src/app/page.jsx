@@ -34,7 +34,7 @@ const LoginScreenW = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault(); // Previne o comportamento padrão
-    setIsLoading(false); // Inicia o loading
+    setIsLoading(true); // Inicia o loading
     setShowAlert(false); // Reseta o alerta
 
     try {
@@ -59,12 +59,16 @@ const LoginScreenW = () => {
       } else {
         // Login falhou
         setShowAlert(true); // Mostra mensagem de erro
+        setIsLoading(false);
       }
     } catch (error) {
       console.error('Erro ao conectar com a API:', error);
       setShowAlert(true); // Mostra o alerta se houver erro na conexão
+      setIsLoading(false);
     } finally {
-      setIsLoading(true); // Para o loading
+      setTimeout(() => {
+        setIsLoading(false); // Para o loading após o delay
+      }, 3000);
     }
   };
 
