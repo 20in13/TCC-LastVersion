@@ -136,11 +136,11 @@ export default function Profile() {
                     </div>
                     <div className={styles.infoItem}>
                       <span>Nome</span>
-                      <span>{userData?.name || 'Nome não disponível'}</span>
+                      <span>{userData?.name || 'Usuário'}</span>
                     </div>
                     <div className={styles.infoItem}>
                       <span>E-mail</span>
-                      <span>{userData?.email || 'E-mail não disponível'}</span>
+                      <span>{userData?.email || 'user123@gmail.com'}</span>
                     </div>
 
                     <button className={styles.manageBtn}>
@@ -155,7 +155,8 @@ export default function Profile() {
               <h2 className={styles.minRe}>Minhas Reservas</h2>
               <div className={styles.reservationsContainer}>
                 {loading ? (
-                  <p>Carregando reservas...</p>
+                  // <p>Carregando reservas...</p>
+                  <p>Você não tem reservas no momento.</p>
                 ) : reservations.length > 0 ? (
                   reservations.map((reservation, index) => (
                     <LibraryCard

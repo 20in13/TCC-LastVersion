@@ -29,7 +29,10 @@ const Inputs = ({ names, addName }) => {
   const idLocal = searchParams.get('id'); // Obtém o valor do parâmetro "id"
 
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    window.location.reload();
+  }
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
