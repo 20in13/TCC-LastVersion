@@ -1,68 +1,113 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import ptBrLocale from "@fullcalendar/core/locales/pt-br"; // Importa o idioma
-
-import api from "../../../services/api"; // Certifique-se de que o caminho está correto
+import ptBrLocale from "@fullcalendar/core/locales/pt-br";
+import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem, Button } from "@mui/material";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const CalendarComponent = () => {
-  const [events, setEvents] = useState([]);
-  const [dados, setDados] = useState({
-    id_rsvamb: '',
-    data_rsvamb: '',
-    hr_inicial_rsvamb: '',
-    hr_final_rsvamb: '',
-    // id_ambiente: '',
-  });
+  const [anchorEl, setAnchorEl] = useState(null); // Removido o tipo TypeScript
+  const [selectedLocation, setSelectedLocation] = useState("LAB 1");
 
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-  useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        // Fazendo a requisição para a API
-        const response = await api.get("/reserva_ambiente", { ...dados}); // Substitua pelo endpoint correto
-        const data = response.data; // Acessa os dados da resposta
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
 
-        // Formata os dados no formato esperado pelo FullCalendar
-        const formattedEvents = data.map((dados) => ({
-          id: dados.id_rsvamb,
-          title: `Reservado - ${dados.motivo_amb}`,
-          start: `${dados.data_rsvamb}T${dados.hr_inicial_rsvamb}`,
-          end: `${dados.data_rsvamb}T${dados.hr_final_rsvamb}`,
-        }));
+  const handleLocationSelect = (location) => {
+    setSelectedLocation(location);
+    setAnchorEl(null);
+  };
+  const [events] = useState([
 
-        setEvents(formattedEvents);
-      } catch (error) {
-        console.error("Erro ao buscar os eventos:", error);
-      }
-    };
-
-    fetchEvents();
-  }, []);
-
+    {
+      id: 2,
+      title: "Reservado - Alexandre",
+      start: "2024-12-05T10:30:00",
+      end: "2024-12-05T12:30:00",
+    },
+    {
+      id: 3,
+      title: "Reservado - Victor",
+      start: "2024-12-02T13:00:00",
+      end: "2024-12-02T15:00:00",
+    },
+    {
+      id: 4,
+      title: "Reservado - João Paulo",
+      start: "2024-12-03T07:00:00",
+      end: "2024-12-03T08:30:00",
+    },
+  ]);
   return (
-    <div style={{ width: "auto", height: "45vh", position: "relative" }}>
-      {/* Contêiner pequeno */}
-      <div className="calendario-pequeno">
-        <FullCalendar
-          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-          initialView="timeGridWeek" // Visualização inicial
-          events={events} // Passando os eventos do estado
-          locale={ptBrLocale}
-          editable={false}
-          selectable={true}
-          headerToolbar={{
-            left: "prev,today",
-            center: "title",
-            right: "dayGridMonth,timeGridWeek,timeGridDay,next",
-          }}
-          height="100%" // Ajusta o calendário para ocupar 100% do contêiner
-          contentHeight="auto" // Ajusta o conteúdo para a altura automática
-        />
+    <div>
+      {/* Cabeçalho */}
+      <AppBar position="static" sx={{ backgroundColor: "#CC3737", height: "38px" }}>
+        <Toolbar>
+          <Typography variant="h7" sx={{ flexGrow: 1, textAlign: "center" }}>
+            {selectedLocation}
+            <IconButton
+              color="inherit"
+              onClick={handleMenuOpen}
+              size="small"
+              sx={{ ml: 0 }}
+            >
+              <ArrowDropDownIcon />
+            </IconButton>
+          </Typography>
+        </Toolbar>
+      </AppBar>
+
+      {/* Menu Suspenso */}
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleMenuClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+      >
+        {["Quadra", "LAB 1", "LAB 2", "LAB 3", "LAB 4", "Sala 7 (Temática)", "Laboratório de Pranchetas", "Audiovisual", "Biblioteca"].map(
+          (location, index) => (
+            <MenuItem key={index} onClick={() => handleLocationSelect(location)}>
+              {location}
+            </MenuItem>
+          )
+        )}
+      </Menu>
+
+      {/* Calendário */}
+      <div style={{ width: "auto", height: "85vh", position: "relative" }}>
+        <div className="calendario-pequeno">
+          <FullCalendar
+            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+            initialView="timeGridWeek"
+            events={events}
+            locale={ptBrLocale}
+            editable={false}
+            selectable={true}
+            headerToolbar={{
+              left: "prev,today",
+              center: "title",
+              right: "dayGridMonth,timeGridWeek,timeGridDay,next",
+            }}
+            height="100%"
+            contentHeight="auto"
+          />
+        </div>
       </div>
     </div>
   );

@@ -24,7 +24,7 @@ export default function Fav ({ user }) {
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     // Filtra os ambientes favoritos
-    const favoriteAmbientes = ambientes.filter(local => favorites.includes(local.name));
+    const favoriteAmbientes = ambientes.filter(local => favorites.includes(local.nome_ambiente));
     setFavoriteItems(favoriteAmbientes);
   }, []);
 
@@ -40,17 +40,17 @@ export default function Fav ({ user }) {
             <h1 className={styles.title}>Favoritos</h1>
             <div className={styles.headerRight}>
               <IconButton onClick={goTo}>
-              {user.image ? (
-                  <Image
-                    src={user.image || '/img/default-avatar.png'}
-                    alt="Profile Avatar"
-                    width={50}
-                    height={50}
-                    className={styles.smallAvatar}
-                  />
-                ) : (
+              {/* {user.image ? (
+                  // <Image
+                  //   src={user.image || '/img/default-avatar.png'}
+                  //   alt="Profile Avatar"
+                  //   width={50}
+                  //   height={50}
+                  //   className={styles.smallAvatar}
+                  // />
+                ) : ( */}
                   <FaUserCircle className={styles.profileIcon} />
-                )}
+                {/* )} */}
               </IconButton>
             </div>
           </header>
@@ -71,12 +71,4 @@ export default function Fav ({ user }) {
       </main>
     </div>
   );
-};
-
-Fav.defaultProps = {
-  user: {
-    name: 'Fulano da Silva',
-    email: 'fulano.silva737@gmail.com',
-    image: '/perfilVitu.jpg',
-  },
 };
