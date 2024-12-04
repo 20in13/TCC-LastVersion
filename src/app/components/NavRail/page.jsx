@@ -71,18 +71,22 @@ export default function NavigationRail({ user }) {
       <BottomNavigationAction label="Favoritos" icon={<FavoriteIcon />} />
       <BottomNavigationAction label="Agenda" icon={<EventIcon />} />
       <BottomNavigationAction label="Perfil" icon={             
-         user.image ? (
-                <Image
-                src={user.image || '/img/default-avatar.png'}
-                alt="Profile Avatar"
-                width={30}
-                height={30}
-                className={styles.smallAvatar}
-                />
-              ) : (
-                  <PersonIcon sx={{ color: "#2D0002" }} />
-                )
-                } />
+        //  user.image ? (
+        //         <Image
+        //         src={user.image || '/img/default-avatar.png'}
+        //         alt="Profile Avatar"
+        //         width={30}
+        //         height={30}
+        //         className={styles.smallAvatar}
+        //         />
+        //       ) : (
+          <AccountCircleIcon
+          style={{ fontSize: 30, color: '#FFF', }}
+        />
+                // )
+                // 
+                }
+                 />
     </BottomNavigation>
   ) : (
     <Drawer
